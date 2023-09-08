@@ -34,14 +34,19 @@
             display: flex;
             flex-wrap: nowrap;
             justify-content: flex-start;
-            padding-left: 20px; /* Espaço à esquerda entre as imagens */
+            padding-left: 20px;
             margin-bottom: 20px;
         }
 
         .menu-item {
-            margin-right: 20px; /* Espaço entre os itens do menu */
+            margin-right: 20px;
             text-align: center;
             flex-shrink: 0;
+        }
+
+        .rounded-image-container {
+            width: 140px; /* Largura fixa do contêiner */
+            overflow-x: scroll; /* Barra de rolagem horizontal para o contêiner */
         }
 
         .rounded-image {
@@ -49,7 +54,6 @@
             width: 100px;
             height: 100px;
             overflow: hidden;
-            margin-bottom: 10px;
             padding: 10px;
             box-shadow: 0 0 5px rgba(0, 0, 0, 0.3);
         }
@@ -77,20 +81,26 @@
     <div class="menu-container">
         <ul class="menu">
             <li class="menu-item">
-                <div class="rounded-image">
-                    <img src="JRA.jpg" alt="Logo da JRA">
+                <div class="rounded-image-container">
+                    <div class="rounded-image">
+                        <img src="JRA.jpg" alt="Logo da JRA">
+                    </div>
                 </div>
                 <a class="whatsapp-link" href="https://api.whatsapp.com/send?phone=8291312770" target="_blank">JRA</a>
             </li>
             <li class="menu-item">
-                <div class="rounded-image">
-                    <img src="Dantas.jpg" alt="Logo da Dantas Contabilidade">
+                <div class="rounded-image-container">
+                    <div class="rounded-image">
+                        <img src="Dantas.jpg" alt="Logo da Dantas Contabilidade">
+                    </div>
                 </div>
                 <a class="whatsapp-link" href="https://api.whatsapp.com/send?phone=8281714181" target="_blank">Dantas Contabilidade</a>
             </li>
             <li class="menu-item">
-                <div class="rounded-image">
-                    <img src="mundoverde.png" alt="Logo da Mundo Verde">
+                <div class="rounded-image-container">
+                    <div class="rounded-image">
+                        <img src="mundoverde.png" alt="Logo da Mundo Verde">
+                    </div>
                 </div>
                 <a class="whatsapp-link" href="https://api.whatsapp.com/send?phone=8298083054" target="_blank">Mundo Verde</a>
             </li>
