@@ -22,18 +22,26 @@
             margin-bottom: 20px;
         }
 
+        .menu-container {
+            width: 100%;
+            overflow-x: scroll;
+        }
+
         .menu {
             list-style-type: none;
             padding: 0;
             margin: 0;
             display: flex;
-            flex-wrap: wrap;
-            justify-content: center;
+            flex-wrap: nowrap;
+            justify-content: flex-start;
+            padding-left: 20px; /* Espaço à esquerda entre as imagens */
+            margin-bottom: 20px;
         }
 
         .menu-item {
-            margin: 5px;
+            margin-right: 20px; /* Espaço entre os itens do menu */
             text-align: center;
+            flex-shrink: 0;
         }
 
         .rounded-image {
@@ -42,13 +50,14 @@
             height: 100px;
             overflow: hidden;
             margin-bottom: 10px;
-            padding: 10px; /* Adicionando padding */
-            box-shadow: 0 0 5px rgba(0, 0, 0, 0.3); /* Adicionando sombra */
+            padding: 10px;
+            box-shadow: 0 0 5px rgba(0, 0, 0, 0.3);
         }
 
         .rounded-image img {
             width: 100%;
-            height: auto;
+            height: 100%;
+            object-fit: cover;
         }
 
         .whatsapp-link {
@@ -65,26 +74,28 @@
     <div class="header">
         <p>Escolha uma empresa para entrar em contato pelo WhatsApp:</p>
     </div>
-    <ul class="menu">
-        <li class="menu-item">
-            <div class="rounded-image">
-                <img src="JRA.jpg" alt="Logo da Empresa 1">
-            </div>
-            <a class="whatsapp-link" href="https://api.whatsapp.com/send?phone=8291312770" target="_blank">JRA</a>
-        </li>
-        <li class="menu-item">
-            <div class="rounded-image">
-                <img src="Dantas.jpg" alt="Logo da Empresa 2">
-            </div>
-            <a class="whatsapp-link" href="https://api.whatsapp.com/send?phone=8281714181" target="_blank">Dantas Contabilidade</a>
-        </li>
-         <li class="menu-item">
-            <div class="rounded-image">
-                <img src="mundoverde.png" alt="Logo da Empresa 2">
-            </div>
-            <a class="whatsapp-link" href="https://api.whatsapp.com/send?phone=8298083054" target="_blank">Mundo Verde</a>
-        </li>
-        <!-- Adicione mais empresas conforme necessário -->
-    </ul>
+    <div class="menu-container">
+        <ul class="menu">
+            <li class="menu-item">
+                <div class="rounded-image">
+                    <img src="JRA.jpg" alt="Logo da JRA">
+                </div>
+                <a class="whatsapp-link" href="https://api.whatsapp.com/send?phone=8291312770" target="_blank">JRA</a>
+            </li>
+            <li class="menu-item">
+                <div class="rounded-image">
+                    <img src="Dantas.jpg" alt="Logo da Dantas Contabilidade">
+                </div>
+                <a class="whatsapp-link" href="https://api.whatsapp.com/send?phone=8281714181" target="_blank">Dantas Contabilidade</a>
+            </li>
+            <li class="menu-item">
+                <div class="rounded-image">
+                    <img src="mundoverde.png" alt="Logo da Mundo Verde">
+                </div>
+                <a class="whatsapp-link" href="https://api.whatsapp.com/send?phone=8298083054" target="_blank">Mundo Verde</a>
+            </li>
+            <!-- Adicione mais empresas conforme necessário -->
+        </ul>
+    </div>
 </body>
 </html>
