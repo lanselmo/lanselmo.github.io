@@ -20,12 +20,14 @@
         .header {
             font-size: 24px;
             margin-bottom: 20px;
+            white-space: nowrap; /* Impede a quebra de linha do texto no header */
+            overflow-x: auto; /* Adicione overflow-x para permitir rolagem horizontal no header */
         }
 
         .menu-container {
-            max-height: 400px; /* Defina a altura máxima desejada */
-            overflow-y: auto; /* Adicione overflow-y para permitir rolagem vertical */
-            white-space: nowrap; /* Impede a quebra de linha dos itens do menu */
+            max-height: 400px;
+            overflow-y: auto;
+            white-space: nowrap;
         }
 
         .menu {
@@ -33,7 +35,7 @@
             padding: 0;
             margin: 0;
             display: flex;
-            flex-wrap: nowrap; /* Impede a quebra de linha dos itens do menu */
+            flex-wrap: nowrap;
             justify-content: center;
         }
 
@@ -48,8 +50,8 @@
             height: 100px;
             overflow: hidden;
             margin-bottom: 10px;
-            padding: 10px; /* Adicionando padding */
-            box-shadow: 0 0 5px rgba(0, 0, 0, 0.3); /* Adicionando sombra */
+            padding: 10px;
+            box-shadow: 0 0 5px rgba(0, 0, 0, 0.3);
         }
 
         .rounded-image img {
@@ -69,9 +71,9 @@
 </head>
 <body>
     <div class="header">
-        <p>Escolha uma empresa para entrar em contato pelo WhatsApp:</p>
+        <p>Escolha uma empresa para entrar em contato pelo WhatsApp: Este é um texto longo que causará rolagem horizontal no cabeçalho.</p>
     </div>
-    <div class="menu-container"> <!-- Adicione uma div de contêiner -->
+    <div class="menu-container">
         <ul class="menu">
             <li class="menu-item">
                 <div class="rounded-image">
@@ -114,4 +116,3 @@
     </div>
 </body>
 </html>
-
