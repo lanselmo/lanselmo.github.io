@@ -14,20 +14,19 @@
             flex-direction: column;
             align-items: center;
             justify-content: center;
-            height: 100vh;
+            min-height: 100vh;
         }
 
         .header {
             font-size: 24px;
             margin-bottom: 20px;
-            white-space: nowrap; /* Impede a quebra de linha do texto no header */
-            overflow-x: auto; /* Adicione overflow-x para permitir rolagem horizontal no header */
+            white-space: nowrap;
+            overflow-x: auto;
         }
 
         .menu-container {
             max-height: 400px;
             overflow-y: auto;
-            white-space: nowrap;
         }
 
         .menu {
@@ -35,19 +34,22 @@
             padding: 0;
             margin: 0;
             display: flex;
-            flex-wrap: nowrap;
+            flex-wrap: wrap;
             justify-content: center;
         }
 
         .menu-item {
             margin: 5px;
             text-align: center;
+            flex: 0 0 calc(33.3333% - 10px);
+            max-width: calc(33.3333% - 10px);
         }
 
         .rounded-image {
             border-radius: 50%;
-            width: 100px;
-            height: 100px;
+            width: 100%;
+            max-width: 150px;
+            height: auto;
             overflow: hidden;
             margin-bottom: 10px;
             padding: 10px;
@@ -66,6 +68,20 @@
             padding: 10px 20px;
             border-radius: 5px;
             font-weight: bold;
+        }
+
+        @media screen and (max-width: 768px) {
+            .menu-item {
+                flex: 0 0 calc(50% - 10px);
+                max-width: calc(50% - 10px);
+            }
+        }
+
+        @media screen and (max-width: 480px) {
+            .menu-item {
+                flex: 0 0 100%;
+                max-width: 100%;
+            }
         }
     </style>
 </head>
@@ -105,7 +121,7 @@
                 </div>
                 <a class="whatsapp-link" href="https://api.whatsapp.com/send?phone=82981048168" target="_blank">belaechique</a>
             </li>
-              <li class="menu-item">
+            <li class="menu-item">
                 <div class="rounded-image">
                     <img src="sabor.jpg" alt="Logo da Empresa 2">
                 </div>
