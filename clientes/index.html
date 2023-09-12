@@ -22,12 +22,17 @@
             margin-bottom: 20px;
         }
 
+        .menu-container {
+            overflow-x: auto; /* Adicione overflow-x para permitir rolagem horizontal */
+            white-space: nowrap; /* Impede a quebra de linha dos itens do menu */
+        }
+
         .menu {
             list-style-type: none;
             padding: 0;
             margin: 0;
             display: flex;
-            flex-wrap: wrap;
+            flex-wrap: nowrap; /* Impede a quebra de linha dos itens do menu */
             justify-content: center;
         }
 
@@ -65,44 +70,46 @@
     <div class="header">
         <p>Escolha uma empresa para entrar em contato pelo WhatsApp:</p>
     </div>
-    <ul class="menu">
-        <li class="menu-item">
-            <div class="rounded-image">
-                <img src="JRA.jpg" alt="Logo da Empresa 1">
-            </div>
-            <a class="whatsapp-link" href="https://api.whatsapp.com/send?phone=8291312770" target="_blank">JRA</a>
-        </li>
-        <li class="menu-item">
-            <div class="rounded-image">
-                <img src="Dantas.jpg" alt="Logo da Empresa 2">
-            </div>
-            <a class="whatsapp-link" href="https://api.whatsapp.com/send?phone=8281714181" target="_blank">Dantas</a>
-        </li>
-         <li class="menu-item">
-            <div class="rounded-image">
-                <img src="mundoverde.png" alt="Logo da Empresa 2">
-            </div>
-            <a class="whatsapp-link" href="https://api.whatsapp.com/send?phone=8298083054" target="_blank">Mundo Verde</a>
-        </li>
-         <li class="menu-item">
-            <div class="rounded-image">
-                <img src="theburgerbox.jpg" alt="Logo da Empresa 2">
-            </div>
-            <a class="whatsapp-link" href="https://api.whatsapp.com/send?phone=82987517775" target="_blank">theburgerbox</a>
-        </li>
-         <li class="menu-item">
-            <div class="rounded-image">
-                <img src="belaechique.jpg" alt="Logo da Empresa 2">
-            </div>
-            <a class="whatsapp-link" href="https://api.whatsapp.com/send?phone=8281048168" target="_blank">belaechique</a>
-        </li>
-         <li class="menu-item">
-            <div class="rounded-image">
-                <img src="sabor.jpg" alt="Logo da Empresa 2">
-            </div>
-            <a class="whatsapp-link" href="https://api.whatsapp.com/send?phone=8294147427" target="_blank">Sabor Nordestino</a>
-        </li>
-        <!-- Adicione mais empresas conforme necessário -->
-    </ul>
+    <div class="menu-container"> <!-- Adicione uma div de contêiner -->
+        <ul class="menu">
+            <li class="menu-item">
+                <div class="rounded-image">
+                    <img src="JRA.jpg" alt="Logo da Empresa 1">
+                </div>
+                <a class="whatsapp-link" href="https://api.whatsapp.com/send?phone=82991312770" target="_blank">JRA</a>
+            </li>
+            <li class="menu-item">
+                <div class="rounded-image">
+                    <img src="Dantas.jpg" alt="Logo da Empresa 2">
+                </div>
+                <a class="whatsapp-link" href="https://api.whatsapp.com/send?phone=82981714181" target="_blank">Dantas</a>
+            </li>
+            <li class="menu-item">
+                <div class="rounded-image">
+                    <img src="mundoverde.png" alt="Logo da Empresa 2">
+                </div>
+                <a class="whatsapp-link" href="https://api.whatsapp.com/send?phone=8298083054" target="_blank">Mundo Verde</a>
+            </li>
+            <li class="menu-item">
+                <div class="rounded-image">
+                    <img src="theburgerbox.jpg" alt="Logo da Empresa 2">
+                </div>
+                <a class="whatsapp-link" href="https://api.whatsapp.com/send?phone=82987517775" target="_blank">theburgerbox</a>
+            </li>
+            <li class="menu-item">
+                <div class="rounded-image">
+                    <img src="belaechique.jpg" alt="Logo da Empresa 2">
+                </div>
+                <a class="whatsapp-link" href="https://api.whatsapp.com/send?phone=82981048168" target="_blank">belaechique</a>
+            </li>
+              <li class="menu-item">
+                <div class="rounded-image">
+                    <img src="sabor.jpg" alt="Logo da Empresa 2">
+                </div>
+                <a class="whatsapp-link" href="https://api.whatsapp.com/send?phone=82994147427" target="_blank">Sabor Nordestinoe</a>
+            </li>
+            <!-- Adicione mais empresas conforme necessário -->
+        </ul>
+    </div>
 </body>
 </html>
