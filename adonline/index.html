@@ -100,13 +100,13 @@
 
 <script>
     // Configuração do Firebase
-    const firebaseConfig = {
-      apiKey: "AIzaSyCnguCqP_4Y-v7dw6glGM8TtgfGxGAACmw",
-      authDomain: "adonline-780a7.firebaseapp.com",
-      projectId: "adonline-780a7",
-      storageBucket: "adonline-780a7.appspot.com",
-      messagingSenderId: "793559617004",
-      appId: "1:793559617004:web:b3d799eed546ab7df004c9"
+    var firebaseConfig = {
+        apiKey: 'AIzaSyCnguCqP_4Y-v7dw6glGM8TtgfGxGAACmw',
+        authDomain: 'adonline-780a7.firebaseapp.com',
+        projectId: 'adonline-780a7',
+        storageBucket: 'adonline-780a7.appspot.com',
+        messagingSenderId: '793559617004',
+        appId: '1:793559617004:web:b3d799eed546ab7df004c9'
     };
 
     // Inicialize o Firebase
@@ -115,7 +115,7 @@
     // Obtenha uma referência ao Firestore
     var db = firebase.firestore();
 
-    // Exemplo de funções JavaScript para cadastrar cargos e adicionar membros
+    // Exemplo de funções JavaScript para cadastrar cargos, recuperar cargos, cadastrar usuários e adicionar membros
     function cadastrarCargo() {
         var cargoName = document.getElementById('cargoName').value;
 
@@ -126,15 +126,38 @@
         })
         .then(function(docRef) {
             alert("Cargo cadastrado com sucesso! ID: " + docRef.id);
+            // Atualize a lista de cargos
+            carregarCargos();
         })
         .catch(function(error) {
             console.error("Erro ao cadastrar cargo: ", error);
         });
     }
 
+    function carregarCargos() {
+        var cargoSelect = document.getElementById('cargoSelect');
+
+        // Limpe as opções existentes
+        cargoSelect.innerHTML = '<option value="">Selecione um cargo</option>';
+
+        // Obtenha a lista de cargos do Firestore
+        db.collection('cargos').get().then(function(querySnapshot) {
+            querySnapshot.forEach(function(doc) {
+                // Adicione cada cargo como uma opção no select
+                cargoSelect.innerHTML += '<option value="' + doc.id + '">' + doc.data().nome + '</option>';
+            });
+        });
+    }
+
     function adicionarMembro() {
         var nomeMembro = document.getElementById('nomeMembro').value;
         var cargoSelecionado = document.getElementById('cargoSelect').value;
+
+        // Verifique se um cargo foi selecionado
+        if (!cargoSelecionado) {
+            alert("Por favor, selecione um cargo.");
+            return;
+        }
 
         // Crie um documento no Firestore para o membro
         db.collection('membros').add({
@@ -149,6 +172,9 @@
             console.error("Erro ao adicionar membro: ", error);
         });
     }
+
+    // Carregue a lista de cargos ao iniciar a página
+    carregarCargos();
 </script>
 
 </body>
