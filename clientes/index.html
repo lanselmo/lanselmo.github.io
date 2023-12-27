@@ -1,29 +1,46 @@
 <!DOCTYPE html>
-<html lang="pt-br">
+<html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Página das Empresas</title>
+    <title>Lista de Contatos</title>
     <style>
         body {
             font-family: Arial, sans-serif;
-            background-color: #f0f0f0;
             margin: 0;
             padding: 0;
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            justify-content: center;
-            height: 100vh;
+            background-color: #f2f2f2;
+        }
+
+        .container {
+            max-width: 800px;
+            margin: 0 auto;
+            padding: 20px;
+            background-color: #fff;
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
         }
 
         .header {
-            font-size: 24px;
-            margin-bottom: 20px;
+            text-align: center;
+            background-color: #25d366;
+            color: #fff;
+            padding: 10px;
+            overflow: hidden;
+        }
+
+        .header p {
+            margin: 0;
+            white-space: nowrap;
+            overflow: hidden;
+            text-overflow: ellipsis;
+        }
+
+        .menu-container {
+            margin-top: 20px;
         }
 
         .menu {
-            list-style-type: none;
+            list-style: none;
             padding: 0;
             margin: 0;
             display: flex;
@@ -32,59 +49,78 @@
         }
 
         .menu-item {
-            margin: 5px;
+            margin: 10px;
             text-align: center;
         }
 
         .rounded-image {
-            border-radius: 50%;
-            width: 100px;
-            height: 100px;
+            width: 80px;
+            height: 80px;
             overflow: hidden;
-            margin-bottom: 10px;
-            padding: 10px; /* Adicionando padding */
-            box-shadow: 0 0 5px rgba(0, 0, 0, 0.3); /* Adicionando sombra */
+            border-radius: 50%;
+            margin: 0 auto;
         }
 
         .rounded-image img {
-            width: 100%;
+            max-width: 100%;
             height: auto;
         }
 
         .whatsapp-link {
+            display: block;
+            margin-top: 10px;
             text-decoration: none;
-            background-color: #25d366;
-            color: #fff;
-            padding: 10px 20px;
-            border-radius: 5px;
+            color: #25d366;
             font-weight: bold;
         }
     </style>
 </head>
 <body>
-    <div class="header">
-        <p>Escolha uma empresa para entrar em contato pelo WhatsApp:</p>
+    <div class="container">
+        <div class="header">
+            <p>Escolha uma empresa para entrar em contato pelo WhatsApp: Este é um texto longo que causará rolagem horizontal no cabeçalho.</p>
+        </div>
+        <div class="menu-container">
+            <ul class="menu">
+                <li class="menu-item">
+                    <div class="rounded-image">
+                        <img src="JRA.jpg" alt="Logo da Empresa 1">
+                    </div>
+                    <a class="whatsapp-link" href="https://api.whatsapp.com/send?phone=82991312770" target="_blank">JRA</a>
+                </li>
+                <li class="menu-item">
+                    <div class="rounded-image">
+                        <img src="Dantas.jpg" alt="Logo da Empresa 2">
+                    </div>
+                    <a class="whatsapp-link" href="https://api.whatsapp.com/send?phone=82981714181" target="_blank">Dantas</a>
+                </li>
+                <li class="menu-item">
+                    <div class="rounded-image">
+                        <img src="mundoverde.png" alt="Logo da Empresa 2">
+                    </div>
+                    <a class="whatsapp-link" href="https://api.whatsapp.com/send?phone=8298083054" target="_blank">Mundo Verde</a>
+                </li>
+                <li class="menu-item">
+                    <div class="rounded-image">
+                        <img src="theburgerbox.jpg" alt="Logo da Empresa 2">
+                    </div>
+                    <a class="whatsapp-link" href="https://api.whatsapp.com/send?phone=82987517775" target="_blank">theburgerbox</a>
+                </li>
+                <li class="menu-item">
+                    <div class="rounded-image">
+                        <img src="belaechique.jpg" alt="Logo da Empresa 2">
+                    </div>
+                    <a class="whatsapp-link" href="https://api.whatsapp.com/send?phone=82981048168" target="_blank">belaechique</a>
+                </li>
+                <li class="menu-item">
+                    <div class="rounded-image">
+                        <img src="sabor.jpg" alt="Logo da Empresa 2">
+                    </div>
+                    <a class="whatsapp-link" href="https://api.whatsapp.com/send?phone=82994147427" target="_blank">SB-Nordestino</a>
+                </li>
+                <!-- Adicione mais empresas conforme necessário -->
+            </ul>
+        </div>
     </div>
-    <ul class="menu">
-        <li class="menu-item">
-            <div class="rounded-image">
-                <img src="JRA.jpg" alt="Logo da Empresa 1">
-            </div>
-            <a class="whatsapp-link" href="https://api.whatsapp.com/send?phone=8291312770" target="_blank">JRA</a>
-        </li>
-        <li class="menu-item">
-            <div class="rounded-image">
-                <img src="Dantas.jpg" alt="Logo da Empresa 2">
-            </div>
-            <a class="whatsapp-link" href="https://api.whatsapp.com/send?phone=8281714181" target="_blank">Dantas Contabilidade</a>
-        </li>
-         <li class="menu-item">
-            <div class="rounded-image">
-                <img src="mundoverde.png" alt="Logo da Empresa 2">
-            </div>
-            <a class="whatsapp-link" href="https://api.whatsapp.com/send?phone=8298083054" target="_blank">Mundo Verde</a>
-        </li>
-        <!-- Adicione mais empresas conforme necessário -->
-    </ul>
 </body>
 </html>
