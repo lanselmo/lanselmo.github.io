@@ -54,6 +54,12 @@
         button:hover {
             background-color: #45a049;
         }
+
+        #loadingMessage {
+            display: none;
+            color: #333;
+            font-weight: bold;
+        }
     </style>
 </head>
 <body>
@@ -77,6 +83,7 @@
     <!-- Adicione mais permissões conforme necessário -->
 
     <button type="button" onclick="cadastrarCargo()">Cadastrar Cargo</button>
+    <span id="loadingMessage">Enviando dados...</span>
 </form>
 
 <!-- Menu para Adicionar Membros -->
@@ -92,6 +99,7 @@
     <!-- Adicione mais permissões conforme necessário -->
 
     <button type="button" onclick="adicionarMembro()">Adicionar Membro</button>
+    <span id="loadingMessage">Enviando dados...</span>
 </form>
 
 <!-- Adicione antes do fechamento da tag </body> -->
@@ -115,8 +123,26 @@
     // Obtenha uma referência ao Firestore
     var db = firebase.firestore();
 
+    // Função para mostrar a mensagem de carregamento
+    function showLoadingMessage(formId) {
+        var loadingMessage = document.getElementById(formId + 'LoadingMessage');
+        if (loadingMessage) {
+            loadingMessage.style.display = 'inline';
+        }
+    }
+
+    // Função para esconder a mensagem de carregamento
+    function hideLoadingMessage(formId) {
+        var loadingMessage = document.getElementById(formId + 'LoadingMessage');
+        if (loadingMessage) {
+            loadingMessage.style.display = 'none';
+        }
+    }
+
     // Exemplo de funções JavaScript para cadastrar cargos, recuperar cargos, cadastrar usuários e adicionar membros
     function cadastrarCargo() {
+        showLoadingMessage('cargoForm'); // Mostra a mensagem de carregamento
+
         var cargoName = document.getElementById('cargoName').value;
 
         // Crie um documento no Firestore para o cargo
@@ -125,11 +151,13 @@
             // Adicione mais campos conforme necessário
         })
         .then(function(docRef) {
+            hideLoadingMessage('cargoForm'); // Esconde a mensagem de carregamento
             alert("Cargo cadastrado com sucesso! ID: " + docRef.id);
             // Atualize a lista de cargos
             carregarCargos();
         })
         .catch(function(error) {
+            hideLoadingMessage('cargoForm'); // Esconde a mensagem de carregamento em caso de erro
             console.error("Erro ao cadastrar cargo: ", error);
         });
     }
@@ -150,11 +178,14 @@
     }
 
     function adicionarMembro() {
+        showLoadingMessage('membroForm'); // Mostra a mensagem de carregamento
+
         var nomeMembro = document.getElementById('nomeMembro').value;
         var cargoSelecionado = document.getElementById('cargoSelect').value;
 
         // Verifique se um cargo foi selecionado
         if (!cargoSelecionado) {
+            hideLoadingMessage('membroForm'); // Esconde a mensagem de carregamento em caso de erro
             alert("Por favor, selecione um cargo.");
             return;
         }
@@ -166,9 +197,11 @@
             // Adicione mais campos conforme necessário
         })
         .then(function(docRef) {
+            hideLoadingMessage('membroForm'); // Esconde a mensagem de carregamento
             alert("Membro adicionado com sucesso! ID: " + docRef.id);
         })
         .catch(function(error) {
+            hideLoadingMessage('membroForm'); // Esconde a mensagem de carregamento em caso de erro
             console.error("Erro ao adicionar membro: ", error);
         });
     }
