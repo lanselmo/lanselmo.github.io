@@ -3,212 +3,62 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Cadastro de Cargos e Permissões</title>
-    <style>
-        body {
-            font-family: Arial, sans-serif;
-            margin: 20px;
-            background-color: #f4f4f4;
+    <title>Formulário Firebase</title>
+    <!-- Adicione os scripts do Firebase -->
+    <script src="https://www.gstatic.com/firebasejs/9.6.6/firebase-app.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/9.6.6/firebase-firestore.js"></script>
+
+    <script>
+        // Configure o Firebase com as credenciais do seu projeto
+        const firebaseConfig = {
+            apiKey: "AIzaSyCnguCqP_4Y-v7dw6glGM8TtgfGxGAACmw",
+            authDomain: "adonline-780a7.firebaseapp.com",
+            projectId: "adonline-780a7",
+            storageBucket: "adonline-780a7.appspot.com",
+            messagingSenderId: "793559617004",
+            appId: "1:793559617004:web:b3d799eed546ab7df004c9"
+        };
+
+        // Inicialize o Firebase
+        firebase.initializeApp(firebaseConfig);
+
+        // Referência para o banco de dados Firestore
+        const db = firebase.firestore();
+
+        // Função para enviar dados para o Firebase
+        function enviarDadosParaFirebase(nome) {
+            // Adicione os dados ao Firestore
+            db.collection("nomes").add({
+                nome: nome,
+                timestamp: firebase.firestore.FieldValue.serverTimestamp()
+            })
+            .then((docRef) => {
+                console.log("Nome enviado com sucesso! Documento ID:", docRef.id);
+            })
+            .catch((error) => {
+                console.error("Erro ao enviar nome:", error);
+            });
         }
 
-        h2 {
-            color: #333;
+        // Função para lidar com o envio do formulário
+        function enviarFormulario() {
+            const nome = document.getElementById("nome").value;
+            
+            if (nome.trim() !== "") {
+                enviarDadosParaFirebase(nome);
+            } else {
+                alert("Por favor, insira um nome válido.");
+            }
         }
-
-        form {
-            background-color: #fff;
-            border: 1px solid #ddd;
-            padding: 20px;
-            margin-bottom: 20px;
-            border-radius: 5px;
-        }
-
-        label {
-            display: block;
-            margin-bottom: 8px;
-            font-weight: bold;
-        }
-
-        input[type="text"],
-        select,
-        button {
-            width: 100%;
-            padding: 10px;
-            margin-bottom: 15px;
-            box-sizing: border-box;
-        }
-
-        input[type="checkbox"] {
-            margin-right: 5px;
-        }
-
-        button {
-            background-color: #4caf50;
-            color: #fff;
-            border: none;
-            padding: 12px;
-            cursor: pointer;
-            border-radius: 5px;
-        }
-
-        button:hover {
-            background-color: #45a049;
-        }
-
-        #loadingMessage {
-            display: none;
-            color: #333;
-            font-weight: bold;
-        }
-    </style>
+    </script>
 </head>
 <body>
-
-<!-- Cadastro de Cargos e Permissões -->
-<h2>Cadastro de Cargos e Permissões</h2>
-<form id="cargoForm">
-    <label for="cargoName">Nome do Cargo:</label>
-    <input type="text" id="cargoName" required>
-
-    <label>Permissões:</label>
-    <input type="checkbox" id="entrada" name="permissoes" value="entrada">
-    <label for="entrada">Entrada</label>
-
-    <input type="checkbox" id="saida" name="permissoes" value="saida">
-    <label for="saida">Saída</label>
-
-    <input type="checkbox" id="despesas" name="permissoes" value="despesas">
-    <label for="despesas">Despesas</label>
-
-    <!-- Adicione mais permissões conforme necessário -->
-
-    <button type="button" onclick="cadastrarCargo()">Cadastrar Cargo</button>
-    <span id="loadingMessage">Enviando dados...</span>
-</form>
-
-<!-- Menu para Adicionar Membros -->
-<h2>Menu para Adicionar Membros</h2>
-<form id="membroForm">
-    <label for="nomeMembro">Nome do Membro:</label>
-    <input type="text" id="nomeMembro" required>
-
-    <label for="cargoSelect">Cargo:</label>
-    <select id="cargoSelect">
-        <!-- Opções de cargo serão adicionadas dinamicamente via JavaScript -->
-    </select>
-    <!-- Adicione mais permissões conforme necessário -->
-
-    <button type="button" onclick="adicionarMembro()">Adicionar Membro</button>
-    <span id="loadingMessage">Enviando dados...</span>
-</form>
-
-<!-- Adicione antes do fechamento da tag </body> -->
-<script src="https://www.gstatic.com/firebasejs/9.6.4/firebase-app.js"></script>
-<script src="https://www.gstatic.com/firebasejs/9.6.4/firebase-firestore.js"></script>
-
-<script>
-    // Configuração do Firebase
-    var firebaseConfig = {
-        apiKey: 'AIzaSyCnguCqP_4Y-v7dw6glGM8TtgfGxGAACmw',
-        authDomain: 'adonline-780a7.firebaseapp.com',
-        projectId: 'adonline-780a7',
-        storageBucket: 'adonline-780a7.appspot.com',
-        messagingSenderId: '793559617004',
-        appId: '1:793559617004:web:b3d799eed546ab7df004c9'
-    };
-
-    // Inicialize o Firebase
-    firebase.initializeApp(firebaseConfig);
-
-    // Obtenha uma referência ao Firestore
-    var db = firebase.firestore();
-
-    // Função para mostrar a mensagem de carregamento
-    function showLoadingMessage(formId) {
-        var loadingMessage = document.getElementById(formId + 'LoadingMessage');
-        if (loadingMessage) {
-            loadingMessage.style.display = 'inline';
-        }
-    }
-
-    // Função para esconder a mensagem de carregamento
-    function hideLoadingMessage(formId) {
-        var loadingMessage = document.getElementById(formId + 'LoadingMessage');
-        if (loadingMessage) {
-            loadingMessage.style.display = 'none';
-        }
-    }
-
-    // Exemplo de funções JavaScript para cadastrar cargos, recuperar cargos, cadastrar usuários e adicionar membros
-    function cadastrarCargo() {
-        showLoadingMessage('cargoForm'); // Mostra a mensagem de carregamento
-
-        var cargoName = document.getElementById('cargoName').value;
-
-        // Crie um documento no Firestore para o cargo
-        db.collection('cargos').add({
-            nome: cargoName,
-            // Adicione mais campos conforme necessário
-        })
-        .then(function(docRef) {
-            hideLoadingMessage('cargoForm'); // Esconde a mensagem de carregamento
-            alert("Cargo cadastrado com sucesso! ID: " + docRef.id);
-            // Atualize a lista de cargos
-            carregarCargos();
-        })
-        .catch(function(error) {
-            hideLoadingMessage('cargoForm'); // Esconde a mensagem de carregamento em caso de erro
-            console.error("Erro ao cadastrar cargo: ", error);
-        });
-    }
-
-    function carregarCargos() {
-        var cargoSelect = document.getElementById('cargoSelect');
-
-        // Limpe as opções existentes
-        cargoSelect.innerHTML = '<option value="">Selecione um cargo</option>';
-
-        // Obtenha a lista de cargos do Firestore
-        db.collection('cargos').get().then(function(querySnapshot) {
-            querySnapshot.forEach(function(doc) {
-                // Adicione cada cargo como uma opção no select
-                cargoSelect.innerHTML += '<option value="' + doc.id + '">' + doc.data().nome + '</option>';
-            });
-        });
-    }
-
-    function adicionarMembro() {
-        showLoadingMessage('membroForm'); // Mostra a mensagem de carregamento
-
-        var nomeMembro = document.getElementById('nomeMembro').value;
-        var cargoSelecionado = document.getElementById('cargoSelect').value;
-
-        // Verifique se um cargo foi selecionado
-        if (!cargoSelecionado) {
-            hideLoadingMessage('membroForm'); // Esconde a mensagem de carregamento em caso de erro
-            alert("Por favor, selecione um cargo.");
-            return;
-        }
-
-        // Crie um documento no Firestore para o membro
-        db.collection('membros').add({
-            nome: nomeMembro,
-            cargo: cargoSelecionado,
-            // Adicione mais campos conforme necessário
-        })
-        .then(function(docRef) {
-            hideLoadingMessage('membroForm'); // Esconde a mensagem de carregamento
-            alert("Membro adicionado com sucesso! ID: " + docRef.id);
-        })
-        .catch(function(error) {
-            hideLoadingMessage('membroForm'); // Esconde a mensagem de carregamento em caso de erro
-            console.error("Erro ao adicionar membro: ", error);
-        });
-    }
-
-    // Carregue a lista de cargos ao iniciar a página
-    carregarCargos();
-</script>
-
+    <h1>Formulário Firebase</h1>
+    <form>
+        <label for="nome">Nome:</label>
+        <input type="text" id="nome" name="nome" required>
+        <br>
+        <button type="button" onclick="enviarFormulario()">Enviar</button>
+    </form>
 </body>
 </html>
