@@ -1,0 +1,168 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Cadastro de Cargos e Permissões</title>
+    <style>
+        /* Estilos CSS como mencionado anteriormente */
+    </style>
+</head>
+<body>
+
+<!-- Cadastro de Cargos e Permissões -->
+<h2>Cadastro de Cargos e Permissões</h2>
+<form id="cargoForm">
+    <!-- Campos do formulário como mencionado anteriormente -->
+
+    <button type="button" onclick="cadastrarCargo()">Cadastrar Cargo</button>
+</form>
+
+<!-- Menu para Adicionar Membros -->
+<h2>Menu para Adicionar Membros</h2>
+<form id="membroForm">
+    <!-- Campos do formulário como mencionado anteriormente -->
+
+    <button type="button" onclick="adicionarMembro()">Adicionar Membro</button>
+</form>
+
+<script src="https://www.gstatic.com/firebasejs/9.0.2/firebase-app.js"></script>
+<script src="https://www.gstatic.com/firebasejs/9.0.2/firebase-firestore.js"></script>
+<script>
+    // Configurar o Firebase com as suas credenciais
+    const firebaseConfig = {
+        apiKey: "YOUR_API_KEY",
+        authDomain: "YOUR_AUTH_DOMAIN",
+        projectId: "YOUR_PROJECT_ID",
+        storageBucket: "YOUR_STORAGE_BUCKET",
+        messagingSenderId: "YOUR_MESSAGING_SENDER_ID",
+        appId: "YOUR_APP_ID"
+    };
+
+    firebase.initializeApp(firebaseConfig);
+    const db = firebase.firestore();
+
+    function cadastrarCargo() {
+        const cargoName = document.getElementById('cargoName').value;
+        const permissoes = Array.from(document.querySelectorAll('input[name="permissoes"]:checked')).map(el => el.value);
+
+        // Adicionar dados ao Firestore
+        db.collection('cargos').add({
+            nome: cargoName,
+            permissoes: permissoes
+        })
+        .then(() => {
+            alert("Cargo cadastrado com sucesso!");
+        })
+        .catch(error => {
+            console.error("Erro ao cadastrar cargo:", error);
+        });
+    }
+
+    function adicionarMembro() {
+        const nomeMembro = document.getElementById('nomeMembro').value;
+        const cargoSelect = document.getElementById('cargoSelect');
+        const cargoSelecionado = cargoSelect.options[cargoSelect.selectedIndex].text;
+        const permissoesMembro = Array.from(document.querySelectorAll('input[name="permissoesMembro"]:checked')).map(el => el.value);
+
+        // Adicionar dados ao Firestore
+        db.collection('membros').add({
+            nome: nomeMembro,
+            cargo: cargoSelecionado,
+            permissoes: permissoesMembro
+        })
+        .then(() => {
+            alert("Membro adicionado com sucesso!");
+        })
+        .catch(error => {
+            console.error("Erro ao adicionar membro:", error);
+        });
+    }
+</script>
+
+</body>
+</html>
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Cadastro de Cargos e Permissões</title>
+    <style>
+        /* Estilos CSS como mencionado anteriormente */
+    </style>
+</head>
+<body>
+
+<!-- Cadastro de Cargos e Permissões -->
+<h2>Cadastro de Cargos e Permissões</h2>
+<form id="cargoForm">
+    <!-- Campos do formulário como mencionado anteriormente -->
+
+    <button type="button" onclick="cadastrarCargo()">Cadastrar Cargo</button>
+</form>
+
+<!-- Menu para Adicionar Membros -->
+<h2>Menu para Adicionar Membros</h2>
+<form id="membroForm">
+    <!-- Campos do formulário como mencionado anteriormente -->
+
+    <button type="button" onclick="adicionarMembro()">Adicionar Membro</button>
+</form>
+
+<script src="https://www.gstatic.com/firebasejs/9.0.2/firebase-app.js"></script>
+<script src="https://www.gstatic.com/firebasejs/9.0.2/firebase-firestore.js"></script>
+<script>
+    // Configurar o Firebase com as suas credenciais
+const firebaseConfig = {
+  apiKey: "AIzaSyCnguCqP_4Y-v7dw6glGM8TtgfGxGAACmw",
+  authDomain: "adonline-780a7.firebaseapp.com",
+  projectId: "adonline-780a7",
+  storageBucket: "adonline-780a7.appspot.com",
+  messagingSenderId: "793559617004",
+  appId: "1:793559617004:web:b3d799eed546ab7df004c9"
+};
+
+    firebase.initializeApp(firebaseConfig);
+    const db = firebase.firestore();
+
+    function cadastrarCargo() {
+        const cargoName = document.getElementById('cargoName').value;
+        const permissoes = Array.from(document.querySelectorAll('input[name="permissoes"]:checked')).map(el => el.value);
+
+        // Adicionar dados ao Firestore
+        db.collection('cargos').add({
+            nome: cargoName,
+            permissoes: permissoes
+        })
+        .then(() => {
+            alert("Cargo cadastrado com sucesso!");
+        })
+        .catch(error => {
+            console.error("Erro ao cadastrar cargo:", error);
+        });
+    }
+
+    function adicionarMembro() {
+        const nomeMembro = document.getElementById('nomeMembro').value;
+        const cargoSelect = document.getElementById('cargoSelect');
+        const cargoSelecionado = cargoSelect.options[cargoSelect.selectedIndex].text;
+        const permissoesMembro = Array.from(document.querySelectorAll('input[name="permissoesMembro"]:checked')).map(el => el.value);
+
+        // Adicionar dados ao Firestore
+        db.collection('membros').add({
+            nome: nomeMembro,
+            cargo: cargoSelecionado,
+            permissoes: permissoesMembro
+        })
+        .then(() => {
+            alert("Membro adicionado com sucesso!");
+        })
+        .catch(error => {
+            console.error("Erro ao adicionar membro:", error);
+        });
+    }
+</script>
+
+</body>
+</html>
