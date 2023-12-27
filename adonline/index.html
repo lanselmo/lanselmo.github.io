@@ -5,7 +5,55 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Cadastro de Cargos e Permissões</title>
     <style>
-        /* Estilos CSS como mencionado anteriormente */
+        body {
+            font-family: Arial, sans-serif;
+            margin: 20px;
+            background-color: #f4f4f4;
+        }
+
+        h2 {
+            color: #333;
+        }
+
+        form {
+            background-color: #fff;
+            border: 1px solid #ddd;
+            padding: 20px;
+            margin-bottom: 20px;
+            border-radius: 5px;
+        }
+
+        label {
+            display: block;
+            margin-bottom: 8px;
+            font-weight: bold;
+        }
+
+        input[type="text"],
+        select,
+        button {
+            width: 100%;
+            padding: 10px;
+            margin-bottom: 15px;
+            box-sizing: border-box;
+        }
+
+        input[type="checkbox"] {
+            margin-right: 5px;
+        }
+
+        button {
+            background-color: #4caf50;
+            color: #fff;
+            border: none;
+            padding: 12px;
+            cursor: pointer;
+            border-radius: 5px;
+        }
+
+        button:hover {
+            background-color: #45a049;
+        }
     </style>
 </head>
 <body>
@@ -13,7 +61,20 @@
 <!-- Cadastro de Cargos e Permissões -->
 <h2>Cadastro de Cargos e Permissões</h2>
 <form id="cargoForm">
-    <!-- Campos do formulário como mencionado anteriormente -->
+    <label for="cargoName">Nome do Cargo:</label>
+    <input type="text" id="cargoName" required>
+
+    <label>Permissões:</label>
+    <input type="checkbox" id="entrada" name="permissoes" value="entrada">
+    <label for="entrada">Entrada</label>
+
+    <input type="checkbox" id="saida" name="permissoes" value="saida">
+    <label for="saida">Saída</label>
+
+    <input type="checkbox" id="despesas" name="permissoes" value="despesas">
+    <label for="despesas">Despesas</label>
+
+    <!-- Adicione mais permissões conforme necessário -->
 
     <button type="button" onclick="cadastrarCargo()">Cadastrar Cargo</button>
 </form>
@@ -21,63 +82,36 @@
 <!-- Menu para Adicionar Membros -->
 <h2>Menu para Adicionar Membros</h2>
 <form id="membroForm">
-    <!-- Campos do formulário como mencionado anteriormente -->
+    <label for="nomeMembro">Nome do Membro:</label>
+    <input type="text" id="nomeMembro" required>
+
+    <label for="cargoSelect">Cargo:</label>
+    <select id="cargoSelect">
+        <!-- Opções de cargo serão adicionadas dinamicamente via JavaScript -->
+    </select>
+
+    <label>Permissões:</label>
+    <input type="checkbox" id="entradaMembro" name="permissoesMembro" value="entrada">
+    <label for="entradaMembro">Entrada</label>
+
+    <input type="checkbox" id="saidaMembro" name="permissoesMembro" value="saida">
+    <label for="saidaMembro">Saída</label>
+
+    <!-- Adicione mais permissões conforme necessário -->
 
     <button type="button" onclick="adicionarMembro()">Adicionar Membro</button>
 </form>
 
-<script src="https://www.gstatic.com/firebasejs/9.0.2/firebase-app.js"></script>
-<script src="https://www.gstatic.com/firebasejs/9.0.2/firebase-firestore.js"></script>
 <script>
-    // Configurar o Firebase com as suas credenciais
-        const firebaseConfig = {
-          apiKey: "AIzaSyCnguCqP_4Y-v7dw6glGM8TtgfGxGAACmw",
-          authDomain: "adonline-780a7.firebaseapp.com",
-          projectId: "adonline-780a7",
-          storageBucket: "adonline-780a7.appspot.com",
-          messagingSenderId: "793559617004",
-          appId: "1:793559617004:web:b3d799eed546ab7df004c9"
-        };
-
-    // Inicializar o Firebase
-    firebase.initializeApp(firebaseConfig);
-    const db = firebase.firestore();
-
+    // Exemplo de funções JavaScript para cadastrar cargos e adicionar membros
     function cadastrarCargo() {
-        const cargoName = document.getElementById('cargoName').value;
-        const permissoes = Array.from(document.querySelectorAll('input[name="permissoes"]:checked')).map(el => el.value);
-
-        // Adicionar dados ao Firestore
-        db.collection('cargos').add({
-            nome: cargoName,
-            permissoes: permissoes
-        })
-        .then(() => {
-            alert("Cargo cadastrado com sucesso!");
-        })
-        .catch(error => {
-            console.error("Erro ao cadastrar cargo:", error);
-        });
+        // Lógica para obter os dados do formulário e cadastrar o cargo
+        alert("Cargo cadastrado com sucesso!");
     }
 
     function adicionarMembro() {
-        const nomeMembro = document.getElementById('nomeMembro').value;
-        const cargoSelect = document.getElementById('cargoSelect');
-        const cargoSelecionado = cargoSelect.options[cargoSelect.selectedIndex].text;
-        const permissoesMembro = Array.from(document.querySelectorAll('input[name="permissoesMembro"]:checked')).map(el => el.value);
-
-        // Adicionar dados ao Firestore
-        db.collection('membros').add({
-            nome: nomeMembro,
-            cargo: cargoSelecionado,
-            permissoes: permissoesMembro
-        })
-        .then(() => {
-            alert("Membro adicionado com sucesso!");
-        })
-        .catch(error => {
-            console.error("Erro ao adicionar membro:", error);
-        });
+        // Lógica para obter os dados do formulário e adicionar o membro
+        alert("Membro adicionado com sucesso!");
     }
 </script>
 
