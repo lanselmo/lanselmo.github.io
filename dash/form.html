@@ -1,0 +1,206 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>CriaApp</title>
+    <meta charset="UTF-8">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: #f8f9fa;
+            color: #333;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+        }
+        .container {
+            max-width: 400px;
+            padding: 20px;
+            background-color: #fff;
+            border-radius: 5px;
+            box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            position: relative;
+        }
+        h2 {
+            margin-top: 0;
+            color: #007bff;
+        }
+        ul {
+            list-style-type: none;
+            padding: 0;
+            margin: 0;
+            text-align: center;
+        }
+        li {
+            margin-bottom: 10px;
+        }
+        input[type="text"],
+        button,
+        select {
+            width: calc(100% - 22px);
+            padding: 10px;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+            box-sizing: border-box;
+            font-size: 16px;
+            margin-bottom: 10px;
+        }
+        button {
+            background-color: #007bff;
+            color: white;
+            cursor: pointer;
+            transition: background-color 0.3s;
+        }
+        button:hover {
+            background-color: #0056b3;
+        }
+        .simulator {
+            width: 375px;
+            height: 667px;
+            border: 5px solid black;
+            border-radius: 10px;
+            overflow: hidden;
+            background: #fff;
+            position: relative;
+            margin-top: 20px;
+            margin-left: 10px;
+        }
+        .simulator .screen {
+            width: 100%;
+            height: calc(100% - 56px);
+            background: #f8f9fa;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            font-size: 24px;
+            color: #333;
+            flex-wrap: wrap;
+        }
+        .bottom-navigation {
+            width: 100%;
+            height: 56px;
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            background-color: #f8f9fa;
+            display: flex;
+            justify-content: space-around;
+            align-items: center;
+            border-top: 1px solid #ccc;
+        }
+        .bottom-navigation a {
+            text-decoration: none;
+            color: #333;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            font-size: 14px;
+        }
+        .bottom-navigation i {
+            font-size: 24px;
+        }
+        .filter {
+            margin-top: 10px;
+            display: flex;
+            align-items: center;
+        }
+        .filter select {
+            margin-right: 10px;
+        }
+        .filter input[type="text"] {
+            margin-right: 10px;
+        }
+        .icon-input {
+            display: none;
+        }
+        .total {
+            margin-top: 20px;
+            font-weight: bold;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h2>Personalize o seu Aplicativo</h2>
+        <ul>
+            <li>
+                <input type="text" id="link1" placeholder="Link 1">
+            </li>
+            <li>
+                <button onclick="loadLink('link1')">Salvar</button>
+            </li>
+        </ul>
+        <div class="filter">
+            <select class="icon-select">
+                <option value="home">Home</option>
+                <option value="user">Perfil</option>
+                <option value="sync">Atualizar</option>
+            </select>
+            <input type="text" class="icon-input" placeholder="Link do Ícone">
+            <button onclick="addIcon()">Adicionar Ícone</button>
+        </div>
+        <div class="total" id="total">Total: R$ 0,00</div>
+        <button onclick="finalizarCompra()">Finalizar Compra</button>
+    </div>
+    <!-- Simulador de celular -->
+    <div class="simulator">
+        <div class="screen" id="screen">Simulador de celular</div>
+        <div class="bottom-navigation" id="bottom-navigation"></div>
+    </div>
+
+    <script src="https://kit.fontawesome.com/a076d05399.js"></script>
+    <script>
+        var selectedIcons = [];
+        var totalLinks = 0;
+        var valorLink = 20;
+        var valorIcone = 10;
+
+        function loadLink(inputId) {
+            var linkInput = document.getElementById(inputId).value;
+            totalLinks++;
+            updateTotal();
+            var simulatorScreen = document.getElementById('screen');
+            simulatorScreen.innerHTML = `<iframe src="${linkInput}" style="width: 100%; height: 100%; border: none;"></iframe>`;
+        }
+
+        function addIcon() {
+            if (selectedIcons.length >= 5) {
+                alert('Limite de 5 ícones atingido.');
+                return;
+            }
+
+            var iconSelect = document.querySelector('.icon-select');
+            var selectedIcon = iconSelect.options[iconSelect.selectedIndex].value;
+            var iconInput = document.querySelector('.icon-input').value;
+
+            var iconHtml = `<a href="${iconInput}"><i class="fas fa-${selectedIcon}"></i> ${selectedIcon}</a>`;
+            selectedIcons.push(iconHtml);
+            totalLinks++;
+            updateTotal();
+            updateBottomNavigation();
+        }
+
+        function updateBottomNavigation() {
+            var bottomNavigation = document.getElementById('bottom-navigation');
+            bottomNavigation.innerHTML = selectedIcons.join('');
+        }
+
+        function updateTotal() {
+            var totalElement = document.getElementById('total');
+            var totalValue = (totalLinks * valorLink) + (selectedIcons.length * valorIcone);
+            totalElement.textContent = `Total: R$ ${totalValue.toFixed(2)}`;
+        }
+
+        function finalizarCompra() {
+            alert('Compra finalizada! Total: R$ ' + ((totalLinks * valorLink) + (selectedIcons.length * valorIcone)).toFixed(2));
+        }
+    </script>
+</body>
+</html>
