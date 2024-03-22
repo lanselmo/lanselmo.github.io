@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Comprimir PDF</title>
+</head>
+<body>
+<h1>Comprimir PDF</h1>
+<input type="file" id="fileInput">
+<button onclick="compressPDF()">Comprimir PDF</button>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.3/jspdf.umd.min.js"></script>
+<script>
+function compressPDF() {
+  const fileInput = document.getElementById('fileInput');
+  const file = fileInput.files[0];
+
+  if (!file) return;
+
+  const reader = new FileReader();
+  reader.onload = function(event) {
+    const pdfBytes = event.target.result;
+    const pdf = new jsPDF();
+    pdf.addPage();
+    pdf.setPageSize('a4');
+    pdf.setFileData(pdfBytes);
+    const compressedPdf = pdf.output('blob');
+
+    const url = URL.createObjectURL(compressedPdf);
+    window.open(url);
+  };
+  reader.readAsArrayBuffer(file);
+}
+</script>
+</body>
+</html>
