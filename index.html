@@ -17,7 +17,19 @@
       await OneSignal.init({
         appId: "9a3baaa8-63a6-4c9a-9cba-e8293c125ba0",
       });
+      OneSignal.showSlidedownPrompt();
     });
+
+    function requestNotificationPermission() {
+      window.OneSignalDeferred.push(async function(OneSignal) {
+        const permission = await OneSignal.registerForPushNotifications();
+        if (permission === 'granted') {
+          alert('Notificações permitidas.');
+        } else {
+          alert('Notificações não permitidas.');
+        }
+      });
+    }
   </script>
 </head>
 <body>
@@ -64,5 +76,6 @@
   <p><strong>Contate-nos</strong></p> 
   <p>Se você tiver alguma dúvida ou sugestão sobre nossa Política de Privacidade, não hesite em nos contatar em softewaresolucoes@gmail.com.</p> 
   <p>Esta página de política de privacidade foi criada em <a href="https://privacypolicytemplate.net" target="_blank" rel="noopener noreferrer">privacypolicytemplate.net</a> e modificada/gerada pelo <a href="https://app-privacy-policy-generator.nisrulz.com/" target="_blank" rel="noopener noreferrer">App Privacy Policy Generator</a></p>
+  <button onclick="requestNotificationPermission()">Permitir Notificações</button>
 </body>
 </html>
