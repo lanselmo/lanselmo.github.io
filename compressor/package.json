@@ -1,0 +1,15 @@
+{
+  "name": "compressor",
+  "version": "1.0.0",
+  "description": "",
+  "main": "compressPDF.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "compressorjs": "^1.2.1",
+    "pdf-lib": "^1.17.1"
+  }
+}
