@@ -1,0 +1,331 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Pacotes - MapaTráfego</title>
+  
+  <!-- Font Awesome -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+  
+  <style>
+    /* Variáveis e Reset */
+    :root {
+      --primary: #4361ee;
+      --primary-dark: #3a0ca3;
+      --secondary: #f72585;
+      --light: #f8f9fa;
+      --dark: #212529;
+      --gray: #6c757d;
+      --success: #4cc9f0;
+      --border-radius: 12px;
+      --box-shadow: 0 10px 20px rgba(0,0,0,0.1);
+      --transition: all 0.3s ease;
+    }
+    
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+      font-family: 'Segoe UI', system-ui, sans-serif;
+    }
+    
+    body {
+      background-color: #f5f7fa;
+      color: var(--dark);
+      line-height: 1.6;
+    }
+    
+    /* Layout */
+    .container {
+      max-width: 1200px;
+      margin: 0 auto;
+      padding: 20px;
+    }
+    
+    /* Cabeçalho */
+    .header {
+      display: flex;
+      align-items: center;
+      padding: 15px 0;
+      margin-bottom: 30px;
+    }
+    
+    .back-button {
+      background: none;
+      border: none;
+      font-size: 1.5rem;
+      color: var(--primary);
+      cursor: pointer;
+      margin-right: 15px;
+      transition: var(--transition);
+    }
+    
+    .back-button:hover {
+      transform: translateX(-3px);
+    }
+    
+    .header-title {
+      font-size: 1.8rem;
+      font-weight: 600;
+      color: var(--dark);
+    }
+    
+    /* Seção de Pacotes */
+    .pricing-section {
+      padding: 20px 0;
+    }
+    
+    .section-title {
+      text-align: center;
+      margin-bottom: 40px;
+      font-size: 2rem;
+      color: var(--primary-dark);
+    }
+    
+    .pricing-container {
+      display: flex;
+      justify-content: center;
+      flex-wrap: wrap;
+      gap: 30px;
+    }
+    
+    /* Cards de Preço */
+    .pricing-card {
+      background: white;
+      border-radius: var(--border-radius);
+      box-shadow: var(--box-shadow);
+      padding: 30px;
+      width: 100%;
+      max-width: 400px;
+      transition: var(--transition);
+    }
+    
+    .pricing-card:hover {
+      transform: translateY(-10px);
+    }
+    
+    .pricing-card.free {
+      border-top: 5px solid var(--success);
+    }
+    
+    .pricing-card.premium {
+      border-top: 5px solid var(--secondary);
+    }
+    
+    .pricing-header {
+      text-align: center;
+      margin-bottom: 25px;
+    }
+    
+    .pricing-title {
+      font-size: 1.5rem;
+      font-weight: 700;
+      margin-bottom: 10px;
+    }
+    
+    .pricing-price {
+      font-size: 2.5rem;
+      font-weight: 700;
+      margin-bottom: 5px;
+    }
+    
+    .pricing-price.free {
+      color: var(--success);
+    }
+    
+    .pricing-price.premium {
+      color: var(--secondary);
+    }
+    
+    .pricing-period {
+      color: var(--gray);
+      font-size: 1rem;
+    }
+    
+    .pricing-features {
+      margin: 30px 0;
+    }
+    
+    .feature-item {
+      display: flex;
+      align-items: center;
+      margin-bottom: 15px;
+    }
+    
+    .feature-item i {
+      margin-right: 10px;
+      color: var(--success);
+    }
+    
+    .pricing-button {
+      display: block;
+      width: 100%;
+      padding: 15px;
+      border: none;
+      border-radius: 8px;
+      font-size: 1.1rem;
+      font-weight: 600;
+      cursor: pointer;
+      transition: var(--transition);
+      text-align: center;
+      text-decoration: none;
+    }
+    
+    .btn-free {
+      background-color: var(--success);
+      color: white;
+    }
+    
+    .btn-free:hover {
+      background-color: #3aa8d8;
+    }
+    
+    .btn-premium {
+      background-color: var(--secondary);
+      color: white;
+    }
+    
+    .btn-premium:hover {
+      background-color: #d91a6a;
+    }
+    
+    .badge {
+      display: inline-block;
+      padding: 5px 10px;
+      border-radius: 20px;
+      font-size: 0.8rem;
+      font-weight: 600;
+      margin-left: 10px;
+    }
+    
+    .badge-popular {
+      background-color: var(--secondary);
+      color: white;
+    }
+    
+    /* Responsividade */
+    @media (max-width: 768px) {
+      .pricing-container {
+        flex-direction: column;
+        align-items: center;
+      }
+      
+      .pricing-card {
+        max-width: 100%;
+      }
+      
+      .section-title {
+        font-size: 1.5rem;
+      }
+      
+      .header-title {
+        font-size: 1.3rem;
+      }
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <!-- Cabeçalho com botão de voltar -->
+    <header class="header">
+      <button class="back-button" onclick="window.history.back()">
+        <i class="fas fa-arrow-left"></i>
+      </button>
+      <h1 class="header-title">Nossos Planos</h1>
+    </header>
+    
+    <!-- Seção de Pacotes -->
+    <section class="pricing-section">
+      <h2 class="section-title">Escolha o melhor plano para você</h2>
+      
+      <div class="pricing-container">
+        <!-- Plano Free -->
+        <div class="pricing-card free">
+          <div class="pricing-header">
+            <h3 class="pricing-title">Plano Free</h3>
+            <div class="pricing-price free">R$ 0</div>
+            <div class="pricing-period">grátis para sempre</div>
+          </div>
+          
+          <div class="pricing-features">
+            <div class="feature-item">
+              <i class="fas fa-check"></i>
+              <span>Seu estabelecimento no mapa por 10 dias</span>
+            </div>
+            <div class="feature-item">
+              <i class="fas fa-check"></i>
+              <span>Até 3 fotos do local</span>
+            </div>
+            <div class="feature-item">
+              <i class="fas fa-check"></i>
+              <span>Visualização básica de visitas</span>
+            </div>
+            <div class="feature-item">
+              <i class="fas fa-check"></i>
+              <span>Suporte por e-mail</span>
+            </div>
+          </div>
+          
+          <a href="#" class="pricing-button btn-free">Começar agora</a>
+        </div>
+        
+        <!-- Plano Premium -->
+        <div class="pricing-card premium">
+          <div class="pricing-header">
+            <h3 class="pricing-title">Plano Premium <span class="badge badge-popular">POPULAR</span></h3>
+            <div class="pricing-price premium">R$ 49,90</div>
+            <div class="pricing-period">por mês</div>
+          </div>
+          
+          <div class="pricing-features">
+            <div class="feature-item">
+              <i class="fas fa-check"></i>
+              <span>Seu estabelecimento no mapa SEMPRE</span>
+            </div>
+            <div class="feature-item">
+              <i class="fas fa-check"></i>
+              <span>Até 20 fotos do local</span>
+            </div>
+            <div class="feature-item">
+              <i class="fas fa-check"></i>
+              <span>Estatísticas detalhadas de visitas</span>
+            </div>
+            <div class="feature-item">
+              <i class="fas fa-check"></i>
+              <span>Prioridade nos resultados de busca</span>
+            </div>
+            <div class="feature-item">
+              <i class="fas fa-check"></i>
+              <span>Suporte prioritário 24/7</span>
+            </div>
+            <div class="feature-item">
+              <i class="fas fa-check"></i>
+              <span>Promoções exclusivas</span>
+            </div>
+          </div>
+          
+          <a href="#" class="pricing-button btn-premium">Assinar agora</a>
+        </div>
+      </div>
+    </section>
+  </div>
+
+  <script>
+    // Função para voltar à página anterior
+    function goBack() {
+      window.history.back();
+    }
+    
+    // Aqui você pode adicionar a lógica para lidar com a seleção de planos
+    document.querySelectorAll('.pricing-button').forEach(button => {
+      button.addEventListener('click', function(e) {
+        e.preventDefault();
+        const plan = this.classList.contains('btn-free') ? 'Free' : 'Premium';
+        alert(`Você selecionou o plano ${plan}. Redirecionando para o cadastro...`);
+        // window.location.href = 'form_cadastro.html?plan=' + plan.toLowerCase();
+      });
+    });
+  </script>
+</body>
+</html>
