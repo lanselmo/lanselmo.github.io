@@ -1,0 +1,295 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Login - MapaTráfego</title>
+  
+  <!-- Meta Tags -->
+  <meta name="description" content="Página de login do MapaTráfego">
+  <meta name="author" content="Seu Nome">
+  
+  <!-- Font Awesome -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+  
+  <!-- CSS -->
+  <style>
+    /* Reset e Estilos Base */
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+    
+    body {
+      font-family: 'Segoe UI', Arial, sans-serif;
+      background: #f5f5f5;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      min-height: 100vh;
+      line-height: 1.6;
+      color: #333;
+    }
+    
+    /* Container Principal */
+    .login-container {
+      background: #ffffff;
+      padding: 2rem;
+      border-radius: 10px;
+      box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+      width: 100%;
+      max-width: 400px;
+      margin: 1rem;
+    }
+    
+    /* Cabeçalho */
+    .login-header {
+      text-align: center;
+      margin-bottom: 1.5rem;
+    }
+    
+    .login-header h2 {
+      color: #2c3e50;
+      margin-bottom: 0.5rem;
+      font-size: 1.8rem;
+    }
+    
+    .login-header p {
+      color: #7f8c8d;
+      font-size: 0.95rem;
+    }
+    
+    /* Formulário */
+    .login-form {
+      display: flex;
+      flex-direction: column;
+    }
+    
+    /* Grupos de Input */
+    .input-group {
+      margin-bottom: 1.2rem;
+    }
+    
+    .input-group label {
+      display: block;
+      margin-bottom: 0.5rem;
+      font-weight: 600;
+      color: #2c3e50;
+      font-size: 0.95rem;
+    }
+    
+    .input-group input {
+      width: 100%;
+      padding: 0.8rem;
+      border: 1px solid #ddd;
+      border-radius: 5px;
+      font-size: 1rem;
+      transition: border-color 0.3s;
+    }
+    
+    .input-group input:focus {
+      outline: none;
+      border-color: #3498db;
+      box-shadow: 0 0 0 2px rgba(52, 152, 219, 0.2);
+    }
+    
+    /* Links */
+    .forgot-password {
+      display: block;
+      margin-top: 0.5rem;
+      font-size: 0.85rem;
+      text-align: right;
+      color: #3498db;
+      text-decoration: none;
+    }
+    
+    .forgot-password:hover {
+      text-decoration: underline;
+    }
+    
+    /* Botão de Login */
+    .btn-login {
+      width: 100%;
+      padding: 0.9rem;
+      background: #3498db;
+      color: white;
+      border: none;
+      border-radius: 5px;
+      font-size: 1rem;
+      font-weight: 600;
+      cursor: pointer;
+      margin-top: 1rem;
+      transition: background-color 0.3s;
+    }
+    
+    .btn-login:hover {
+      background: #2980b9;
+    }
+    
+    /* Login Social */
+    .social-login {
+      text-align: center;
+      margin: 1.5rem 0;
+      position: relative;
+    }
+    
+    .social-login::before,
+    .social-login::after {
+      content: "";
+      display: inline-block;
+      width: 30%;
+      height: 1px;
+      background: #ddd;
+      vertical-align: middle;
+      margin: 0 10px;
+    }
+    
+    .social-login p {
+      display: inline-block;
+      color: #7f8c8d;
+      font-size: 0.9rem;
+    }
+    
+    .social-icons {
+      display: flex;
+      justify-content: center;
+      gap: 15px;
+      margin-top: 1rem;
+    }
+    
+    .social-btn {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      width: 45px;
+      height: 45px;
+      border-radius: 50%;
+      background: #f8f9fa;
+      font-size: 1.1rem;
+      color: #555;
+      text-decoration: none;
+      transition: all 0.3s;
+      border: 1px solid #eee;
+    }
+    
+    .social-btn:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    }
+    
+    .social-btn.google { color: #db4437; }
+    .social-btn.facebook { color: #4267B2; }
+    .social-btn.apple { color: #000000; }
+    
+    /* Link de Registro */
+    .register-link {
+      text-align: center;
+      margin-top: 1.5rem;
+      font-size: 0.95rem;
+      color: #7f8c8d;
+    }
+    
+    .register-link a {
+      color: #3498db;
+      text-decoration: none;
+      font-weight: 600;
+    }
+    
+    .register-link a:hover {
+      text-decoration: underline;
+    }
+    
+    /* Responsividade */
+    @media (max-width: 480px) {
+      .login-container {
+        padding: 1.5rem;
+      }
+      
+      .login-header h2 {
+        font-size: 1.5rem;
+      }
+    }
+  </style>
+</head>
+
+<body>
+  <!-- Seção de Login -->
+  <main class="login-section" id="login">
+    <div class="login-container">
+      <header class="login-header">
+        <h2>Entrar no MapaTráfego</h2>
+        <p>Acesse sua conta para começar</p>
+      </header>
+
+      <form class="login-form" id="loginForm">
+        <div class="input-group">
+          <label for="email">E-mail</label>
+          <input type="email" id="email" placeholder="seu@email.com" required>
+        </div>
+
+        <div class="input-group">
+          <label for="password">Senha</label>
+          <input type="password" id="password" placeholder="••••••••" required>
+          <a href="#" class="forgot-password">Esqueceu a senha?</a>
+        </div>
+
+        <button type="submit" a href="https://lanselmo.github.io/mapa-interativo/form_cad_estabelecimento.html" class="btn-login">Entrar</button>
+
+        <div class="social-login">
+          <p>Ou entre com</p>
+          <div class="social-icons">
+            <a href="#" class="social-btn google" aria-label="Entrar com Google">
+              <i class="fab fa-google"></i>
+            </a>
+            <a href="#" class="social-btn facebook" aria-label="Entrar com Facebook">
+              <i class="fab fa-facebook-f"></i>
+            </a>
+            <a href="#" class="social-btn apple" aria-label="Entrar com Apple">
+              <i class="fab fa-apple"></i>
+            </a>
+          </div>
+        </div>
+
+        <div class="register-link">
+          Não tem uma conta? <a href="#" id="register-btn">Cadastre-se</a>
+        </div>
+      </form>
+    </div>
+  </main>
+
+  <!-- JavaScript -->
+  <script>
+    document.addEventListener('DOMContentLoaded', function() {
+      const loginForm = document.getElementById('loginForm');
+      
+      // Validação do formulário
+      loginForm.addEventListener('submit', function(e) {
+        e.preventDefault();
+        
+        const email = document.getElementById('email').value;
+        const password = document.getElementById('password').value;
+        
+        // Validação básica
+        if (!email || !password) {
+          alert('Por favor, preencha todos os campos.');
+          return;
+        }
+        
+        // Simulação de login
+        console.log('Tentativa de login com:', { email, password });
+        
+        // Aqui você adicionaria a lógica real de login
+        // Por exemplo, uma chamada AJAX para seu backend
+      });
+      
+      // Link para cadastro
+      document.getElementById('register-btn').addEventListener('click', function(e) {
+        e.preventDefault();
+        alert('Redirecionando para página de cadastro...');
+        // window.location.href = '/cadastro';
+      });
+    });
+  </script>
+</body>
+</html>
