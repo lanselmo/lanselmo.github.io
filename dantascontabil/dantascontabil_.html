@@ -11,7 +11,6 @@
             --primary-light: #9c27b0;
             --primary-dark: #4a148c;
             --secondary: #ffab00;
-            --accent: #adff00;
             --dark: #121212;
             --darker: #0a0a0a;
             --light: #e0e0e0;
@@ -88,18 +87,6 @@
             box-shadow: var(--box-shadow);
         }
 
-        .btn-accent {
-            background-color: var(--accent);
-            color: var(--dark);
-            font-weight: 700;
-        }
-
-        .btn-accent:hover {
-            opacity: 0.9;
-            transform: translateY(-3px);
-            box-shadow: var(--box-shadow);
-        }
-
         .container {
             width: 100%;
             max-width: 1200px;
@@ -127,11 +114,6 @@
             color: var(--gray);
             max-width: 700px;
             margin: 0 auto;
-        }
-
-        .highlight {
-            color: var(--accent);
-            font-weight: 700;
         }
 
         /* Header */
@@ -168,7 +150,7 @@
 
         .logo i {
             margin-right: 10px;
-            color: var(--accent);
+            color: var(--secondary);
         }
 
         .nav-links {
@@ -187,7 +169,7 @@
         }
 
         .nav-links a:hover {
-            color: var(--accent);
+            color: var(--primary);
         }
 
         .nav-links a::after {
@@ -195,7 +177,7 @@
             position: absolute;
             width: 0;
             height: 2px;
-            background-color: var(--accent);
+            background-color: var(--primary);
             bottom: -5px;
             left: 0;
             transition: var(--transition);
@@ -233,10 +215,6 @@
             animation: fadeInDown 1s ease;
         }
 
-        .hero h1 .highlight {
-            display: inline-block;
-        }
-
         .hero p {
             font-size: 1.2rem;
             margin-bottom: 30px;
@@ -270,10 +248,6 @@
             color: var(--primary);
         }
 
-        .about-text h2 .highlight {
-            display: inline-block;
-        }
-
         .about-text p {
             margin-bottom: 15px;
             color: var(--gray);
@@ -290,8 +264,8 @@
         }
 
         .feature-icon {
-            background-color: var(--accent);
-            color: var(--dark);
+            background-color: var(--primary);
+            color: var(--white);
             width: 50px;
             height: 50px;
             border-radius: 50%;
@@ -300,7 +274,6 @@
             justify-content: center;
             margin-right: 15px;
             flex-shrink: 0;
-            font-size: 1.2rem;
         }
 
         /* Services Section */
@@ -321,29 +294,12 @@
 
         .service-card:hover {
             transform: translateY(-10px);
-            border-color: var(--accent);
+            border-color: var(--primary);
         }
 
         .service-img {
             height: 200px;
             overflow: hidden;
-            position: relative;
-        }
-
-        .service-img .five-icon {
-            position: absolute;
-            top: 15px;
-            right: 15px;
-            background-color: var(--accent);
-            color: var(--dark);
-            width: 40px;
-            height: 40px;
-            border-radius: 50%;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            font-weight: bold;
-            font-size: 1.2rem;
         }
 
         .service-img img {
@@ -397,7 +353,7 @@
 
         .team-member:hover {
             transform: translateY(-10px);
-            border-color: var(--accent);
+            border-color: var(--primary);
         }
 
         .member-img {
@@ -422,7 +378,7 @@
         }
 
         .member-info p {
-            color: var(--accent);
+            color: var(--secondary);
             font-weight: 600;
             margin-bottom: 15px;
         }
@@ -446,8 +402,8 @@
         }
 
         .social-links a:hover {
-            background-color: var(--accent);
-            color: var(--dark);
+            background-color: var(--primary);
+            color: var(--white);
         }
 
         /* Testimonials */
@@ -478,7 +434,7 @@
             border-radius: 50%;
             overflow: hidden;
             margin: 0 auto 20px;
-            border: 3px solid var(--accent);
+            border: 3px solid var(--primary);
         }
 
         .client-img img {
@@ -503,10 +459,6 @@
             margin-bottom: 5px;
         }
 
-        .client-info p {
-            color: var(--accent);
-        }
-
         .slider-controls {
             display: flex;
             justify-content: center;
@@ -524,7 +476,7 @@
         }
 
         .slider-dot.active {
-            background-color: var(--accent);
+            background-color: var(--primary);
         }
 
         /* Contact Section */
@@ -556,8 +508,8 @@
         }
 
         .contact-icon {
-            background-color: var(--accent);
-            color: var(--dark);
+            background-color: var(--primary);
+            color: var(--white);
             width: 40px;
             height: 40px;
             border-radius: 50%;
@@ -580,7 +532,7 @@
         }
 
         .contact-text a:hover {
-            color: var(--accent);
+            color: var(--primary);
         }
 
         .contact-form .form-group {
@@ -597,14 +549,13 @@
             transition: var(--transition);
             background-color: var(--dark);
             color: var(--light);
-            font-size: 1rem;
         }
 
         .contact-form input:focus,
         .contact-form textarea:focus {
             outline: none;
-            border-color: var(--accent);
-            box-shadow: 0 0 0 3px rgba(173, 255, 0, 0.3);
+            border-color: var(--primary);
+            box-shadow: 0 0 0 3px rgba(106, 13, 173, 0.3);
         }
 
         .contact-form textarea {
@@ -640,7 +591,7 @@
             position: absolute;
             width: 50px;
             height: 2px;
-            background-color: var(--accent);
+            background-color: var(--secondary);
             bottom: 0;
             left: 0;
         }
@@ -661,29 +612,8 @@
         }
 
         .footer-links a:hover {
-            color: var(--accent);
+            color: var(--primary);
             transform: translateX(5px);
-        }
-
-        .newsletter-form {
-            display: flex;
-            flex-direction: column;
-            gap: 15px;
-        }
-
-        .newsletter-form input {
-            width: 100%;
-            padding: 12px 15px;
-            border: 1px solid var(--light-gray);
-            border-radius: 5px;
-            font-family: inherit;
-            background-color: var(--dark);
-            color: var(--light);
-            font-size: 1rem;
-        }
-
-        .newsletter-form button {
-            width: 100%;
         }
 
         .footer-bottom {
@@ -700,8 +630,8 @@
             right: 30px;
             width: 50px;
             height: 50px;
-            background-color: var(--accent);
-            color: var(--dark);
+            background-color: var(--primary);
+            color: var(--white);
             border-radius: 50%;
             display: flex;
             align-items: center;
@@ -712,8 +642,7 @@
             visibility: hidden;
             transition: var(--transition);
             z-index: 999;
-            border: none;
-            font-weight: bold;
+            border: 1px solid var(--primary-dark);
         }
 
         .back-to-top.active {
@@ -722,7 +651,7 @@
         }
 
         .back-to-top:hover {
-            opacity: 0.9;
+            background-color: var(--primary-light);
         }
 
         /* Animations */
@@ -847,7 +776,7 @@
                     <li><a href="#home">Início</a></li>
                     <li><a href="#about">Sobre</a></li>
                     <li><a href="#services">Serviços</a></li>
-                    <li><a href="#team">Equipe</a></li>
+                    <!-- li><a href="#team">Equipe</a></li -->
                     <li><a href="#contact">Contato</a></li>
                 </ul>
                 
@@ -862,10 +791,10 @@
     <section class="hero" id="home">
         <div class="container">
             <div class="hero-content">
-                <h1>Soluções <span class="highlight">Contábeis</span> para o Seu Negócio</h1>
+                <h1>Soluções Contábeis para o Seu Negócio</h1>
                 <p>Oferecemos serviços contábeis completos e personalizados para ajudar sua empresa a crescer com segurança e conformidade fiscal.</p>
                 <div class="hero-btns">
-                    <a href="#contact" class="btn btn-accent">Fale Conosco</a>
+                    <a href="#contact" class="btn btn-primary">Fale Conosco</a>
                     <a href="#services" class="btn btn-secondary">Nossos Serviços</a>
                 </div>
             </div>
@@ -877,7 +806,7 @@
         <div class="container">
             <div class="about-content">
                 <div class="about-text">
-                    <h2>Quem <span class="highlight">Somos</span></h2>
+                    <h2>Quem Somos</h2>
                     <p>A Dantas Contábil é uma empresa especializada em soluções contábeis integradas, com mais de 15 anos de experiência no mercado.</p>
                     <p>Nossa missão é oferecer serviços de excelência, proporcionando segurança e tranquilidade para nossos clientes, com transparência e ética profissional.</p>
                     
@@ -925,14 +854,13 @@
     <section class="services" id="services">
         <div class="container">
             <div class="section-title">
-                <h2>Nossos <span class="highlight">Serviços</span></h2>
+                <h2>Nossos Serviços</h2>
                 <p>Oferecemos um portfólio completo de serviços contábeis para atender todas as necessidades do seu negócio</p>
             </div>
             
             <div class="services-grid">
                 <div class="service-card">
                     <div class="service-img">
-                        <div class="five-icon">5</div>
                         <img src="https://images.unsplash.com/photo-1554224155-8d04cb21cd6c?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1470&q=80" alt="Contabilidade Empresarial">
                     </div>
                     <div class="service-content">
@@ -944,7 +872,6 @@
                 
                 <div class="service-card">
                     <div class="service-img">
-                        <div class="five-icon">5</div>
                         <img src="https://images.unsplash.com/photo-1454165804606-c3d57bc86b40?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1470&q=80" alt="Planejamento Tributário">
                     </div>
                     <div class="service-content">
@@ -956,7 +883,6 @@
                 
                 <div class="service-card">
                     <div class="service-img">
-                        <div class="five-icon">5</div>
                         <img src="https://images.unsplash.com/photo-1579621970563-ebec7560ff3e?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1471&q=80" alt="Departamento Pessoal">
                     </div>
                     <div class="service-content">
@@ -968,7 +894,6 @@
                 
                 <div class="service-card">
                     <div class="service-img">
-                        <div class="five-icon">5</div>
                         <img src="https://images.unsplash.com/photo-1554224155-6726b3ff858f?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1511&q=80" alt="Consultoria Financeira">
                     </div>
                     <div class="service-content">
@@ -980,7 +905,6 @@
                 
                 <div class="service-card">
                     <div class="service-img">
-                        <div class="five-icon">5</div>
                         <img src="https://images.unsplash.com/photo-1521791136064-7986c2920216?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1469&q=80" alt="Abertura de Empresas">
                     </div>
                     <div class="service-content">
@@ -992,7 +916,6 @@
                 
                 <div class="service-card">
                     <div class="service-img">
-                        <div class="five-icon">5</div>
                         <img src="https://images.unsplash.com/photo-1450101499163-c8848c66ca85?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1470&q=80" alt="Certificação Digital">
                     </div>
                     <div class="service-content">
@@ -1006,10 +929,10 @@
     </section>
 
     <!-- Team Section -->
-    <section class="team" id="team">
+    <!-- section class="team" id="team">
         <div class="container">
             <div class="section-title">
-                <h2>Nossa <span class="highlight">Equipe</span></h2>
+                <h2>Nossa Equipe</h2>
                 <p>Profissionais qualificados e comprometidos com a excelência no atendimento</p>
             </div>
             
@@ -1075,13 +998,13 @@
                 </div>
             </div>
         </div>
-    </section>
+    </section -->
 
     <!-- Testimonials Section -->
     <section class="testimonials">
         <div class="container">
             <div class="section-title">
-                <h2>O Que Dizem <span class="highlight">Nossos Clientes</span></h2>
+                <h2>O Que Dizem Nossos Clientes</h2>
                 <p>Depoimentos de empresários que confiam em nossos serviços</p>
             </div>
             
@@ -1153,7 +1076,7 @@
     <section class="contact" id="contact">
         <div class="container">
             <div class="section-title">
-                <h2>Entre em <span class="highlight">Contato</span></h2>
+                <h2>Entre em Contato</h2>
                 <p>Estamos prontos para ajudar sua empresa a alcançar novos patamares</p>
             </div>
             
@@ -1233,7 +1156,7 @@
                             <textarea placeholder="Sua Mensagem" required></textarea>
                         </div>
                         
-                        <button type="submit" class="btn btn-accent">Enviar Mensagem</button>
+                        <button type="submit" class="btn btn-primary">Enviar Mensagem</button>
                     </form>
                 </div>
             </div>
@@ -1282,7 +1205,7 @@
                     <p>Assine nossa newsletter e receba dicas e novidades sobre contabilidade.</p>
                     <form class="newsletter-form">
                         <input type="email" placeholder="Seu Email" required>
-                        <button type="submit" class="btn btn-accent">Assinar</button>
+                        <button type="submit" class="btn btn-secondary">Assinar</button>
                     </form>
                 </div>
             </div>
