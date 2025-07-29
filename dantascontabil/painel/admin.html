@@ -249,6 +249,16 @@
             from { opacity: 0; transform: translateY(20px); }
             to { opacity: 1; transform: translateY(0); }
         }
+
+        /* Image preview */
+        .image-preview {
+            max-width: 200px;
+            max-height: 200px;
+            margin-top: 10px;
+            border: 1px solid #ddd;
+            padding: 5px;
+            border-radius: 4px;
+        }
     </style>
 </head>
 <body>
@@ -354,46 +364,46 @@
                     </div>
                     <div class="form-group">
                         <label>URL da Imagem</label>
-                        <input type="text" class="form-control" v-model="siteContent.aboutImage">
+                        <input type="text" class="form-control" v-model="siteContent.aboutImage" placeholder="Cole a URL da imagem aqui">
+                        <img v-if="siteContent.aboutImage" :src="siteContent.aboutImage" class="image-preview">
                     </div>
 
                     <!-- Funcao para adicionar icon select -->
-                        <h4>Recursos</h4>
-            <div v-for="(feature, index) in siteContent.features" :key="index" class="card" style="margin-top: 15px;">
-                <div class="form-group">
-                    <label>Título do Recurso</label>
-                    <input type="text" class="form-control" v-model="feature.title">
-                </div>
-                <div class="form-group">
-                    <label>Descrição do Recurso</label>
-                    <textarea class="form-control" v-model="feature.description"></textarea>
-                </div>
-                <div class="form-group">
-                    <label>Ícone</label>
-                    <div class="icon-selector">
-                        <button class="btn btn-icon" @click="toggleIconSelector(index)">
-                            <i :class="feature.icon || 'fas fa-question'"></i>
-                        </button>
-                        <div v-if="feature.showIconSelector" class="icon-selector-dropdown">
-                            <div class="icon-search">
-                                <input type="text" v-model="iconSearch" placeholder="Pesquisar ícone...">
-                            </div>
-                            <div class="icon-grid">
-                                <button v-for="icon in filteredIcons" :key="icon" 
-                                        class="btn btn-icon" 
-                                        @click="selectIcon(index, icon)"
-                                        :title="icon">
-                                    <i :class="icon"></i>
+                    <h4>Recursos</h4>
+                    <div v-for="(feature, index) in siteContent.features" :key="index" class="card" style="margin-top: 15px;">
+                        <div class="form-group">
+                            <label>Título do Recurso</label>
+                            <input type="text" class="form-control" v-model="feature.title">
+                        </div>
+                        <div class="form-group">
+                            <label>Descrição do Recurso</label>
+                            <textarea class="form-control" v-model="feature.description"></textarea>
+                        </div>
+                        <div class="form-group">
+                            <label>Ícone</label>
+                            <div class="icon-selector">
+                                <button class="btn btn-icon" @click="toggleIconSelector(index)">
+                                    <i :class="feature.icon || 'fas fa-question'"></i>
                                 </button>
+                                <div v-if="feature.showIconSelector" class="icon-selector-dropdown">
+                                    <div class="icon-search">
+                                        <input type="text" v-model="iconSearch" placeholder="Pesquisar ícone...">
+                                    </div>
+                                    <div class="icon-grid">
+                                        <button v-for="icon in filteredIcons" :key="icon" 
+                                                class="btn btn-icon" 
+                                                @click="selectIcon(index, icon)"
+                                                :title="icon">
+                                            <i :class="icon"></i>
+                                        </button>
+                                    </div>
+                                </div>
                             </div>
                         </div>
+                        <button class="btn delete-btn" @click="removeFeature(index)">Remover Recurso</button>
                     </div>
-                </div>
-                <button class="btn delete-btn" @click="removeFeature(index)">Remover Recurso</button>
-            </div>
-    
-                <button class="btn btn-accent" @click="addFeature"><i class="fas fa-plus"></i> Adicionar Recurso</button>
-
+        
+                    <button class="btn btn-accent" @click="addFeature"><i class="fas fa-plus"></i> Adicionar Recurso</button>
 
                     <button class="btn" @click="saveSiteContent">Salvar Alterações</button>
                     <div v-if="saveMessage" class="feedback-message" :class="saveMessage.type">{{ saveMessage.text }}</div>
@@ -420,9 +430,9 @@
                                 <input type="number" class="form-control" v-model="newService.order">
                             </div>
                             <div class="form-group">
-                                <label>Imagem</label>
-                                <input type="file" @change="handleServiceImageUpload" accept="image/*">
-                                <p v-if="newService.imageUrl" style="margin-top: 10px;">Imagem selecionada: {{ newService.imageUrl }}</p>
+                                <label>URL da Imagem</label>
+                                <input type="text" class="form-control" v-model="newService.imageUrl" placeholder="Cole a URL da imagem aqui">
+                                <img v-if="newService.imageUrl" :src="newService.imageUrl" class="image-preview">
                             </div>
                             <button class="btn" @click="addService">Adicionar Serviço</button>
                             <button class="btn" @click="showAddService = false" style="background-color: #ccc; margin-left: 10px;">Cancelar</button>
@@ -468,10 +478,9 @@
                             <input type="number" class="form-control" v-model="editingService.order">
                         </div>
                         <div class="form-group">
-                            <label>Imagem Atual</label>
-                            <img :src="editingService.imageUrl" style="max-width: 100px; display: block; margin-bottom: 10px;">
-                            <label>Alterar Imagem (opcional)</label>
-                            <input type="file" @change="handleEditServiceImageUpload" accept="image/*">
+                            <label>URL da Imagem</label>
+                            <input type="text" class="form-control" v-model="editingService.imageUrl" placeholder="Cole a URL da imagem aqui">
+                            <img v-if="editingService.imageUrl" :src="editingService.imageUrl" class="image-preview">
                         </div>
                         <button class="btn" @click="updateService">Atualizar Serviço</button>
                         <button class="btn" @click="cancelEdit" style="background-color: #ccc; margin-left: 10px;">Cancelar</button>
@@ -503,8 +512,9 @@
                                 <input type="number" min="1" max="5" class="form-control" v-model="newTestimonial.rating">
                             </div>
                             <div class="form-group">
-                                <label>Foto do Cliente</label>
-                                <input type="file" @change="handleTestimonialImageUpload" accept="image/*">
+                                <label>URL da Foto do Cliente</label>
+                                <input type="text" class="form-control" v-model="newTestimonial.imageUrl" placeholder="Cole a URL da imagem aqui">
+                                <img v-if="newTestimonial.imageUrl" :src="newTestimonial.imageUrl" class="image-preview">
                             </div>
                             <button class="btn" @click="addTestimonial">Adicionar Depoimento</button>
                             <button class="btn" @click="showAddTestimonial = false" style="background-color: #ccc; margin-left: 10px;">Cancelar</button>
@@ -558,10 +568,9 @@
                             <input type="number" min="1" max="5" class="form-control" v-model="editingTestimonial.rating">
                         </div>
                         <div class="form-group">
-                            <label>Foto Atual</label>
-                            <img :src="editingTestimonial.imageUrl" style="max-width: 100px; display: block; margin-bottom: 10px;">
-                            <label>Alterar Foto (opcional)</label>
-                            <input type="file" @change="handleEditTestimonialImageUpload" accept="image/*">
+                            <label>URL da Foto do Cliente</label>
+                            <input type="text" class="form-control" v-model="editingTestimonial.imageUrl" placeholder="Cole a URL da imagem aqui">
+                            <img v-if="editingTestimonial.imageUrl" :src="editingTestimonial.imageUrl" class="image-preview">
                         </div>
                         <button class="btn" @click="updateTestimonial">Atualizar Depoimento</button>
                         <button class="btn" @click="cancelEdit" style="background-color: #ccc; margin-left: 10px;">Cancelar</button>
@@ -585,8 +594,9 @@
                                 <input type="text" class="form-control" v-model="newTeamMember.position">
                             </div>
                             <div class="form-group">
-                                <label>Foto</label>
-                                <input type="file" @change="handleTeamImageUpload" accept="image/*">
+                                <label>URL da Foto</label>
+                                <input type="text" class="form-control" v-model="newTeamMember.imageUrl" placeholder="Cole a URL da imagem aqui">
+                                <img v-if="newTeamMember.imageUrl" :src="newTeamMember.imageUrl" class="image-preview">
                             </div>
                             <div class="form-group">
                                 <label>Redes Sociais (opcional)</label>
@@ -634,10 +644,9 @@
                             <input type="text" class="form-control" v-model="editingTeamMember.position">
                         </div>
                         <div class="form-group">
-                            <label>Foto Atual</label>
-                            <img :src="editingTeamMember.imageUrl" style="max-width: 100px; display: block; margin-bottom: 10px;">
-                            <label>Alterar Foto (opcional)</label>
-                            <input type="file" @change="handleEditTeamImageUpload" accept="image/*">
+                            <label>URL da Foto</label>
+                            <input type="text" class="form-control" v-model="editingTeamMember.imageUrl" placeholder="Cole a URL da imagem aqui">
+                            <img v-if="editingTeamMember.imageUrl" :src="editingTeamMember.imageUrl" class="image-preview">
                         </div>
                         <div class="form-group">
                             <label>Redes Sociais</label>
@@ -713,11 +722,7 @@
     <script src="https://www.gstatic.com/firebasejs/9.6.0/firebase-auth-compat.js"></script>
     <script src="https://www.gstatic.com/firebasejs/9.6.0/firebase-storage-compat.js"></script>
     
-    
     <script>
-
-        
-
         // Configuração do Firebase
         const firebaseConfig = {
             apiKey: "AIzaSyCk9LG7b9KX1m8QBbQv1ixNNWDlsfBcVp0",
@@ -727,8 +732,6 @@
             messagingSenderId: "619232441117",
             appId: "1:619232441117:web:26493c5c5c297a95e7a7f4"
         };
-
-
 
         // Verifica se o Firebase já foi inicializado
         if (!firebase.apps.length) {
@@ -740,7 +743,6 @@
 
         const db = firebase.firestore();
         const auth = firebase.auth();
-        const storage = firebase.storage();
 
         // Crie a aplicação Vue
         const { createApp, ref, onMounted } = Vue;
@@ -933,22 +935,6 @@
                     });
                 };
                 
-                const addFeature1 = () => {
-                    siteContent.value.features.push({
-                        title: '',
-                        description: '',
-                        icon: 'fas fa-lock'
-                    });
-                };
-
-                  const addFeature2 = () => {
-                    siteContent.value.features.push({
-                        title: '',
-                        description: '',
-                        icon: 'fas fa-headset'
-                    });
-                };
-
                 const removeFeature = (index) => {
                     siteContent.value.features.splice(index, 1);
                 };
@@ -965,115 +951,6 @@
                 
                 const removeFooterLink = (index) => {
                     siteContent.value.footerLinks.splice(index, 1);
-                };
-
-
-                
-
-                const handleServiceImageUpload = async (event) => {
-                        const file = event.target.files[0];
-                        if (!file) return;
-
-                        loading.value = true;
-                        
-                        try {
-                            const storage = getStorage();
-                            const storageRef = ref(storage, `services/${file.name}`);
-                            const uploadTask = uploadBytesResumable(storageRef, file);
-
-                            uploadTask.on('state_changed',
-                                (snapshot) => {
-                                    const progress = (snapshot.bytesTransferred / snapshot.totalBytes) * 100;
-                                    console.log('Upload progress: ' + progress + '%');
-                                },
-                                (error) => {
-                                    console.error('Erro no upload:', error);
-                                    showMessage('Erro no upload da imagem: ' + error.message, 'error');
-                                    loading.value = false;
-                                },
-                                async () => {
-                                    try {
-                                        const downloadURL = await getDownloadURL(uploadTask.snapshot.ref);
-                                        console.log('Imagem do serviço disponível em:', downloadURL);
-                                        newService.value.imageUrl = downloadURL;
-                                        showMessage('Imagem enviada com sucesso!');
-                                        loading.value = false;
-                                    } catch (error) {
-                                        console.error('Erro ao obter URL:', error);
-                                        showMessage('Erro ao obter URL da imagem', 'error');
-                                        loading.value = false;
-                                    }
-                                }
-                            );
-                        } catch (error) {
-                            console.error('Erro no upload:', error);
-                            showMessage('Erro no upload da imagem', 'error');
-                            loading.value = false;
-                        }
-                    };
-
-                
-                
-                /*const handleServiceImageUpload = (event) => {
-                    const file = event.target.files[0];
-                    if (file) {
-                        loading.value = true;
-                        const storageRef = storage.ref(`services/${file.name}`);
-                        const uploadTask = storageRef.put(file);
-                        
-                        uploadTask.on('state_changed',
-                            (snapshot) => {
-                                // Progresso do upload
-                                const progress = (snapshot.bytesTransferred / snapshot.totalBytes) * 100;
-                                console.log('Upload progress: ' + progress + '%');
-                            },
-                            (error) => {
-                                console.error('Erro no upload:', error);
-                                showMessage('Erro no upload da imagem: ' + error.message, 'error');
-                                loading.value = false;
-                            },
-                            () => {
-                                uploadTask.snapshot.ref.getDownloadURL().then((downloadURL) => {
-                                    console.log('Imagem do serviço disponível em:', downloadURL);
-                                    newService.value.imageUrl = downloadURL;
-                                    showMessage('Imagem enviada com sucesso!');
-                                    loading.value = false;
-                                });
-                            }
-                        );
-                    }
-                };*/
-
-                
-                
-                const handleEditServiceImageUpload = (event) => {
-                    const file = event.target.files[0];
-                    if (file) {
-                        loading.value = true;
-                        const storageRef = storage.ref(`services/${file.name}`);
-                        const uploadTask = storageRef.put(file);
-                        
-                        uploadTask.on('state_changed',
-                            (snapshot) => {
-                                // Progresso do upload
-                                const progress = (snapshot.bytesTransferred / snapshot.totalBytes) * 100;
-                                console.log('Upload progress: ' + progress + '%');
-                            },
-                            (error) => {
-                                console.error('Erro no upload:', error);
-                                showMessage('Erro no upload da imagem: ' + error.message, 'error');
-                                loading.value = false;
-                            },
-                            () => {
-                                uploadTask.snapshot.ref.getDownloadURL().then((downloadURL) => {
-                                    console.log('Nova imagem do serviço disponível em:', downloadURL);
-                                    editingService.value.imageUrl = downloadURL;
-                                    showMessage('Imagem atualizada com sucesso!');
-                                    loading.value = false;
-                                });
-                            }
-                        );
-                    }
                 };
                 
                 const addService = async () => {
@@ -1155,66 +1032,6 @@
                         } finally {
                             loading.value = false;
                         }
-                    }
-                };
-                
-                const handleTestimonialImageUpload = (event) => {
-                    const file = event.target.files[0];
-                    if (file) {
-                        loading.value = true;
-                        const storageRef = storage.ref(`testimonials/${file.name}`);
-                        const uploadTask = storageRef.put(file);
-                        
-                        uploadTask.on('state_changed',
-                            (snapshot) => {
-                                // Progresso do upload
-                                const progress = (snapshot.bytesTransferred / snapshot.totalBytes) * 100;
-                                console.log('Upload progress: ' + progress + '%');
-                            },
-                            (error) => {
-                                console.error('Erro no upload:', error);
-                                showMessage('Erro no upload da imagem: ' + error.message, 'error');
-                                loading.value = false;
-                            },
-                            () => {
-                                uploadTask.snapshot.ref.getDownloadURL().then((downloadURL) => {
-                                    console.log('Imagem do depoimento disponível em:', downloadURL);
-                                    newTestimonial.value.imageUrl = downloadURL;
-                                    showMessage('Imagem enviada com sucesso!');
-                                    loading.value = false;
-                                });
-                            }
-                        );
-                    }
-                };
-                
-                const handleEditTestimonialImageUpload = (event) => {
-                    const file = event.target.files[0];
-                    if (file) {
-                        loading.value = true;
-                        const storageRef = storage.ref(`testimonials/${file.name}`);
-                        const uploadTask = storageRef.put(file);
-                        
-                        uploadTask.on('state_changed',
-                            (snapshot) => {
-                                // Progresso do upload
-                                const progress = (snapshot.bytesTransferred / snapshot.totalBytes) * 100;
-                                console.log('Upload progress: ' + progress + '%');
-                            },
-                            (error) => {
-                                console.error('Erro no upload:', error);
-                                showMessage('Erro no upload da imagem: ' + error.message, 'error');
-                                loading.value = false;
-                            },
-                            () => {
-                                uploadTask.snapshot.ref.getDownloadURL().then((downloadURL) => {
-                                    console.log('Nova imagem do depoimento disponível em:', downloadURL);
-                                    editingTestimonial.value.imageUrl = downloadURL;
-                                    showMessage('Imagem atualizada com sucesso!');
-                                    loading.value = false;
-                                });
-                            }
-                        );
                     }
                 };
                 
@@ -1301,66 +1118,6 @@
                         } finally {
                             loading.value = false;
                         }
-                    }
-                };
-                
-                const handleTeamImageUpload = (event) => {
-                    const file = event.target.files[0];
-                    if (file) {
-                        loading.value = true;
-                        const storageRef = storage.ref(`team/${file.name}`);
-                        const uploadTask = storageRef.put(file);
-                        
-                        uploadTask.on('state_changed',
-                            (snapshot) => {
-                                // Progresso do upload
-                                const progress = (snapshot.bytesTransferred / snapshot.totalBytes) * 100;
-                                console.log('Upload progress: ' + progress + '%');
-                            },
-                            (error) => {
-                                console.error('Erro no upload:', error);
-                                showMessage('Erro no upload da imagem: ' + error.message, 'error');
-                                loading.value = false;
-                            },
-                            () => {
-                                uploadTask.snapshot.ref.getDownloadURL().then((downloadURL) => {
-                                    console.log('Imagem do membro disponível em:', downloadURL);
-                                    newTeamMember.value.imageUrl = downloadURL;
-                                    showMessage('Imagem enviada com sucesso!');
-                                    loading.value = false;
-                                });
-                            }
-                        );
-                    }
-                };
-                
-                const handleEditTeamImageUpload = (event) => {
-                    const file = event.target.files[0];
-                    if (file) {
-                        loading.value = true;
-                        const storageRef = storage.ref(`team/${file.name}`);
-                        const uploadTask = storageRef.put(file);
-                        
-                        uploadTask.on('state_changed',
-                            (snapshot) => {
-                                // Progresso do upload
-                                const progress = (snapshot.bytesTransferred / snapshot.totalBytes) * 100;
-                                console.log('Upload progress: ' + progress + '%');
-                            },
-                            (error) => {
-                                console.error('Erro no upload:', error);
-                                showMessage('Erro no upload da imagem: ' + error.message, 'error');
-                                loading.value = false;
-                            },
-                            () => {
-                                uploadTask.snapshot.ref.getDownloadURL().then((downloadURL) => {
-                                    console.log('Nova imagem do membro disponível em:', downloadURL);
-                                    editingTeamMember.value.imageUrl = downloadURL;
-                                    showMessage('Imagem atualizada com sucesso!');
-                                    loading.value = false;
-                                });
-                            }
-                        );
                     }
                 };
                 
@@ -1497,25 +1254,17 @@
                     loadAllData,
                     saveSiteContent,
                     addFeature,
-                    addFeature1,
-                    addFeature2,
                     removeFeature,
                     addFooterLink,
                     removeFooterLink,
-                    handleServiceImageUpload,
-                    handleEditServiceImageUpload,
                     addService,
                     editService,
                     updateService,
                     deleteService,
-                    handleTestimonialImageUpload,
-                    handleEditTestimonialImageUpload,
                     addTestimonial,
                     editTestimonial,
                     updateTestimonial,
                     deleteTestimonial,
-                    handleTeamImageUpload,
-                    handleEditTeamImageUpload,
                     addTeamMember,
                     editTeamMember,
                     updateTeamMember,
