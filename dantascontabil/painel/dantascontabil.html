@@ -806,6 +806,21 @@
             opacity: 0.9;
         }
 
+        /* Loading and Error States */
+        .loading {
+            text-align: center;
+            padding: 20px;
+            color: var(--accent);
+            font-weight: bold;
+        }
+
+        .error-message {
+            text-align: center;
+            padding: 20px;
+            color: #ff6b6b;
+            font-weight: bold;
+        }
+
         /* Animations */
         @keyframes fadeIn {
             from {
@@ -844,7 +859,7 @@
         /* Responsive */
         @media (max-width: 992px) {
             section {
-                padding: 100% 0;
+                padding: 60px 0;
             }
 
             .section-title h2 {
@@ -990,7 +1005,7 @@
                     <p id="about-mission">Nossa missão é oferecer serviços de excelência, proporcionando segurança e tranquilidade para nossos clientes, com transparência e ética profissional.</p>
 
                     <div class="about-features" id="features-container">
-                        <!-- Features serão injetadas dinamicamente pelo JavaScript -->
+                        <div class="loading">Carregando recursos...</div>
                     </div>
                 </div>
 
@@ -1010,7 +1025,7 @@
             </div>
 
             <div class="services-grid" id="services-container">
-                <!-- Serviços serão injetados dinamicamente pelo JavaScript -->
+                <div class="loading">Carregando serviços...</div>
             </div>
         </div>
     </section>
@@ -1024,7 +1039,7 @@
             </div>
 
             <div class="testimonials-slider" id="testimonials-container">
-                <!-- Depoimentos serão injetados dinamicamente pelo JavaScript -->
+                <div class="loading">Carregando depoimentos...</div>
             </div>
 
             <div class="slider-controls" id="testimonials-dots">
@@ -1142,14 +1157,19 @@
                 <div class="footer-col">
                     <h3>Serviços</h3>
                     <ul class="footer-links" id="footer-services">
-                        <!-- Serviços do footer serão injetados dinamicamente -->
+                        <li><a href="#services">Serviços Contábeis</a></li>
+                        <li><a href="#services">Consultoria Fiscal</a></li>
+                        <li><a href="#services">Planejamento Tributário</a></li>
                     </ul>
                 </div>
 
                 <div class="footer-col">
                     <h3>Links Úteis</h3>
                     <ul class="footer-links" id="footer-links">
-                        <!-- Links úteis serão injetados dinamicamente -->
+                        <li><a href="#home">Página Inicial</a></li>
+                        <li><a href="#about">Sobre Nós</a></li>
+                        <li><a href="#services">Serviços</a></li>
+                        <li><a href="#contact">Contato</a></li>
                     </ul>
                 </div>
 
@@ -1174,14 +1194,14 @@
         <i class="fas fa-arrow-up"></i>
     </div>
 
-   <!-- Firebase e scripts de inicialização -->
+    <!-- Firebase e scripts de inicialização -->
     <script src="https://www.gstatic.com/firebasejs/9.6.0/firebase-app-compat.js"></script>
     <script src="https://www.gstatic.com/firebasejs/9.6.0/firebase-firestore-compat.js"></script>
     <script src="https://www.gstatic.com/firebasejs/9.6.0/firebase-auth-compat.js"></script>
     <script src="https://www.gstatic.com/firebasejs/9.6.0/firebase-storage-compat.js"></script>
     
     <script>
-        // Configuração do Firebase
+        // Configuração do Firebase com verificação adicional
         const firebaseConfig = {
             apiKey: "AIzaSyCk9LG7b9KX1m8QBbQv1ixNNWDlsfBcVp0",
             authDomain: "dantascontabil-ef5dd.firebaseapp.com",
@@ -1191,8 +1211,14 @@
             appId: "1:619232441117:web:26493c5c5c297a95e7a7f4"
         };
 
-        // Inicialize o Firebase
-        firebase.initializeApp(firebaseConfig);
+        // Verifica se o Firebase já foi inicializado
+        if (!firebase.apps.length) {
+            // Inicialize o Firebase
+            firebase.initializeApp(firebaseConfig);
+        } else {
+            firebase.app(); // Se já estiver inicializado, usa a instância existente
+        }
+
         const db = firebase.firestore();
         const auth = firebase.auth();
         const storage = firebase.storage();
@@ -1202,6 +1228,8 @@
 
         // Função para mostrar feedback ao usuário
         function showFeedback(message, isError = false, elementId = null) {
+            console.log(isError ? "Erro: " + message : "Sucesso: " + message);
+            
             if (elementId) {
                 const element = document.getElementById(elementId);
                 if (element) {
@@ -1254,12 +1282,15 @@
 
         // Funções para carregar dados do Firestore com tratamento de loading
         async function loadSiteContent() {
+            console.log("Iniciando carregamento de conteúdo...");
             const elementId = 'features-container';
             try {
                 const doc = await db.collection("siteContent").doc("main").get();
+                console.log("Documento obtido:", doc);
                 
                 if (doc.exists) {
                     const data = doc.data();
+                    console.log("Dados do documento:", data);
                     
                     // Hero Section
                     if (data.heroTitle) document.getElementById('hero-title').innerHTML = data.heroTitle.replace('Contábeis', '<span class="highlight">Contábeis</span>');
@@ -1325,15 +1356,17 @@
                     
                     showFeedback('Conteúdo principal carregado com sucesso!', false, 'siteContentFeedback');
                 } else {
+                    console.log("Documento não encontrado!");
                     showFeedback('Nenhum conteúdo principal encontrado.', true, 'siteContentFeedback');
                 }
             } catch (error) {
-                console.error("Erro ao carregar conteúdo do site:", error);
-                showFeedback('Erro ao carregar conteúdo do site.', true, 'siteContentFeedback');
+                console.error("Erro detalhado ao carregar conteúdo:", error);
+                showFeedback('Erro ao carregar conteúdo do site: ' + error.message, true, 'siteContentFeedback');
             }
         }
 
         async function loadServices() {
+            console.log("Carregando serviços...");
             const servicesContainer = document.getElementById('services-container');
             const footerServicesContainer = document.getElementById('footer-services');
             
@@ -1341,24 +1374,27 @@
                 servicesContainer.innerHTML = '<div class="loading">Carregando serviços...</div>';
                 
                 const querySnapshot = await db.collection("services").orderBy("order", "asc").get();
+                console.log("Serviços encontrados:", querySnapshot.size);
                 
                 servicesContainer.innerHTML = '';
                 footerServicesContainer.innerHTML = '';
                 
                 if (querySnapshot.empty) {
+                    console.log("Nenhum serviço encontrado na coleção");
                     servicesContainer.innerHTML = '<div class="error-message">Nenhum serviço encontrado.</div>';
                     return;
                 }
                 
                 querySnapshot.forEach(doc => {
                     const service = doc.data();
+                    console.log("Serviço:", service);
                     
                     // Card de serviço principal
                     servicesContainer.innerHTML += `
                         <div class="service-card">
                             <div class="service-img">
                                 <div class="five-icon">5</div>
-                                <img src="${service.imageUrl || 'https://via.placeholder.com/300x200'}" alt="${service.name || 'Serviço'}">
+                                <img src="${service.imageUrl || 'https://via.placeholder.com/300x200'}" alt="${service.name || 'Serviço'}" onerror="this.src='https://via.placeholder.com/300x200'">
                             </div>
                             <div class="service-content">
                                 <h3>${service.name || 'Serviço'}</h3>
@@ -1376,13 +1412,14 @@
                 
                 showFeedback('Serviços carregados com sucesso!', false, 'servicesFeedback');
             } catch (error) {
-                console.error("Erro ao carregar serviços:", error);
-                servicesContainer.innerHTML = '<div class="error-message">Erro ao carregar serviços. Tente recarregar a página.</div>';
-                showFeedback('Erro ao carregar serviços.', true, 'servicesFeedback');
+                console.error("Erro detalhado ao carregar serviços:", error);
+                servicesContainer.innerHTML = '<div class="error-message">Erro ao carregar serviços: ' + error.message + '</div>';
+                showFeedback('Erro ao carregar serviços: ' + error.message, true, 'servicesFeedback');
             }
         }
 
         async function loadTestimonials() {
+            console.log("Carregando depoimentos...");
             const testimonialsContainer = document.getElementById('testimonials-container');
             const dotsContainer = document.getElementById('testimonials-dots');
             
@@ -1390,11 +1427,13 @@
                 testimonialsContainer.innerHTML = '<div class="loading">Carregando depoimentos...</div>';
                 
                 const querySnapshot = await db.collection("testimonials").orderBy("createdAt", "desc").get();
+                console.log("Depoimentos encontrados:", querySnapshot.size);
                 
                 testimonialsContainer.innerHTML = '';
                 dotsContainer.innerHTML = '';
                 
                 if (querySnapshot.empty) {
+                    console.log("Nenhum depoimento encontrado na coleção");
                     testimonialsContainer.innerHTML = '<div class="error-message">Nenhum depoimento encontrado.</div>';
                     return;
                 }
@@ -1402,13 +1441,14 @@
                 let index = 0;
                 querySnapshot.forEach(doc => {
                     const testimonial = doc.data();
+                    console.log("Depoimento:", testimonial);
                     const isActive = index === 0 ? 'active' : '';
                     
                     // Card de depoimento
                     testimonialsContainer.innerHTML += `
                         <div class="testimonial ${isActive}">
                             <div class="client-img">
-                                <img src="${testimonial.imageUrl || 'https://via.placeholder.com/80x80'}" alt="${testimonial.clientName || 'Cliente'}">
+                                <img src="${testimonial.imageUrl || 'https://via.placeholder.com/80x80'}" alt="${testimonial.clientName || 'Cliente'}" onerror="this.src='https://via.placeholder.com/80x80'">
                             </div>
                             <div class="client-rating">
                                 ${'<i class="fas fa-star"></i>'.repeat(testimonial.rating || 5)}
@@ -1430,9 +1470,9 @@
                 initTestimonialSlider();
                 showFeedback('Depoimentos carregados com sucesso!', false, 'testimonialsFeedback');
             } catch (error) {
-                console.error("Erro ao carregar depoimentos:", error);
-                testimonialsContainer.innerHTML = '<div class="error-message">Erro ao carregar depoimentos.</div>';
-                showFeedback('Erro ao carregar depoimentos.', true, 'testimonialsFeedback');
+                console.error("Erro detalhado ao carregar depoimentos:", error);
+                testimonialsContainer.innerHTML = '<div class="error-message">Erro ao carregar depoimentos: ' + error.message + '</div>';
+                showFeedback('Erro ao carregar depoimentos: ' + error.message, true, 'testimonialsFeedback');
             }
         }
 
@@ -1466,12 +1506,14 @@
         }
 
         async function loadFooterLinks() {
+            console.log("Carregando links do footer...");
             try {
                 const doc = await db.collection("siteContent").doc("footerLinks").get();
                 const footerLinksContainer = document.getElementById('footer-links');
                 
                 if (doc.exists) {
                     const data = doc.data();
+                    console.log("Links do footer:", data);
                     footerLinksContainer.innerHTML = '';
                     
                     (data.links || []).forEach(link => {
@@ -1480,34 +1522,66 @@
                         `;
                     });
                 } else {
-                    footerLinksContainer.innerHTML = '<li><a href="#">Página Inicial</a></li>';
+                    console.log("Nenhum link personalizado encontrado, usando padrão");
+                    footerLinksContainer.innerHTML = `
+                        <li><a href="#home">Página Inicial</a></li>
+                        <li><a href="#about">Sobre Nós</a></li>
+                        <li><a href="#services">Serviços</a></li>
+                        <li><a href="#contact">Contato</a></li>
+                    `;
                 }
             } catch (error) {
-                console.error("Erro ao carregar links do footer:", error);
+                console.error("Erro detalhado ao carregar links do footer:", error);
             }
         }
 
         // Configurar listeners em tempo real
         function setupRealTimeListeners() {
+            console.log("Configurando listeners em tempo real...");
+            
+            // Listener para conteúdo do site
+            db.collection("siteContent").doc("main")
+                .onSnapshot((doc) => {
+                    console.log("Conteúdo do site atualizado em tempo real");
+                    loadSiteContent();
+                }, (error) => {
+                    console.error("Erro no listener de conteúdo:", error);
+                    showFeedback('Erro ao atualizar conteúdo em tempo real.', true);
+                });
+            
+            // Listener para serviços
             db.collection("services").orderBy("order", "asc")
                 .onSnapshot((querySnapshot) => {
+                    console.log("Serviços atualizados em tempo real");
                     loadServices();
                 }, (error) => {
                     console.error("Erro no listener de serviços:", error);
                     showFeedback('Erro ao atualizar serviços em tempo real.', true);
                 });
             
+            // Listener para depoimentos
             db.collection("testimonials").orderBy("createdAt", "desc")
                 .onSnapshot((querySnapshot) => {
+                    console.log("Depoimentos atualizados em tempo real");
                     loadTestimonials();
                 }, (error) => {
                     console.error("Erro no listener de depoimentos:", error);
                     showFeedback('Erro ao atualizar depoimentos em tempo real.', true);
                 });
+            
+            // Listener para links do footer
+            db.collection("siteContent").doc("footerLinks")
+                .onSnapshot((doc) => {
+                    console.log("Links do footer atualizados em tempo real");
+                    loadFooterLinks();
+                }, (error) => {
+                    console.error("Erro no listener de links do footer:", error);
+                });
         }
 
         // Carregar todos os dados quando a página carregar
         document.addEventListener("DOMContentLoaded", () => {
+            console.log("DOM completamente carregado, iniciando carregamento de dados...");
             loadSiteContent();
             loadServices();
             loadTestimonials();
@@ -1567,7 +1641,8 @@
                 phone: form.querySelector('input[type="tel"]').value,
                 subject: form.querySelectorAll('input[type="text"]')[1].value,
                 message: form.querySelector('textarea').value,
-                createdAt: firebase.firestore.FieldValue.serverTimestamp()
+                createdAt: firebase.firestore.FieldValue.serverTimestamp(),
+                read: false
             };
             
             try {
@@ -1575,13 +1650,21 @@
                 showFeedback('Mensagem enviada com sucesso! Entraremos em contato em breve.', false);
                 form.reset();
             } catch (error) {
-                console.error("Erro ao enviar mensagem:", error);
-                showFeedback('Erro ao enviar mensagem. Por favor, tente novamente.', true);
+                console.error("Erro detalhado ao enviar mensagem:", error);
+                showFeedback('Erro ao enviar mensagem. Por favor, tente novamente: ' + error.message, true);
             } finally {
                 submitButton.disabled = false;
                 submitButton.textContent = originalButtonText;
             }
         });
+
+        // Tratamento de erros para imagens
+        document.addEventListener('error', function(e) {
+            if (e.target.tagName.toLowerCase() === 'img') {
+                console.log("Erro ao carregar imagem:", e.target.src);
+                e.target.src = 'https://via.placeholder.com/300x200';
+            }
+        }, true);
     </script>
 </body>
 </html>
