@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="pt-BR">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -7,7 +8,7 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;600;700&display=swap" rel="stylesheet">
 
-     <!-- Adicione esta linha para o favicon -->
+    <!-- Adicione esta linha para o favicon -->
     <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'>
         <circle cx='50' cy='50' r='45' fill='%23adff00'/>
         <text x='50' y='65' font-size='60' text-anchor='middle' fill='%23000' font-weight='bold'>5</text>
@@ -22,40 +23,40 @@
             --light: #e0e0e0;
             --gray: #757575;
         }
-        
+
         * {
             margin: 0;
             padding: 0;
             box-sizing: border-box;
             font-family: 'Montserrat', sans-serif;
         }
-        
+
         body {
             background-color: #f5f5f5;
             color: #333;
         }
-        
+
         .admin-container {
             display: flex;
             min-height: 100vh;
         }
-        
+
         .sidebar {
             width: 250px;
             background-color: var(--dark);
             color: var(--light);
             padding: 20px 0;
         }
-        
+
         .sidebar-header {
             padding: 0 20px 20px;
             border-bottom: 1px solid var(--primary-dark);
         }
-        
+
         .sidebar-nav ul {
             list-style: none;
         }
-        
+
         .sidebar-nav a {
             display: block;
             padding: 12px 20px;
@@ -63,21 +64,21 @@
             text-decoration: none;
             transition: all 0.3s;
         }
-        
+
         .sidebar-nav a:hover {
             background-color: var(--primary);
             color: white;
         }
-        
+
         .sidebar-nav a i {
             margin-right: 10px;
         }
-        
+
         .main-content {
             flex: 1;
             padding: 20px;
         }
-        
+
         .header {
             display: flex;
             justify-content: space-between;
@@ -86,7 +87,7 @@
             padding-bottom: 15px;
             border-bottom: 1px solid #ddd;
         }
-        
+
         .logout-btn {
             background-color: var(--primary);
             color: white;
@@ -95,36 +96,36 @@
             border-radius: 4px;
             cursor: pointer;
         }
-        
+
         .card {
             background-color: white;
             border-radius: 8px;
-            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
             padding: 20px;
             margin-bottom: 20px;
         }
-        
+
         .form-group {
             margin-bottom: 15px;
         }
-        
+
         .form-group label {
             display: block;
             margin-bottom: 5px;
             font-weight: 600;
         }
-        
+
         .form-control {
             width: 100%;
             padding: 10px;
             border: 1px solid #ddd;
             border-radius: 4px;
         }
-        
+
         textarea.form-control {
             min-height: 150px;
         }
-        
+
         .btn {
             padding: 10px 20px;
             background-color: var(--primary);
@@ -134,31 +135,32 @@
             cursor: pointer;
             transition: all 0.3s;
         }
-        
+
         .btn:hover {
             background-color: var(--primary-light);
         }
-        
+
         .btn-accent {
             background-color: var(--accent);
             color: #333;
         }
-        
+
         .table {
             width: 100%;
             border-collapse: collapse;
         }
-        
-        .table th, .table td {
+
+        .table th,
+        .table td {
             padding: 12px 15px;
             text-align: left;
             border-bottom: 1px solid #ddd;
         }
-        
+
         .table th {
             background-color: #f5f5f5;
         }
-        
+
         .action-btn {
             padding: 5px 10px;
             margin-right: 5px;
@@ -166,32 +168,40 @@
             border-radius: 4px;
             cursor: pointer;
         }
-        
+
         .edit-btn {
             background-color: #4CAF50;
             color: white;
         }
-        
+
         .delete-btn {
             background-color: #f44336;
             color: white;
         }
-        
+
+      
+        .footer-title {
+            margin-bottom: 8px;
+        }
+        .card {
+            margin-top: 30px;
+        }
+
         .login-container {
             max-width: 400px;
             margin: 100px auto;
             padding: 30px;
             background-color: white;
             border-radius: 8px;
-            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
         }
-        
+
         .login-title {
             text-align: center;
             margin-bottom: 30px;
             color: var(--primary);
         }
-        
+
         .login-btn {
             width: 100%;
             padding: 12px;
@@ -210,7 +220,7 @@
             left: 0;
             right: 0;
             bottom: 0;
-            background-color: rgba(0,0,0,0.5);
+            background-color: rgba(0, 0, 0, 0.5);
             display: flex;
             justify-content: center;
             align-items: center;
@@ -227,8 +237,13 @@
         }
 
         @keyframes spin {
-            0% { transform: rotate(0deg); }
-            100% { transform: rotate(360deg); }
+            0% {
+                transform: rotate(0deg);
+            }
+
+            100% {
+                transform: rotate(360deg);
+            }
         }
 
         /* Feedback messages */
@@ -253,8 +268,15 @@
         }
 
         @keyframes fadeIn {
-            from { opacity: 0; transform: translateY(20px); }
-            to { opacity: 1; transform: translateY(0); }
+            from {
+                opacity: 0;
+                transform: translateY(20px);
+            }
+
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
         }
 
         /* Image preview */
@@ -268,6 +290,7 @@
         }
     </style>
 </head>
+
 <body>
     <div id="app">
         <!-- Loading Overlay -->
@@ -289,7 +312,7 @@
             <button class="login-btn" @click="doLogin">Entrar</button>
             <p v-if="loginError" style="color: red; margin-top: 15px;">{{ loginError }}</p>
         </div>
-        
+
         <!-- Admin Panel -->
         <div class="admin-container" v-if="user">
             <div class="sidebar">
@@ -300,21 +323,25 @@
                 <nav class="sidebar-nav">
                     <ul>
                         <li><a href="#" @click="currentSection = 'home'"><i class="fas fa-home"></i> Home</a></li>
-                        <li><a href="#" @click="currentSection = 'about'"><i class="fas fa-info-circle"></i> Sobre</a></li>
-                        <li><a href="#" @click="currentSection = 'services'"><i class="fas fa-cog"></i> Serviços</a></li>
-                        <li><a href="#" @click="currentSection = 'testimonials'"><i class="fas fa-quote-left"></i> Depoimentos</a></li>
+                        <li><a href="#" @click="currentSection = 'about'"><i class="fas fa-info-circle"></i> Sobre</a>
+                        </li>
+                        <li><a href="#" @click="currentSection = 'services'"><i class="fas fa-cog"></i> Serviços</a>
+                        </li>
+                        <li><a href="#" @click="currentSection = 'testimonials'"><i class="fas fa-quote-left"></i>
+                                Depoimentos</a></li>
                         <li><a href="#" @click="currentSection = 'team'"><i class="fas fa-users"></i> Equipe</a></li>
-                        <li><a href="#" @click="currentSection = 'contact'"><i class="fas fa-envelope"></i> Contato</a></li>
+                        <li><a href="#" @click="currentSection = 'contact'"><i class="fas fa-envelope"></i> Contato</a>
+                        </li>
                     </ul>
                 </nav>
             </div>
-            
+
             <div class="main-content">
                 <div class="header">
                     <h2>{{ getSectionTitle() }}</h2>
                     <button class="logout-btn" @click="doLogout"><i class="fas fa-sign-out-alt"></i> Sair</button>
                 </div>
-                
+
                 <!-- Home Content -->
                 <div v-if="currentSection === 'home'" class="card">
                     <h3>Conteúdo da Home</h3>
@@ -332,7 +359,8 @@
                     </div>
                     <div class="form-group">
                         <label>Número WhatsApp (com código país)</label>
-                        <input type="text" class="form-control" v-model="siteContent.whatsappNumber" placeholder="Ex: 5582981714181">
+                        <input type="text" class="form-control" v-model="siteContent.whatsappNumber"
+                            placeholder="Ex: 5582981714181">
                     </div>
                     <div class="form-group">
                         <label>Texto Botão Serviços</label>
@@ -351,9 +379,10 @@
                         <input type="text" class="form-control" v-model="siteContent.appstoreLink">
                     </div>
                     <button class="btn" @click="saveSiteContent">Salvar Alterações</button>
-                    <div v-if="saveMessage" class="feedback-message" :class="saveMessage.type">{{ saveMessage.text }}</div>
+                    <div v-if="saveMessage" class="feedback-message" :class="saveMessage.type">{{ saveMessage.text }}
+                    </div>
                 </div>
-                
+
                 <!-- About Content -->
                 <div v-if="currentSection === 'about'" class="card">
                     <h3>Conteúdo Sobre Nós</h3>
@@ -371,13 +400,15 @@
                     </div>
                     <div class="form-group">
                         <label>URL da Imagem</label>
-                        <input type="text" class="form-control" v-model="siteContent.aboutImage" placeholder="Cole a URL da imagem aqui">
+                        <input type="text" class="form-control" v-model="siteContent.aboutImage"
+                            placeholder="Cole a URL da imagem aqui">
                         <img v-if="siteContent.aboutImage" :src="siteContent.aboutImage" class="image-preview">
                     </div>
 
                     <!-- Funcao para adicionar icon select -->
                     <h4>Recursos</h4>
-                    <div v-for="(feature, index) in siteContent.features" :key="index" class="card" style="margin-top: 15px;">
+                    <div v-for="(feature, index) in siteContent.features" :key="index" class="card"
+                        style="margin-top: 15px;">
                         <div class="form-group">
                             <label>Título do Recurso</label>
                             <input type="text" class="form-control" v-model="feature.title">
@@ -397,10 +428,8 @@
                                         <input type="text" v-model="iconSearch" placeholder="Pesquisar ícone...">
                                     </div>
                                     <div class="icon-grid">
-                                        <button v-for="icon in filteredIcons" :key="icon" 
-                                                class="btn btn-icon" 
-                                                @click="selectIcon(index, icon)"
-                                                :title="icon">
+                                        <button v-for="icon in filteredIcons" :key="icon" class="btn btn-icon"
+                                            @click="selectIcon(index, icon)" :title="icon">
                                             <i :class="icon"></i>
                                         </button>
                                     </div>
@@ -409,19 +438,22 @@
                         </div>
                         <button class="btn delete-btn" @click="removeFeature(index)">Remover Recurso</button>
                     </div>
-        
-                    <button class="btn btn-accent" @click="addFeature"><i class="fas fa-plus"></i> Adicionar Recurso</button>
+
+                    <button class="btn btn-accent" @click="addFeature"><i class="fas fa-plus"></i> Adicionar
+                        Recurso</button>
 
                     <button class="btn" @click="saveSiteContent">Salvar Alterações</button>
-                    <div v-if="saveMessage" class="feedback-message" :class="saveMessage.type">{{ saveMessage.text }}</div>
+                    <div v-if="saveMessage" class="feedback-message" :class="saveMessage.type">{{ saveMessage.text }}
+                    </div>
                 </div>
-                
+
                 <!-- Services Management -->
                 <div v-if="currentSection === 'services'">
                     <div class="card">
                         <h3>Gerenciar Serviços</h3>
-                        <button class="btn btn-accent" @click="showAddService = true"><i class="fas fa-plus"></i> Adicionar Serviço</button>
-                        
+                        <button class="btn btn-accent" @click="showAddService = true"><i class="fas fa-plus"></i>
+                            Adicionar Serviço</button>
+
                         <div v-if="showAddService" class="card" style="margin-top: 20px;">
                             <h4>Adicionar Novo Serviço</h4>
                             <div class="form-group">
@@ -438,14 +470,16 @@
                             </div>
                             <div class="form-group">
                                 <label>URL da Imagem</label>
-                                <input type="text" class="form-control" v-model="newService.imageUrl" placeholder="Cole a URL da imagem aqui">
+                                <input type="text" class="form-control" v-model="newService.imageUrl"
+                                    placeholder="Cole a URL da imagem aqui">
                                 <img v-if="newService.imageUrl" :src="newService.imageUrl" class="image-preview">
                             </div>
                             <button class="btn" @click="addService">Adicionar Serviço</button>
-                            <button class="btn" @click="showAddService = false" style="background-color: #ccc; margin-left: 10px;">Cancelar</button>
+                            <button class="btn" @click="showAddService = false"
+                                style="background-color: #ccc; margin-left: 10px;">Cancelar</button>
                         </div>
                     </div>
-                    
+
                     <div class="card" style="margin-top: 20px;">
                         <h4>Lista de Serviços</h4>
                         <table class="table">
@@ -461,8 +495,10 @@
                                     <td>{{ service.order }}</td>
                                     <td>{{ service.name }}</td>
                                     <td>
-                                        <button class="action-btn edit-btn" @click="editService(index)"><i class="fas fa-edit"></i></button>
-                                        <button class="action-btn delete-btn" @click="deleteService(service.id)"><i class="fas fa-trash"></i></button>
+                                        <button class="action-btn edit-btn" @click="editService(index)"><i
+                                                class="fas fa-edit"></i></button>
+                                        <button class="action-btn delete-btn" @click="deleteService(service.id)"><i
+                                                class="fas fa-trash"></i></button>
                                     </td>
                                 </tr>
                             </tbody>
@@ -486,20 +522,23 @@
                         </div>
                         <div class="form-group">
                             <label>URL da Imagem</label>
-                            <input type="text" class="form-control" v-model="editingService.imageUrl" placeholder="Cole a URL da imagem aqui">
+                            <input type="text" class="form-control" v-model="editingService.imageUrl"
+                                placeholder="Cole a URL da imagem aqui">
                             <img v-if="editingService.imageUrl" :src="editingService.imageUrl" class="image-preview">
                         </div>
                         <button class="btn" @click="updateService">Atualizar Serviço</button>
-                        <button class="btn" @click="cancelEdit" style="background-color: #ccc; margin-left: 10px;">Cancelar</button>
+                        <button class="btn" @click="cancelEdit"
+                            style="background-color: #ccc; margin-left: 10px;">Cancelar</button>
                     </div>
                 </div>
-                
+
                 <!-- Testimonials Management -->
                 <div v-if="currentSection === 'testimonials'">
                     <div class="card">
                         <h3>Gerenciar Depoimentos</h3>
-                        <button class="btn btn-accent" @click="showAddTestimonial = true"><i class="fas fa-plus"></i> Adicionar Depoimento</button>
-                        
+                        <button class="btn btn-accent" @click="showAddTestimonial = true"><i class="fas fa-plus"></i>
+                            Adicionar Depoimento</button>
+
                         <div v-if="showAddTestimonial" class="card" style="margin-top: 20px;">
                             <h4>Adicionar Novo Depoimento</h4>
                             <div class="form-group">
@@ -516,18 +555,22 @@
                             </div>
                             <div class="form-group">
                                 <label>Avaliação (1-5)</label>
-                                <input type="number" min="1" max="5" class="form-control" v-model="newTestimonial.rating">
+                                <input type="number" min="1" max="5" class="form-control"
+                                    v-model="newTestimonial.rating">
                             </div>
                             <div class="form-group">
                                 <label>URL da Foto do Cliente</label>
-                                <input type="text" class="form-control" v-model="newTestimonial.imageUrl" placeholder="Cole a URL da imagem aqui">
-                                <img v-if="newTestimonial.imageUrl" :src="newTestimonial.imageUrl" class="image-preview">
+                                <input type="text" class="form-control" v-model="newTestimonial.imageUrl"
+                                    placeholder="Cole a URL da imagem aqui">
+                                <img v-if="newTestimonial.imageUrl" :src="newTestimonial.imageUrl"
+                                    class="image-preview">
                             </div>
                             <button class="btn" @click="addTestimonial">Adicionar Depoimento</button>
-                            <button class="btn" @click="showAddTestimonial = false" style="background-color: #ccc; margin-left: 10px;">Cancelar</button>
+                            <button class="btn" @click="showAddTestimonial = false"
+                                style="background-color: #ccc; margin-left: 10px;">Cancelar</button>
                         </div>
                     </div>
-                    
+
                     <div class="card" style="margin-top: 20px;">
                         <h4>Lista de Depoimentos</h4>
                         <table class="table">
@@ -543,12 +586,16 @@
                                     <td>{{ testimonial.clientName }}</td>
                                     <td>
                                         <span v-for="n in 5" :key="n">
-                                            <i class="fas fa-star" :style="{ color: n <= testimonial.rating ? '#ffab00' : '#ddd' }"></i>
+                                            <i class="fas fa-star"
+                                                :style="{ color: n <= testimonial.rating ? '#ffab00' : '#ddd' }"></i>
                                         </span>
                                     </td>
                                     <td>
-                                        <button class="action-btn edit-btn" @click="editTestimonial(index)"><i class="fas fa-edit"></i></button>
-                                        <button class="action-btn delete-btn" @click="deleteTestimonial(testimonial.id)"><i class="fas fa-trash"></i></button>
+                                        <button class="action-btn edit-btn" @click="editTestimonial(index)"><i
+                                                class="fas fa-edit"></i></button>
+                                        <button class="action-btn delete-btn"
+                                            @click="deleteTestimonial(testimonial.id)"><i
+                                                class="fas fa-trash"></i></button>
                                     </td>
                                 </tr>
                             </tbody>
@@ -572,24 +619,29 @@
                         </div>
                         <div class="form-group">
                             <label>Avaliação (1-5)</label>
-                            <input type="number" min="1" max="5" class="form-control" v-model="editingTestimonial.rating">
+                            <input type="number" min="1" max="5" class="form-control"
+                                v-model="editingTestimonial.rating">
                         </div>
                         <div class="form-group">
                             <label>URL da Foto do Cliente</label>
-                            <input type="text" class="form-control" v-model="editingTestimonial.imageUrl" placeholder="Cole a URL da imagem aqui">
-                            <img v-if="editingTestimonial.imageUrl" :src="editingTestimonial.imageUrl" class="image-preview">
+                            <input type="text" class="form-control" v-model="editingTestimonial.imageUrl"
+                                placeholder="Cole a URL da imagem aqui">
+                            <img v-if="editingTestimonial.imageUrl" :src="editingTestimonial.imageUrl"
+                                class="image-preview">
                         </div>
                         <button class="btn" @click="updateTestimonial">Atualizar Depoimento</button>
-                        <button class="btn" @click="cancelEdit" style="background-color: #ccc; margin-left: 10px;">Cancelar</button>
+                        <button class="btn" @click="cancelEdit"
+                            style="background-color: #ccc; margin-left: 10px;">Cancelar</button>
                     </div>
                 </div>
-                
+
                 <!-- Team Management -->
                 <div v-if="currentSection === 'team'">
                     <div class="card">
                         <h3>Gerenciar Equipe</h3>
-                        <button class="btn btn-accent" @click="showAddTeamMember = true"><i class="fas fa-plus"></i> Adicionar Membro</button>
-                        
+                        <button class="btn btn-accent" @click="showAddTeamMember = true"><i class="fas fa-plus"></i>
+                            Adicionar Membro</button>
+
                         <div v-if="showAddTeamMember" class="card" style="margin-top: 20px;">
                             <h4>Adicionar Novo Membro</h4>
                             <div class="form-group">
@@ -602,20 +654,25 @@
                             </div>
                             <div class="form-group">
                                 <label>URL da Foto</label>
-                                <input type="text" class="form-control" v-model="newTeamMember.imageUrl" placeholder="Cole a URL da imagem aqui">
+                                <input type="text" class="form-control" v-model="newTeamMember.imageUrl"
+                                    placeholder="Cole a URL da imagem aqui">
                                 <img v-if="newTeamMember.imageUrl" :src="newTeamMember.imageUrl" class="image-preview">
                             </div>
                             <div class="form-group">
                                 <label>Redes Sociais (opcional)</label>
-                                <input type="text" class="form-control" v-model="newTeamMember.social.linkedin" placeholder="LinkedIn">
-                                <input type="text" class="form-control" v-model="newTeamMember.social.twitter" placeholder="Twitter" style="margin-top: 5px;">
-                                <input type="text" class="form-control" v-model="newTeamMember.social.email" placeholder="Email" style="margin-top: 5px;">
+                                <input type="text" class="form-control" v-model="newTeamMember.social.linkedin"
+                                    placeholder="LinkedIn">
+                                <input type="text" class="form-control" v-model="newTeamMember.social.twitter"
+                                    placeholder="Twitter" style="margin-top: 5px;">
+                                <input type="text" class="form-control" v-model="newTeamMember.social.email"
+                                    placeholder="Email" style="margin-top: 5px;">
                             </div>
                             <button class="btn" @click="addTeamMember">Adicionar Membro</button>
-                            <button class="btn" @click="showAddTeamMember = false" style="background-color: #ccc; margin-left: 10px;">Cancelar</button>
+                            <button class="btn" @click="showAddTeamMember = false"
+                                style="background-color: #ccc; margin-left: 10px;">Cancelar</button>
                         </div>
                     </div>
-                    
+
                     <div class="card" style="margin-top: 20px;">
                         <h4>Lista de Membros</h4>
                         <table class="table">
@@ -631,8 +688,10 @@
                                     <td>{{ member.name }}</td>
                                     <td>{{ member.position }}</td>
                                     <td>
-                                        <button class="action-btn edit-btn" @click="editTeamMember(index)"><i class="fas fa-edit"></i></button>
-                                        <button class="action-btn delete-btn" @click="deleteTeamMember(member.id)"><i class="fas fa-trash"></i></button>
+                                        <button class="action-btn edit-btn" @click="editTeamMember(index)"><i
+                                                class="fas fa-edit"></i></button>
+                                        <button class="action-btn delete-btn" @click="deleteTeamMember(member.id)"><i
+                                                class="fas fa-trash"></i></button>
                                     </td>
                                 </tr>
                             </tbody>
@@ -652,20 +711,26 @@
                         </div>
                         <div class="form-group">
                             <label>URL da Foto</label>
-                            <input type="text" class="form-control" v-model="editingTeamMember.imageUrl" placeholder="Cole a URL da imagem aqui">
-                            <img v-if="editingTeamMember.imageUrl" :src="editingTeamMember.imageUrl" class="image-preview">
+                            <input type="text" class="form-control" v-model="editingTeamMember.imageUrl"
+                                placeholder="Cole a URL da imagem aqui">
+                            <img v-if="editingTeamMember.imageUrl" :src="editingTeamMember.imageUrl"
+                                class="image-preview">
                         </div>
                         <div class="form-group">
                             <label>Redes Sociais</label>
-                            <input type="text" class="form-control" v-model="editingTeamMember.social.linkedin" placeholder="LinkedIn">
-                            <input type="text" class="form-control" v-model="editingTeamMember.social.twitter" placeholder="Twitter" style="margin-top: 5px;">
-                            <input type="text" class="form-control" v-model="editingTeamMember.social.email" placeholder="Email" style="margin-top: 5px;">
+                            <input type="text" class="form-control" v-model="editingTeamMember.social.linkedin"
+                                placeholder="LinkedIn">
+                            <input type="text" class="form-control" v-model="editingTeamMember.social.twitter"
+                                placeholder="Twitter" style="margin-top: 5px;">
+                            <input type="text" class="form-control" v-model="editingTeamMember.social.email"
+                                placeholder="Email" style="margin-top: 5px;">
                         </div>
                         <button class="btn" @click="updateTeamMember">Atualizar Membro</button>
-                        <button class="btn" @click="cancelEdit" style="background-color: #ccc; margin-left: 10px;">Cancelar</button>
+                        <button class="btn" @click="cancelEdit"
+                            style="background-color: #ccc; margin-left: 10px;">Cancelar</button>
                     </div>
                 </div>
-                
+
                 <!-- Contact Content -->
                 <div v-if="currentSection === 'contact'" class="card">
                     <h3>Informações de Contato</h3>
@@ -702,8 +767,8 @@
                         <label>WhatsApp</label>
                         <input type="text" class="form-control" v-model="siteContent.socialWhatsapp">
                     </div>
-                    <h4>Links do Rodapé</h4>
-                    <div v-for="(link, index) in siteContent.footerLinks" :key="index" class="card" style="margin-top: 15px;">
+                     <h4 class="footer-title">Links do Rodapé</h4>
+                        <div v-for="(link, index) in siteContent.footerLinks" :key="index" class="card">
                         <div class="form-group">
                             <label>Texto do Link</label>
                             <input type="text" class="form-control" v-model="link.text">
@@ -713,10 +778,17 @@
                             <input type="text" class="form-control" v-model="link.url">
                         </div>
                         <button class="btn delete-btn" @click="removeFooterLink(index)">Remover Link</button>
+                        </div>
+                    <div style="display: flex; gap: 14px;">
+                    <button class="btn btn-accent" @click="addFooterLink">
+                        <i class="fas fa-plus"></i> Adicionar Link
+                    </button>
+                    <button class="btn" @click="saveSiteContent">
+                        Salvar Alterações
+                    </button>
                     </div>
-                    <button class="btn btn-accent" @click="addFooterLink"><i class="fas fa-plus"></i> Adicionar Link</button>
-                    <button class="btn" @click="saveSiteContent">Salvar Alterações</button>
-                    <div v-if="saveMessage" class="feedback-message" :class="saveMessage.type">{{ saveMessage.text }}</div>
+                    <div v-if="saveMessage" class="feedback-message" :class="saveMessage.type">{{ saveMessage.text }}
+                    </div>
                 </div>
             </div>
         </div>
@@ -728,7 +800,7 @@
     <script src="https://www.gstatic.com/firebasejs/9.6.0/firebase-firestore-compat.js"></script>
     <script src="https://www.gstatic.com/firebasejs/9.6.0/firebase-auth-compat.js"></script>
     <script src="https://www.gstatic.com/firebasejs/9.6.0/firebase-storage-compat.js"></script>
-    
+
     <script>
         // Configuração do Firebase
         const firebaseConfig = {
@@ -753,7 +825,7 @@
 
         // Crie a aplicação Vue
         const { createApp, ref, onMounted } = Vue;
-        
+
         createApp({
             setup() {
                 // Dados reativos
@@ -764,7 +836,7 @@
                 const loading = ref(false);
                 const currentSection = ref('home');
                 const saveMessage = ref(null);
-                
+
                 // Conteúdo do site
                 const siteContent = ref({
                     heroTitle: '',
@@ -790,7 +862,7 @@
                     socialWhatsapp: '',
                     footerLinks: []
                 });
-                
+
                 // Serviços
                 const services = ref([]);
                 const showAddService = ref(false);
@@ -801,7 +873,7 @@
                     imageUrl: ''
                 });
                 const editingService = ref(null);
-                
+
                 // Depoimentos
                 const testimonials = ref([]);
                 const showAddTestimonial = ref(false);
@@ -813,7 +885,7 @@
                     imageUrl: ''
                 });
                 const editingTestimonial = ref(null);
-                
+
                 // Equipe
                 const team = ref([]);
                 const showAddTeamMember = ref(false);
@@ -828,7 +900,7 @@
                     }
                 });
                 const editingTeamMember = ref(null);
-                
+
                 // Funções
                 const getSectionTitle = () => {
                     const titles = {
@@ -841,14 +913,14 @@
                     };
                     return titles[currentSection.value] || 'Painel Administrativo';
                 };
-                
+
                 const showMessage = (text, type = 'success') => {
                     saveMessage.value = { text, type };
                     setTimeout(() => {
                         saveMessage.value = null;
                     }, 5000);
                 };
-                
+
                 const doLogin = async () => {
                     try {
                         loading.value = true;
@@ -867,7 +939,7 @@
                         loading.value = false;
                     }
                 };
-                
+
                 const doLogout = async () => {
                     try {
                         loading.value = true;
@@ -882,12 +954,12 @@
                         loading.value = false;
                     }
                 };
-                
+
                 const loadAllData = async () => {
                     try {
                         loading.value = true;
                         console.log('Carregando todos os dados...');
-                        
+
                         // Carregar conteúdo do site
                         const siteContentDoc = await db.collection('siteContent').doc('main').get();
                         if (siteContentDoc.exists) {
@@ -896,22 +968,22 @@
                         } else {
                             console.log('Nenhum conteúdo do site encontrado');
                         }
-                        
+
                         // Carregar serviços
                         const servicesSnapshot = await db.collection('services').orderBy('order', 'asc').get();
                         services.value = servicesSnapshot.docs.map(doc => ({ id: doc.id, ...doc.data() }));
                         console.log('Serviços carregados:', services.value.length);
-                        
+
                         // Carregar depoimentos
                         const testimonialsSnapshot = await db.collection('testimonials').orderBy('createdAt', 'desc').get();
                         testimonials.value = testimonialsSnapshot.docs.map(doc => ({ id: doc.id, ...doc.data() }));
                         console.log('Depoimentos carregados:', testimonials.value.length);
-                        
+
                         // Carregar equipe
                         const teamSnapshot = await db.collection('team').get();
                         team.value = teamSnapshot.docs.map(doc => ({ id: doc.id, ...doc.data() }));
                         console.log('Membros da equipe carregados:', team.value.length);
-                        
+
                     } catch (error) {
                         console.error('Erro ao carregar dados:', error);
                         showMessage('Erro ao carregar dados: ' + error.message, 'error');
@@ -919,7 +991,7 @@
                         loading.value = false;
                     }
                 };
-                
+
                 const saveSiteContent = async () => {
                     try {
                         loading.value = true;
@@ -933,7 +1005,7 @@
                         loading.value = false;
                     }
                 };
-                
+
                 const addFeature = () => {
                     siteContent.value.features.push({
                         title: '',
@@ -941,11 +1013,11 @@
                         icon: 'fas fa-check'
                     });
                 };
-                
+
                 const removeFeature = (index) => {
                     siteContent.value.features.splice(index, 1);
                 };
-                
+
                 const addFooterLink = () => {
                     if (!siteContent.value.footerLinks) {
                         siteContent.value.footerLinks = [];
@@ -955,27 +1027,27 @@
                         url: '#'
                     });
                 };
-                
+
                 const removeFooterLink = (index) => {
                     siteContent.value.footerLinks.splice(index, 1);
                 };
-                
+
                 const addService = async () => {
                     try {
                         if (!newService.value.name || !newService.value.description) {
                             throw new Error('Nome e descrição são obrigatórios');
                         }
-                        
+
                         loading.value = true;
                         await db.collection('services').add(newService.value);
                         showMessage('Serviço adicionado com sucesso!');
-                        
+
                         // Recarregar serviços
                         const servicesSnapshot = await db.collection('services').orderBy('order', 'asc').get();
                         services.value = servicesSnapshot.docs.map(doc => ({ id: doc.id, ...doc.data() }));
-                        
+
                         // Reset form
-                        newService.value = { 
+                        newService.value = {
                             name: '',
                             description: '',
                             order: services.value.length + 1,
@@ -989,7 +1061,7 @@
                         loading.value = false;
                     }
                 };
-                
+
                 const editService = (index) => {
                     editingService.value = { ...services.value[index] };
                     window.scrollTo({
@@ -997,22 +1069,22 @@
                         behavior: 'smooth'
                     });
                 };
-                
+
                 const updateService = async () => {
                     try {
                         if (!editingService.value.name || !editingService.value.description) {
                             throw new Error('Nome e descrição são obrigatórios');
                         }
-                        
+
                         loading.value = true;
                         const { id, ...serviceData } = editingService.value;
                         await db.collection('services').doc(id).update(serviceData);
                         showMessage('Serviço atualizado com sucesso!');
-                        
+
                         // Recarregar serviços
                         const servicesSnapshot = await db.collection('services').orderBy('order', 'asc').get();
                         services.value = servicesSnapshot.docs.map(doc => ({ id: doc.id, ...doc.data() }));
-                        
+
                         // Reset form
                         editingService.value = null;
                     } catch (error) {
@@ -1022,14 +1094,14 @@
                         loading.value = false;
                     }
                 };
-                
+
                 const deleteService = async (id) => {
                     if (confirm('Tem certeza que deseja excluir este serviço?')) {
                         try {
                             loading.value = true;
                             await db.collection('services').doc(id).delete();
                             showMessage('Serviço excluído com sucesso!');
-                            
+
                             // Recarregar serviços
                             const servicesSnapshot = await db.collection('services').orderBy('order', 'asc').get();
                             services.value = servicesSnapshot.docs.map(doc => ({ id: doc.id, ...doc.data() }));
@@ -1041,26 +1113,26 @@
                         }
                     }
                 };
-                
+
                 const addTestimonial = async () => {
                     try {
                         if (!newTestimonial.value.clientName || !newTestimonial.value.text) {
                             throw new Error('Nome do cliente e depoimento são obrigatórios');
                         }
-                        
+
                         loading.value = true;
                         await db.collection('testimonials').add({
                             ...newTestimonial.value,
                             createdAt: firebase.firestore.FieldValue.serverTimestamp()
                         });
                         showMessage('Depoimento adicionado com sucesso!');
-                        
+
                         // Recarregar depoimentos
                         const testimonialsSnapshot = await db.collection('testimonials').orderBy('createdAt', 'desc').get();
                         testimonials.value = testimonialsSnapshot.docs.map(doc => ({ id: doc.id, ...doc.data() }));
-                        
+
                         // Reset form
-                        newTestimonial.value = { 
+                        newTestimonial.value = {
                             clientName: '',
                             clientPosition: '',
                             text: '',
@@ -1075,7 +1147,7 @@
                         loading.value = false;
                     }
                 };
-                
+
                 const editTestimonial = (index) => {
                     editingTestimonial.value = { ...testimonials.value[index] };
                     window.scrollTo({
@@ -1083,22 +1155,22 @@
                         behavior: 'smooth'
                     });
                 };
-                
+
                 const updateTestimonial = async () => {
                     try {
                         if (!editingTestimonial.value.clientName || !editingTestimonial.value.text) {
                             throw new Error('Nome do cliente e depoimento são obrigatórios');
                         }
-                        
+
                         loading.value = true;
                         const { id, ...testimonialData } = editingTestimonial.value;
                         await db.collection('testimonials').doc(id).update(testimonialData);
                         showMessage('Depoimento atualizado com sucesso!');
-                        
+
                         // Recarregar depoimentos
                         const testimonialsSnapshot = await db.collection('testimonials').orderBy('createdAt', 'desc').get();
                         testimonials.value = testimonialsSnapshot.docs.map(doc => ({ id: doc.id, ...doc.data() }));
-                        
+
                         // Reset form
                         editingTestimonial.value = null;
                     } catch (error) {
@@ -1108,14 +1180,14 @@
                         loading.value = false;
                     }
                 };
-                
+
                 const deleteTestimonial = async (id) => {
                     if (confirm('Tem certeza que deseja excluir este depoimento?')) {
                         try {
                             loading.value = true;
                             await db.collection('testimonials').doc(id).delete();
                             showMessage('Depoimento excluído com sucesso!');
-                            
+
                             // Recarregar depoimentos
                             const testimonialsSnapshot = await db.collection('testimonials').orderBy('createdAt', 'desc').get();
                             testimonials.value = testimonialsSnapshot.docs.map(doc => ({ id: doc.id, ...doc.data() }));
@@ -1127,23 +1199,23 @@
                         }
                     }
                 };
-                
+
                 const addTeamMember = async () => {
                     try {
                         if (!newTeamMember.value.name || !newTeamMember.value.position) {
                             throw new Error('Nome e cargo são obrigatórios');
                         }
-                        
+
                         loading.value = true;
                         await db.collection('team').add(newTeamMember.value);
                         showMessage('Membro adicionado com sucesso!');
-                        
+
                         // Recarregar equipe
                         const teamSnapshot = await db.collection('team').get();
                         team.value = teamSnapshot.docs.map(doc => ({ id: doc.id, ...doc.data() }));
-                        
+
                         // Reset form
-                        newTeamMember.value = { 
+                        newTeamMember.value = {
                             name: '',
                             position: '',
                             imageUrl: '',
@@ -1161,7 +1233,7 @@
                         loading.value = false;
                     }
                 };
-                
+
                 const editTeamMember = (index) => {
                     editingTeamMember.value = { ...team.value[index] };
                     window.scrollTo({
@@ -1169,22 +1241,22 @@
                         behavior: 'smooth'
                     });
                 };
-                
+
                 const updateTeamMember = async () => {
                     try {
                         if (!editingTeamMember.value.name || !editingTeamMember.value.position) {
                             throw new Error('Nome e cargo são obrigatórios');
                         }
-                        
+
                         loading.value = true;
                         const { id, ...memberData } = editingTeamMember.value;
                         await db.collection('team').doc(id).update(memberData);
                         showMessage('Membro atualizado com sucesso!');
-                        
+
                         // Recarregar equipe
                         const teamSnapshot = await db.collection('team').get();
                         team.value = teamSnapshot.docs.map(doc => ({ id: doc.id, ...doc.data() }));
-                        
+
                         // Reset form
                         editingTeamMember.value = null;
                     } catch (error) {
@@ -1194,14 +1266,14 @@
                         loading.value = false;
                     }
                 };
-                
+
                 const deleteTeamMember = async (id) => {
                     if (confirm('Tem certeza que deseja excluir este membro?')) {
                         try {
                             loading.value = true;
                             await db.collection('team').doc(id).delete();
                             showMessage('Membro excluído com sucesso!');
-                            
+
                             // Recarregar equipe
                             const teamSnapshot = await db.collection('team').get();
                             team.value = teamSnapshot.docs.map(doc => ({ id: doc.id, ...doc.data() }));
@@ -1213,13 +1285,13 @@
                         }
                     }
                 };
-                
+
                 const cancelEdit = () => {
                     editingService.value = null;
                     editingTestimonial.value = null;
                     editingTeamMember.value = null;
                 };
-                
+
                 // Verificar autenticação ao carregar
                 onMounted(() => {
                     auth.onAuthStateChanged((authUser) => {
@@ -1232,7 +1304,7 @@
                         }
                     });
                 });
-                
+
                 return {
                     user,
                     loginEmail,
@@ -1282,4 +1354,5 @@
         }).mount('#app');
     </script>
 </body>
+
 </html>
