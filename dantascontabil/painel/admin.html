@@ -1,0 +1,881 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Painel Admin - Dantas Contábil</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;600;700&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --primary: #6a0dad;
+            --primary-light: #9c27b0;
+            --accent: #adff00;
+            --dark: #121212;
+            --light: #e0e0e0;
+            --gray: #757575;
+        }
+        
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Montserrat', sans-serif;
+        }
+        
+        body {
+            background-color: #f5f5f5;
+            color: #333;
+        }
+        
+        .admin-container {
+            display: flex;
+            min-height: 100vh;
+        }
+        
+        .sidebar {
+            width: 250px;
+            background-color: var(--dark);
+            color: var(--light);
+            padding: 20px 0;
+        }
+        
+        .sidebar-header {
+            padding: 0 20px 20px;
+            border-bottom: 1px solid var(--primary-dark);
+        }
+        
+        .sidebar-nav ul {
+            list-style: none;
+        }
+        
+        .sidebar-nav a {
+            display: block;
+            padding: 12px 20px;
+            color: var(--light);
+            text-decoration: none;
+            transition: all 0.3s;
+        }
+        
+        .sidebar-nav a:hover {
+            background-color: var(--primary);
+            color: white;
+        }
+        
+        .sidebar-nav a i {
+            margin-right: 10px;
+        }
+        
+        .main-content {
+            flex: 1;
+            padding: 20px;
+        }
+        
+        .header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 30px;
+            padding-bottom: 15px;
+            border-bottom: 1px solid #ddd;
+        }
+        
+        .logout-btn {
+            background-color: var(--primary);
+            color: white;
+            border: none;
+            padding: 8px 15px;
+            border-radius: 4px;
+            cursor: pointer;
+        }
+        
+        .card {
+            background-color: white;
+            border-radius: 8px;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+            padding: 20px;
+            margin-bottom: 20px;
+        }
+        
+        .form-group {
+            margin-bottom: 15px;
+        }
+        
+        .form-group label {
+            display: block;
+            margin-bottom: 5px;
+            font-weight: 600;
+        }
+        
+        .form-control {
+            width: 100%;
+            padding: 10px;
+            border: 1px solid #ddd;
+            border-radius: 4px;
+        }
+        
+        textarea.form-control {
+            min-height: 150px;
+        }
+        
+        .btn {
+            padding: 10px 20px;
+            background-color: var(--primary);
+            color: white;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+            transition: all 0.3s;
+        }
+        
+        .btn:hover {
+            background-color: var(--primary-light);
+        }
+        
+        .btn-accent {
+            background-color: var(--accent);
+            color: #333;
+        }
+        
+        .table {
+            width: 100%;
+            border-collapse: collapse;
+        }
+        
+        .table th, .table td {
+            padding: 12px 15px;
+            text-align: left;
+            border-bottom: 1px solid #ddd;
+        }
+        
+        .table th {
+            background-color: #f5f5f5;
+        }
+        
+        .action-btn {
+            padding: 5px 10px;
+            margin-right: 5px;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+        }
+        
+        .edit-btn {
+            background-color: #4CAF50;
+            color: white;
+        }
+        
+        .delete-btn {
+            background-color: #f44336;
+            color: white;
+        }
+        
+        .login-container {
+            max-width: 400px;
+            margin: 100px auto;
+            padding: 30px;
+            background-color: white;
+            border-radius: 8px;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+        }
+        
+        .login-title {
+            text-align: center;
+            margin-bottom: 30px;
+            color: var(--primary);
+        }
+        
+        .login-btn {
+            width: 100%;
+            padding: 12px;
+            background-color: var(--primary);
+            color: white;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+            font-size: 16px;
+        }
+    </style>
+</head>
+<body>
+    <div id="app">
+        <!-- Login Screen -->
+        <div id="login-screen" class="login-container" v-if="!user">
+            <h1 class="login-title">Painel Administrativo</h1>
+            <div class="form-group">
+                <label>Email</label>
+                <input type="email" class="form-control" v-model="loginEmail">
+            </div>
+            <div class="form-group">
+                <label>Senha</label>
+                <input type="password" class="form-control" v-model="loginPassword">
+            </div>
+            <button class="login-btn" @click="doLogin">Entrar</button>
+            <p v-if="loginError" style="color: red; margin-top: 15px;">{{ loginError }}</p>
+        </div>
+        
+        <!-- Admin Panel -->
+        <div class="admin-container" v-if="user">
+            <div class="sidebar">
+                <div class="sidebar-header">
+                    <h2>Dantas Contábil</h2>
+                    <p>Painel Administrativo</p>
+                </div>
+                <nav class="sidebar-nav">
+                    <ul>
+                        <li><a href="#" @click="currentSection = 'home'"><i class="fas fa-home"></i> Home</a></li>
+                        <li><a href="#" @click="currentSection = 'about'"><i class="fas fa-info-circle"></i> Sobre</a></li>
+                        <li><a href="#" @click="currentSection = 'services'"><i class="fas fa-cog"></i> Serviços</a></li>
+                        <li><a href="#" @click="currentSection = 'testimonials'"><i class="fas fa-quote-left"></i> Depoimentos</a></li>
+                        <li><a href="#" @click="currentSection = 'team'"><i class="fas fa-users"></i> Equipe</a></li>
+                        <li><a href="#" @click="currentSection = 'contact'"><i class="fas fa-envelope"></i> Contato</a></li>
+                    </ul>
+                </nav>
+            </div>
+            
+            <div class="main-content">
+                <div class="header">
+                    <h2>{{ getSectionTitle() }}</h2>
+                    <button class="logout-btn" @click="doLogout"><i class="fas fa-sign-out-alt"></i> Sair</button>
+                </div>
+                
+                <!-- Home Content -->
+                <div v-if="currentSection === 'home'" class="card">
+                    <h3>Conteúdo da Home</h3>
+                    <div class="form-group">
+                        <label>Título Principal</label>
+                        <input type="text" class="form-control" v-model="siteContent.heroTitle">
+                    </div>
+                    <div class="form-group">
+                        <label>Subtítulo</label>
+                        <textarea class="form-control" v-model="siteContent.heroSubtitle"></textarea>
+                    </div>
+                    <div class="form-group">
+                        <label>Texto Botão WhatsApp</label>
+                        <input type="text" class="form-control" v-model="siteContent.whatsappButtonText">
+                    </div>
+                    <div class="form-group">
+                        <label>Texto Botão Serviços</label>
+                        <input type="text" class="form-control" v-model="siteContent.servicesButtonText">
+                    </div>
+                    <button class="btn" @click="saveSiteContent">Salvar Alterações</button>
+                </div>
+                
+                <!-- About Content -->
+                <div v-if="currentSection === 'about'" class="card">
+                    <h3>Conteúdo Sobre Nós</h3>
+                    <div class="form-group">
+                        <label>Título</label>
+                        <input type="text" class="form-control" v-model="siteContent.aboutTitle">
+                    </div>
+                    <div class="form-group">
+                        <label>Descrição</label>
+                        <textarea class="form-control" v-model="siteContent.aboutDescription"></textarea>
+                    </div>
+                    <div class="form-group">
+                        <label>Missão</label>
+                        <textarea class="form-control" v-model="siteContent.aboutMission"></textarea>
+                    </div>
+                    <h4>Recursos</h4>
+                    <div v-for="(feature, index) in siteContent.features" :key="index" class="card" style="margin-top: 15px;">
+                        <div class="form-group">
+                            <label>Título do Recurso</label>
+                            <input type="text" class="form-control" v-model="feature.title">
+                        </div>
+                        <div class="form-group">
+                            <label>Descrição do Recurso</label>
+                            <textarea class="form-control" v-model="feature.description"></textarea>
+                        </div>
+                        <div class="form-group">
+                            <label>Ícone (Font Awesome)</label>
+                            <input type="text" class="form-control" v-model="feature.icon">
+                        </div>
+                    </div>
+                    <button class="btn" @click="saveSiteContent">Salvar Alterações</button>
+                </div>
+                
+                <!-- Services Management -->
+                <div v-if="currentSection === 'services'">
+                    <div class="card">
+                        <h3>Gerenciar Serviços</h3>
+                        <button class="btn btn-accent" @click="showAddService = true"><i class="fas fa-plus"></i> Adicionar Serviço</button>
+                        
+                        <div v-if="showAddService" class="card" style="margin-top: 20px;">
+                            <h4>Adicionar Novo Serviço</h4>
+                            <div class="form-group">
+                                <label>Nome do Serviço</label>
+                                <input type="text" class="form-control" v-model="newService.name">
+                            </div>
+                            <div class="form-group">
+                                <label>Descrição</label>
+                                <textarea class="form-control" v-model="newService.description"></textarea>
+                            </div>
+                            <div class="form-group">
+                                <label>Imagem</label>
+                                <input type="file" @change="handleServiceImageUpload" accept="image/*">
+                            </div>
+                            <button class="btn" @click="addService">Adicionar Serviço</button>
+                            <button class="btn" @click="showAddService = false" style="background-color: #ccc; margin-left: 10px;">Cancelar</button>
+                        </div>
+                    </div>
+                    
+                    <div class="card" style="margin-top: 20px;">
+                        <h4>Lista de Serviços</h4>
+                        <table class="table">
+                            <thead>
+                                <tr>
+                                    <th>Nome</th>
+                                    <th>Ações</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr v-for="(service, index) in services" :key="service.id">
+                                    <td>{{ service.name }}</td>
+                                    <td>
+                                        <button class="action-btn edit-btn" @click="editService(index)"><i class="fas fa-edit"></i></button>
+                                        <button class="action-btn delete-btn" @click="deleteService(service.id)"><i class="fas fa-trash"></i></button>
+                                    </td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+                
+                <!-- Testimonials Management -->
+                <div v-if="currentSection === 'testimonials'">
+                    <div class="card">
+                        <h3>Gerenciar Depoimentos</h3>
+                        <button class="btn btn-accent" @click="showAddTestimonial = true"><i class="fas fa-plus"></i> Adicionar Depoimento</button>
+                        
+                        <div v-if="showAddTestimonial" class="card" style="margin-top: 20px;">
+                            <h4>Adicionar Novo Depoimento</h4>
+                            <div class="form-group">
+                                <label>Nome do Cliente</label>
+                                <input type="text" class="form-control" v-model="newTestimonial.clientName">
+                            </div>
+                            <div class="form-group">
+                                <label>Cargo/Posição</label>
+                                <input type="text" class="form-control" v-model="newTestimonial.clientPosition">
+                            </div>
+                            <div class="form-group">
+                                <label>Depoimento</label>
+                                <textarea class="form-control" v-model="newTestimonial.text"></textarea>
+                            </div>
+                            <div class="form-group">
+                                <label>Avaliação (1-5)</label>
+                                <input type="number" min="1" max="5" class="form-control" v-model="newTestimonial.rating">
+                            </div>
+                            <div class="form-group">
+                                <label>Foto do Cliente</label>
+                                <input type="file" @change="handleTestimonialImageUpload" accept="image/*">
+                            </div>
+                            <button class="btn" @click="addTestimonial">Adicionar Depoimento</button>
+                            <button class="btn" @click="showAddTestimonial = false" style="background-color: #ccc; margin-left: 10px;">Cancelar</button>
+                        </div>
+                    </div>
+                    
+                    <div class="card" style="margin-top: 20px;">
+                        <h4>Lista de Depoimentos</h4>
+                        <table class="table">
+                            <thead>
+                                <tr>
+                                    <th>Cliente</th>
+                                    <th>Avaliação</th>
+                                    <th>Ações</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr v-for="(testimonial, index) in testimonials" :key="testimonial.id">
+                                    <td>{{ testimonial.clientName }}</td>
+                                    <td>
+                                        <span v-for="n in 5" :key="n">
+                                            <i class="fas fa-star" :style="{ color: n <= testimonial.rating ? '#ffab00' : '#ddd' }"></i>
+                                        </span>
+                                    </td>
+                                    <td>
+                                        <button class="action-btn edit-btn" @click="editTestimonial(index)"><i class="fas fa-edit"></i></button>
+                                        <button class="action-btn delete-btn" @click="deleteTestimonial(testimonial.id)"><i class="fas fa-trash"></i></button>
+                                    </td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+                
+                <!-- Team Management -->
+                <div v-if="currentSection === 'team'">
+                    <div class="card">
+                        <h3>Gerenciar Equipe</h3>
+                        <button class="btn btn-accent" @click="showAddTeamMember = true"><i class="fas fa-plus"></i> Adicionar Membro</button>
+                        
+                        <div v-if="showAddTeamMember" class="card" style="margin-top: 20px;">
+                            <h4>Adicionar Novo Membro</h4>
+                            <div class="form-group">
+                                <label>Nome</label>
+                                <input type="text" class="form-control" v-model="newTeamMember.name">
+                            </div>
+                            <div class="form-group">
+                                <label>Cargo</label>
+                                <input type="text" class="form-control" v-model="newTeamMember.position">
+                            </div>
+                            <div class="form-group">
+                                <label>Foto</label>
+                                <input type="file" @change="handleTeamImageUpload" accept="image/*">
+                            </div>
+                            <div class="form-group">
+                                <label>Redes Sociais (opcional)</label>
+                                <input type="text" class="form-control" v-model="newTeamMember.social.linkedin" placeholder="LinkedIn">
+                                <input type="text" class="form-control" v-model="newTeamMember.social.twitter" placeholder="Twitter" style="margin-top: 5px;">
+                                <input type="text" class="form-control" v-model="newTeamMember.social.email" placeholder="Email" style="margin-top: 5px;">
+                            </div>
+                            <button class="btn" @click="addTeamMember">Adicionar Membro</button>
+                            <button class="btn" @click="showAddTeamMember = false" style="background-color: #ccc; margin-left: 10px;">Cancelar</button>
+                        </div>
+                    </div>
+                    
+                    <div class="card" style="margin-top: 20px;">
+                        <h4>Lista de Membros</h4>
+                        <table class="table">
+                            <thead>
+                                <tr>
+                                    <th>Nome</th>
+                                    <th>Cargo</th>
+                                    <th>Ações</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr v-for="(member, index) in team" :key="member.id">
+                                    <td>{{ member.name }}</td>
+                                    <td>{{ member.position }}</td>
+                                    <td>
+                                        <button class="action-btn edit-btn" @click="editTeamMember(index)"><i class="fas fa-edit"></i></button>
+                                        <button class="action-btn delete-btn" @click="deleteTeamMember(member.id)"><i class="fas fa-trash"></i></button>
+                                    </td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+                
+                <!-- Contact Content -->
+                <div v-if="currentSection === 'contact'" class="card">
+                    <h3>Informações de Contato</h3>
+                    <div class="form-group">
+                        <label>Endereço</label>
+                        <input type="text" class="form-control" v-model="siteContent.contactAddress">
+                    </div>
+                    <div class="form-group">
+                        <label>Telefone</label>
+                        <input type="text" class="form-control" v-model="siteContent.contactPhone">
+                    </div>
+                    <div class="form-group">
+                        <label>Email</label>
+                        <input type="email" class="form-control" v-model="siteContent.contactEmail">
+                    </div>
+                    <div class="form-group">
+                        <label>Horário de Atendimento</label>
+                        <input type="text" class="form-control" v-model="siteContent.contactHours">
+                    </div>
+                    <h4>Redes Sociais</h4>
+                    <div class="form-group">
+                        <label>Facebook</label>
+                        <input type="text" class="form-control" v-model="siteContent.socialFacebook">
+                    </div>
+                    <div class="form-group">
+                        <label>Instagram</label>
+                        <input type="text" class="form-control" v-model="siteContent.socialInstagram">
+                    </div>
+                    <div class="form-group">
+                        <label>LinkedIn</label>
+                        <input type="text" class="form-control" v-model="siteContent.socialLinkedin">
+                    </div>
+                    <div class="form-group">
+                        <label>WhatsApp</label>
+                        <input type="text" class="form-control" v-model="siteContent.socialWhatsapp">
+                    </div>
+                    <button class="btn" @click="saveSiteContent">Salvar Alterações</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Vue.js e Firebase -->
+    <script src="https://cdn.jsdelivr.net/npm/vue@3.2.31/dist/vue.global.min.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/9.6.0/firebase-app-compat.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/9.6.0/firebase-firestore-compat.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/9.6.0/firebase-auth-compat.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/9.6.0/firebase-storage-compat.js"></script>
+    
+    <script>
+        // Your web app's Firebase configuration
+        const firebaseConfig = {
+            apiKey: "AIzaSyCk9LG7b9KX1m8QBbQv1ixNNWDlsfBcVp0",
+            authDomain: "dantascontabil-ef5dd.firebaseapp.com",
+            projectId: "dantascontabil-ef5dd",
+            storageBucket: "dantascontabil-ef5dd.firebasestorage.app",
+            messagingSenderId: "619232441117",
+            appId: "1:619232441117:web:26493c5c5c297a95e7a7f4"
+        };
+
+        // Inicialize o Firebase
+        firebase.initializeApp(firebaseConfig);
+        const db = firebase.firestore();
+        const auth = firebase.auth();
+        const storage = firebase.storage();
+
+        // Crie a aplicação Vue
+        const { createApp, ref, onMounted } = Vue;
+        
+        createApp({
+            setup() {
+                // Dados reativos
+                const user = ref(null);
+                const loginEmail = ref('');
+                const loginPassword = ref('');
+                const loginError = ref('');
+                const currentSection = ref('home');
+                const siteContent = ref({
+                    heroTitle: '',
+                    heroSubtitle: '',
+                    whatsappButtonText: '',
+                    servicesButtonText: '',
+                    aboutTitle: '',
+                    aboutDescription: '',
+                    aboutMission: '',
+                    features: [],
+                    contactAddress: '',
+                    contactPhone: '',
+                    contactEmail: '',
+                    contactHours: '',
+                    socialFacebook: '',
+                    socialInstagram: '',
+                    socialLinkedin: '',
+                    socialWhatsapp: ''
+                });
+                
+                // Serviços
+                const services = ref([]);
+                const showAddService = ref(false);
+                const newService = ref({
+                    name: '',
+                    description: '',
+                    imageUrl: ''
+                });
+                
+                // Depoimentos
+                const testimonials = ref([]);
+                const showAddTestimonial = ref(false);
+                const newTestimonial = ref({
+                    clientName: '',
+                    clientPosition: '',
+                    text: '',
+                    rating: 5,
+                    imageUrl: ''
+                });
+                
+                // Equipe
+                const team = ref([]);
+                const showAddTeamMember = ref(false);
+                const newTeamMember = ref({
+                    name: '',
+                    position: '',
+                    imageUrl: '',
+                    social: {
+                        linkedin: '',
+                        twitter: '',
+                        email: ''
+                    }
+                });
+                
+                // Funções
+                const getSectionTitle = () => {
+                    const titles = {
+                        home: 'Conteúdo da Home',
+                        about: 'Sobre Nós',
+                        services: 'Serviços',
+                        testimonials: 'Depoimentos',
+                        team: 'Equipe',
+                        contact: 'Contato'
+                    };
+                    return titles[currentSection.value] || 'Painel Administrativo';
+                };
+                
+                const doLogin = async () => {
+                    try {
+                        const userCredential = await auth.signInWithEmailAndPassword(
+                            loginEmail.value,
+                            loginPassword.value
+                        );
+                        user.value = userCredential.user;
+                        loginError.value = '';
+                        loadAllData();
+                    } catch (error) {
+                        loginError.value = error.message;
+                    }
+                };
+                
+                const doLogout = async () => {
+                    try {
+                        await auth.signOut();
+                        user.value = null;
+                    } catch (error) {
+                        console.error('Erro ao fazer logout:', error);
+                    }
+                };
+                
+                const loadAllData = async () => {
+                    try {
+                        // Carregar conteúdo do site
+                        const siteContentDoc = await db.collection('siteContent').doc('main').get();
+                        if (siteContentDoc.exists) {
+                            siteContent.value = siteContentDoc.data();
+                        }
+                        
+                        // Carregar serviços
+                        const servicesSnapshot = await db.collection('services').get();
+                        services.value = servicesSnapshot.docs.map(doc => ({ id: doc.id, ...doc.data() }));
+                        
+                        // Carregar depoimentos
+                        const testimonialsSnapshot = await db.collection('testimonials').get();
+                        testimonials.value = testimonialsSnapshot.docs.map(doc => ({ id: doc.id, ...doc.data() }));
+                        
+                        // Carregar equipe
+                        const teamSnapshot = await db.collection('team').get();
+                        team.value = teamSnapshot.docs.map(doc => ({ id: doc.id, ...doc.data() }));
+                    } catch (error) {
+                        console.error('Erro ao carregar dados:', error);
+                    }
+                };
+                
+                const saveSiteContent = async () => {
+                    try {
+                        await db.collection('siteContent').doc('main').set(siteContent.value);
+                        alert('Conteúdo salvo com sucesso!');
+                    } catch (error) {
+                        console.error('Erro ao salvar conteúdo:', error);
+                        alert('Erro ao salvar conteúdo');
+                    }
+                };
+                
+                const handleServiceImageUpload = (event) => {
+                    const file = event.target.files[0];
+                    if (file) {
+                        const storageRef = storage.ref(`services/${file.name}`);
+                        const uploadTask = storageRef.put(file);
+                        
+                        uploadTask.on('state_changed',
+                            (snapshot) => {
+                                // Progresso do upload
+                            },
+                            (error) => {
+                                console.error('Erro no upload:', error);
+                            },
+                            () => {
+                                uploadTask.snapshot.ref.getDownloadURL().then((downloadURL) => {
+                                    newService.value.imageUrl = downloadURL;
+                                });
+                            }
+                        );
+                    }
+                };
+                
+                const addService = async () => {
+                    try {
+                        await db.collection('services').add(newService.value);
+                        services.value.push({ ...newService.value });
+                        newService.value = { name: '', description: '', imageUrl: '' };
+                        showAddService.value = false;
+                        alert('Serviço adicionado com sucesso!');
+                    } catch (error) {
+                        console.error('Erro ao adicionar serviço:', error);
+                        alert('Erro ao adicionar serviço');
+                    }
+                };
+                
+                const editService = (index) => {
+                    // Implementar edição de serviço
+                    console.log('Editar serviço:', services.value[index]);
+                };
+                
+                const deleteService = async (id) => {
+                    if (confirm('Tem certeza que deseja excluir este serviço?')) {
+                        try {
+                            await db.collection('services').doc(id).delete();
+                            services.value = services.value.filter(service => service.id !== id);
+                            alert('Serviço excluído com sucesso!');
+                        } catch (error) {
+                            console.error('Erro ao excluir serviço:', error);
+                            alert('Erro ao excluir serviço');
+                        }
+                    }
+                };
+                
+                const handleTestimonialImageUpload = (event) => {
+                    const file = event.target.files[0];
+                    if (file) {
+                        const storageRef = storage.ref(`testimonials/${file.name}`);
+                        const uploadTask = storageRef.put(file);
+                        
+                        uploadTask.on('state_changed',
+                            (snapshot) => {
+                                // Progresso do upload
+                            },
+                            (error) => {
+                                console.error('Erro no upload:', error);
+                            },
+                            () => {
+                                uploadTask.snapshot.ref.getDownloadURL().then((downloadURL) => {
+                                    newTestimonial.value.imageUrl = downloadURL;
+                                });
+                            }
+                        );
+                    }
+                };
+                
+                const addTestimonial = async () => {
+                    try {
+                        await db.collection('testimonials').add(newTestimonial.value);
+                        testimonials.value.push({ ...newTestimonial.value });
+                        newTestimonial.value = { 
+                            clientName: '',
+                            clientPosition: '',
+                            text: '',
+                            rating: 5,
+                            imageUrl: ''
+                        };
+                        showAddTestimonial.value = false;
+                        alert('Depoimento adicionado com sucesso!');
+                    } catch (error) {
+                        console.error('Erro ao adicionar depoimento:', error);
+                        alert('Erro ao adicionar depoimento');
+                    }
+                };
+                
+                const editTestimonial = (index) => {
+                    // Implementar edição de depoimento
+                    console.log('Editar depoimento:', testimonials.value[index]);
+                };
+                
+                const deleteTestimonial = async (id) => {
+                    if (confirm('Tem certeza que deseja excluir este depoimento?')) {
+                        try {
+                            await db.collection('testimonials').doc(id).delete();
+                            testimonials.value = testimonials.value.filter(testimonial => testimonial.id !== id);
+                            alert('Depoimento excluído com sucesso!');
+                        } catch (error) {
+                            console.error('Erro ao excluir depoimento:', error);
+                            alert('Erro ao excluir depoimento');
+                        }
+                    }
+                };
+                
+                const handleTeamImageUpload = (event) => {
+                    const file = event.target.files[0];
+                    if (file) {
+                        const storageRef = storage.ref(`team/${file.name}`);
+                        const uploadTask = storageRef.put(file);
+                        
+                        uploadTask.on('state_changed',
+                            (snapshot) => {
+                                // Progresso do upload
+                            },
+                            (error) => {
+                                console.error('Erro no upload:', error);
+                            },
+                            () => {
+                                uploadTask.snapshot.ref.getDownloadURL().then((downloadURL) => {
+                                    newTeamMember.value.imageUrl = downloadURL;
+                                });
+                            }
+                        );
+                    }
+                };
+                
+                const addTeamMember = async () => {
+                    try {
+                        await db.collection('team').add(newTeamMember.value);
+                        team.value.push({ ...newTeamMember.value });
+                        newTeamMember.value = { 
+                            name: '',
+                            position: '',
+                            imageUrl: '',
+                            social: {
+                                linkedin: '',
+                                twitter: '',
+                                email: ''
+                            }
+                        };
+                        showAddTeamMember.value = false;
+                        alert('Membro adicionado com sucesso!');
+                    } catch (error) {
+                        console.error('Erro ao adicionar membro:', error);
+                        alert('Erro ao adicionar membro');
+                    }
+                };
+                
+                const editTeamMember = (index) => {
+                    // Implementar edição de membro
+                    console.log('Editar membro:', team.value[index]);
+                };
+                
+                const deleteTeamMember = async (id) => {
+                    if (confirm('Tem certeza que deseja excluir este membro?')) {
+                        try {
+                            await db.collection('team').doc(id).delete();
+                            team.value = team.value.filter(member => member.id !== id);
+                            alert('Membro excluído com sucesso!');
+                        } catch (error) {
+                            console.error('Erro ao excluir membro:', error);
+                            alert('Erro ao excluir membro');
+                        }
+                    }
+                };
+                
+                // Verificar autenticação ao carregar
+                onMounted(() => {
+                    auth.onAuthStateChanged((authUser) => {
+                        user.value = authUser;
+                        if (authUser) {
+                            loadAllData();
+                        }
+                    });
+                });
+                
+                return {
+                    user,
+                    loginEmail,
+                    loginPassword,
+                    loginError,
+                    currentSection,
+                    siteContent,
+                    services,
+                    showAddService,
+                    newService,
+                    testimonials,
+                    showAddTestimonial,
+                    newTestimonial,
+                    team,
+                    showAddTeamMember,
+                    newTeamMember,
+                    getSectionTitle,
+                    doLogin,
+                    doLogout,
+                    saveSiteContent,
+                    handleServiceImageUpload,
+                    addService,
+                    editService,
+                    deleteService,
+                    handleTestimonialImageUpload,
+                    addTestimonial,
+                    editTestimonial,
+                    deleteTestimonial,
+                    handleTeamImageUpload,
+                    addTeamMember,
+                    editTeamMember,
+                    deleteTeamMember
+                };
+            }
+        }).mount('#app');
+    </script>
+</body>
+</html>
