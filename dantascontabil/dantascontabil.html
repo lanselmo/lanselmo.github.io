@@ -13,8 +13,7 @@
     </svg>">
 
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
-
-
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;600;700&display=swap" rel="stylesheet">
 
     <style>
         :root {
@@ -262,6 +261,73 @@
             justify-content: center;
             gap: 20px;
             animation: fadeIn 1.5s ease;
+        }
+
+        /* WhatsApp Button */
+        .whatsapp-btn {
+            font-family: 'Montserrat', sans-serif;
+            font-weight: 600;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        /* Download Buttons */
+        .download-btns {
+            text-align: center;
+            margin-top: 20px;
+            animation: fadeIn 1.5s ease;
+        }
+
+        .download-btns p {
+            color: var(--white);
+            font-size: 1rem;
+        }
+
+        .store-btns {
+            display: flex;
+            justify-content: center;
+            gap: 15px;
+            margin-top: 10px;
+        }
+
+        .store-btn {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            padding: 8px 15px;
+            border-radius: 8px;
+            font-family: 'Montserrat', sans-serif;
+            font-size: 0.8rem;
+            transition: var(--transition);
+        }
+
+        .store-btn i {
+            font-size: 1.8rem;
+        }
+
+        .store-btn span {
+            text-align: left;
+            line-height: 1.2;
+        }
+
+        .store-btn strong {
+            font-size: 1.1rem;
+        }
+
+        .playstore {
+            background-color: #000;
+            color: #fff;
+        }
+
+        .appstore {
+            background-color: #fff;
+            color: #000;
+        }
+
+        .store-btn:hover {
+            transform: translateY(-3px);
+            box-shadow: var(--box-shadow);
         }
 
         /* About Section */
@@ -834,6 +900,11 @@
                 flex-direction: column;
                 gap: 15px;
             }
+
+            .store-btns {
+                flex-direction: column;
+                align-items: center;
+            }
         }
 
         @media (max-width: 576px) {
@@ -889,8 +960,23 @@
                 <p>Oferecemos serviços contábeis completos e personalizados para ajudar sua empresa a crescer com
                     segurança e conformidade fiscal.</p>
                 <div class="hero-btns">
-                    <a href="#contact" class="btn btn-accent">Fale Conosco</a>
+                    <a href="https://wa.me/5582981714181" class="btn btn-accent whatsapp-btn">
+                        <i class="fab fa-whatsapp"></i> Fale Conosco via WhatsApp
+                    </a>
                     <a href="#services" class="btn btn-secondary">Nossos Serviços</a>
+                </div>
+                <div class="download-btns">
+                    <p style="margin: 20px 0 10px; font-family: 'Montserrat', sans-serif; font-weight: 600;">Baixe nosso app:</p>
+                    <div class="store-btns">
+                        <a href="#" class="store-btn playstore">
+                            <i class="fab fa-google-play"></i>
+                            <span>Disponível no<br><strong>Google Play</strong></span>
+                        </a>
+                        <a href="#" class="store-btn appstore">
+                            <i class="fab fa-apple"></i>
+                            <span>Baixe na<br><strong>App Store</strong></span>
+                        </a>
+                    </div>
                 </div>
             </div>
         </div>
