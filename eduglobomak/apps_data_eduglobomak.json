@@ -1,0 +1,40 @@
+{
+    "apps": [
+        {
+            "id": 4,
+            "name": "eduglobomak",
+            "description": "eduglobomak",
+            "status": "development",
+            "version": "1.0.1",
+            "url": "https://globomak-educacao.lovable.app/",
+            "isEnableLogin": false,
+            "isBottomNavVisible": true,
+            "evaluateJavascript": "document.querySelectorAll('input, textarea').forEach(function(input) {input.addEventListener('focus', function() {window.flutter_inappwebview.callHandler('inputFocusHandler', 'focus');});input.addEventListener('blur', function() {window.flutter_inappwebview.callHandler('inputFocusHandler', 'blur');});});",
+            "menu": [
+                {
+                    "url": "https://estadomaior.com.br/",
+                    "label": "Home",
+                    "image": "home"
+                },
+                {
+                    "url": "https://estadomaior.com.br/ultimas-noticias",
+                    "label": "Novidades",
+                    "image": "brilhos"
+                },
+                {
+                    "url": "https://estadomaior.com.br/galerias",
+                    "label": "Galeria",
+                    "image": "galeria-de-imagens"
+                },
+                {
+                    "url": "https://estadomaior.com.br/contato",
+                    "label": "Contato",
+                    "image": "contato"
+                }
+            ]
+        }
+    ],
+    "profile": {
+        "name": "typicode"
+    }
+}
