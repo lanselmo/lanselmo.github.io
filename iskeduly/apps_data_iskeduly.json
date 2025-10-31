@@ -1,0 +1,40 @@
+{
+    "apps": [
+        {
+            "id": 4,
+            "name": "iskeduly",
+            "description": "iskeduly",
+            "status": "development",
+            "version": "1.0.1",
+            "url": "https://iskeduly.com/studiolisboa",
+            "isEnableLogin": false,
+            "isBottomNavVisible": true,
+            "evaluateJavascript": "document.querySelectorAll('input, textarea').forEach(function(input) {input.addEventListener('focus', function() {window.flutter_inappwebview.callHandler('inputFocusHandler', 'focus');});input.addEventListener('blur', function() {window.flutter_inappwebview.callHandler('inputFocusHandler', 'blur');});});",
+            "menu": [
+                {
+                    "url": "https://iskeduly.com/studiolisboa",
+                    "label": "Home",
+                    "image": "home"
+                },
+                {
+                    "url": "https://iskeduly.com/studiolisboa",
+                    "label": "Novidades",
+                    "image": "brilhos"
+                },
+                {
+                    "url": "https://iskeduly.com/studiolisboa",
+                    "label": "Galeria",
+                    "image": "galeria-de-imagens"
+                },
+                {
+                    "url": "https://iskeduly.com/studiolisboa",
+                    "label": "Contato",
+                    "image": "contato"
+                }
+            ]
+        }
+    ],
+    "profile": {
+        "name": "typicode"
+    }
+}
