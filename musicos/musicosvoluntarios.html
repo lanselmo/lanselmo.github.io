@@ -6,11 +6,10 @@
     <title>Músicos Voluntários - Conectando Talentos e Igrejas</title>
     <script src="https://cdn.tailwindcss.com"></script>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Comfortaa:wght@300;400;500;600;700&display=swap" rel="stylesheet">
     <style>
-        @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap');
-        
         body {
-            font-family: 'Poppins', sans-serif;
+            font-family: 'Comfortaa', cursive;
         }
         
         .gradient-bg {
@@ -35,6 +34,26 @@
             50% { transform: scale(1.05); }
             100% { transform: scale(1); }
         }
+        
+        .comfortaa-light {
+            font-weight: 300;
+        }
+        
+        .comfortaa-regular {
+            font-weight: 400;
+        }
+        
+        .comfortaa-medium {
+            font-weight: 500;
+        }
+        
+        .comfortaa-semibold {
+            font-weight: 600;
+        }
+        
+        .comfortaa-bold {
+            font-weight: 700;
+        }
     </style>
 </head>
 <body class="bg-gray-50">
@@ -44,9 +63,9 @@
             <div class="flex flex-col md:flex-row justify-between items-center">
                 <div class="flex items-center mb-4 md:mb-0">
                     <i class="fas fa-music text-3xl mr-3"></i>
-                    <h1 class="text-2xl font-bold">Músicos Voluntários</h1>
+                    <h1 class="text-2xl comfortaa-bold">Músicos Voluntários</h1>
                 </div>
-                <nav class="flex space-x-6">
+                <nav class="flex space-x-6 comfortaa-medium">
                     <a href="#como-funciona" class="hover:text-purple-200 transition">Como Funciona</a>
                     <a href="#vagas" class="hover:text-purple-200 transition">Encontrar Vagas</a>
                     <a href="#cadastrar" class="hover:text-purple-200 transition">Anunciar Vaga</a>
@@ -58,13 +77,13 @@
     <!-- Hero Section -->
     <section class="gradient-bg text-white py-16">
         <div class="container mx-auto px-4 text-center">
-            <h2 class="text-4xl md:text-5xl font-bold mb-6">Conectando Talentos Musicais e Igrejas</h2>
-            <p class="text-xl mb-8 max-w-2xl mx-auto">Uma plataforma gratuita para igrejas anunciarem suas necessidades de músicos e voluntários encontrarem oportunidades para servir.</p>
+            <h2 class="text-4xl md:text-5xl comfortaa-bold mb-6">Conectando Talentos Musicais e Igrejas</h2>
+            <p class="text-xl mb-8 max-w-2xl mx-auto comfortaa-light">Uma plataforma gratuita para igrejas anunciarem suas necessidades de músicos e voluntários encontrarem oportunidades para servir.</p>
             <div class="flex flex-col md:flex-row justify-center space-y-4 md:space-y-0 md:space-x-4">
-                <a href="#cadastrar" class="bg-white text-purple-700 font-semibold py-3 px-8 rounded-lg shadow-lg hover:bg-purple-100 transition pulse-animation">
+                <a href="#cadastrar" class="bg-white text-purple-700 comfortaa-semibold py-3 px-8 rounded-lg shadow-lg hover:bg-purple-100 transition pulse-animation">
                     <i class="fas fa-church mr-2"></i> Anunciar Vaga
                 </a>
-                <a href="#vagas" class="bg-transparent border-2 border-white text-white font-semibold py-3 px-8 rounded-lg hover:bg-white hover:text-purple-700 transition">
+                <a href="#vagas" class="bg-transparent border-2 border-white text-white comfortaa-semibold py-3 px-8 rounded-lg hover:bg-white hover:text-purple-700 transition">
                     <i class="fas fa-guitar mr-2"></i> Encontrar Oportunidades
                 </a>
             </div>
@@ -74,30 +93,30 @@
     <!-- Como Funciona -->
     <section id="como-funciona" class="py-16 bg-white">
         <div class="container mx-auto px-4">
-            <h2 class="text-3xl font-bold text-center mb-12">Como Funciona</h2>
+            <h2 class="text-3xl comfortaa-bold text-center mb-12">Como Funciona</h2>
             <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
                 <div class="bg-gray-50 p-6 rounded-lg shadow-md text-center card-hover">
                     <div class="bg-purple-100 w-16 h-16 rounded-full flex items-center justify-center mx-auto mb-4">
                         <i class="fas fa-church text-purple-600 text-2xl"></i>
                     </div>
-                    <h3 class="text-xl font-semibold mb-3">Igrejas Anunciam</h3>
-                    <p class="text-gray-600">Igrejas cadastram suas necessidades de músicos de forma simples e gratuita.</p>
+                    <h3 class="text-xl comfortaa-semibold mb-3">Igrejas Anunciam</h3>
+                    <p class="text-gray-600 comfortaa-light">Igrejas cadastram suas necessidades de músicos de forma simples e gratuita.</p>
                 </div>
                 
                 <div class="bg-gray-50 p-6 rounded-lg shadow-md text-center card-hover">
                     <div class="bg-purple-100 w-16 h-16 rounded-full flex items-center justify-center mx-auto mb-4">
                         <i class="fas fa-bell text-purple-600 text-2xl"></i>
                     </div>
-                    <h3 class="text-xl font-semibold mb-3">Músicos Recebem Notificações</h3>
-                    <p class="text-gray-600">Músicos próximos são notificados sobre oportunidades em sua região.</p>
+                    <h3 class="text-xl comfortaa-semibold mb-3">Músicos Recebem Notificações</h3>
+                    <p class="text-gray-600 comfortaa-light">Músicos próximos são notificados sobre oportunidades em sua região.</p>
                 </div>
                 
                 <div class="bg-gray-50 p-6 rounded-lg shadow-md text-center card-hover">
                     <div class="bg-purple-100 w-16 h-16 rounded-full flex items-center justify-center mx-auto mb-4">
                         <i class="fas fa-handshake text-purple-600 text-2xl"></i>
                     </div>
-                    <h3 class="text-xl font-semibold mb-3">Conexão Feita</h3>
-                    <p class="text-gray-600">Músicos entram em contato diretamente com as igrejas para combinar os detalhes.</p>
+                    <h3 class="text-xl comfortaa-semibold mb-3">Conexão Feita</h3>
+                    <p class="text-gray-600 comfortaa-light">Músicos entram em contato diretamente com as igrejas para combinar os detalhes.</p>
                 </div>
             </div>
         </div>
@@ -106,13 +125,13 @@
     <!-- Vagas Disponíveis -->
     <section id="vagas" class="py-16 bg-gray-50">
         <div class="container mx-auto px-4">
-            <h2 class="text-3xl font-bold text-center mb-4">Vagas Disponíveis</h2>
-            <p class="text-center text-gray-600 mb-12">Encontre oportunidades para servir com seu talento musical</p>
+            <h2 class="text-3xl comfortaa-bold text-center mb-4">Vagas Disponíveis</h2>
+            <p class="text-center text-gray-600 mb-12 comfortaa-light">Encontre oportunidades para servir com seu talento musical</p>
             
             <div class="flex justify-center mb-8">
                 <div class="bg-white rounded-lg shadow-md p-4 w-full max-w-md">
                     <div class="flex">
-                        <input type="text" placeholder="Buscar por cidade ou instrumento..." class="flex-grow px-4 py-2 border border-gray-300 rounded-l-lg focus:outline-none focus:ring-2 focus:ring-purple-500">
+                        <input type="text" placeholder="Buscar por cidade ou instrumento..." class="flex-grow px-4 py-2 border border-gray-300 rounded-l-lg focus:outline-none focus:ring-2 focus:ring-purple-500 comfortaa-regular">
                         <button class="bg-purple-600 text-white px-4 py-2 rounded-r-lg hover:bg-purple-700 transition">
                             <i class="fas fa-search"></i>
                         </button>
@@ -125,19 +144,19 @@
                 <div class="bg-white rounded-lg shadow-md overflow-hidden card-hover">
                     <div class="p-6">
                         <div class="flex justify-between items-start mb-4">
-                            <h3 class="text-xl font-semibold">Igreja Batista Central</h3>
-                            <span class="bg-green-100 text-green-800 text-xs font-medium px-2.5 py-0.5 rounded">Urgente</span>
+                            <h3 class="text-xl comfortaa-semibold">Igreja Batista Central</h3>
+                            <span class="bg-green-100 text-green-800 text-xs font-medium px-2.5 py-0.5 rounded comfortaa-medium">Urgente</span>
                         </div>
-                        <p class="text-gray-600 mb-4">Precisamos de um violonista para nossos cultos dominicais.</p>
-                        <div class="flex items-center text-gray-500 mb-2">
+                        <p class="text-gray-600 mb-4 comfortaa-light">Precisamos de um violonista para nossos cultos dominicais.</p>
+                        <div class="flex items-center text-gray-500 mb-2 comfortaa-regular">
                             <i class="fas fa-map-marker-alt mr-2"></i>
                             <span>São Paulo, SP</span>
                         </div>
-                        <div class="flex items-center text-gray-500 mb-4">
+                        <div class="flex items-center text-gray-500 mb-4 comfortaa-regular">
                             <i class="fas fa-calendar-alt mr-2"></i>
                             <span>Domingos 9h e 19h</span>
                         </div>
-                        <button class="w-full bg-purple-600 text-white py-2 rounded-lg hover:bg-purple-700 transition">
+                        <button class="w-full bg-purple-600 text-white py-2 rounded-lg hover:bg-purple-700 transition comfortaa-medium">
                             Tenho Interesse
                         </button>
                     </div>
@@ -147,19 +166,19 @@
                 <div class="bg-white rounded-lg shadow-md overflow-hidden card-hover">
                     <div class="p-6">
                         <div class="flex justify-between items-start mb-4">
-                            <h3 class="text-xl font-semibold">Comunidade da Graça</h3>
-                            <span class="bg-blue-100 text-blue-800 text-xs font-medium px-2.5 py-0.5 rounded">Piano/Teclado</span>
+                            <h3 class="text-xl comfortaa-semibold">Comunidade da Graça</h3>
+                            <span class="bg-blue-100 text-blue-800 text-xs font-medium px-2.5 py-0.5 rounded comfortaa-medium">Piano/Teclado</span>
                         </div>
-                        <p class="text-gray-600 mb-4">Procuramos tecladista para grupo de louvor jovem.</p>
-                        <div class="flex items-center text-gray-500 mb-2">
+                        <p class="text-gray-600 mb-4 comfortaa-light">Procuramos tecladista para grupo de louvor jovem.</p>
+                        <div class="flex items-center text-gray-500 mb-2 comfortaa-regular">
                             <i class="fas fa-map-marker-alt mr-2"></i>
                             <span>Rio de Janeiro, RJ</span>
                         </div>
-                        <div class="flex items-center text-gray-500 mb-4">
+                        <div class="flex items-center text-gray-500 mb-4 comfortaa-regular">
                             <i class="fas fa-calendar-alt mr-2"></i>
                             <span>Sábados 18h</span>
                         </div>
-                        <button class="w-full bg-purple-600 text-white py-2 rounded-lg hover:bg-purple-700 transition">
+                        <button class="w-full bg-purple-600 text-white py-2 rounded-lg hover:bg-purple-700 transition comfortaa-medium">
                             Tenho Interesse
                         </button>
                     </div>
@@ -169,19 +188,19 @@
                 <div class="bg-white rounded-lg shadow-md overflow-hidden card-hover">
                     <div class="p-6">
                         <div class="flex justify-between items-start mb-4">
-                            <h3 class="text-xl font-semibold">Igreja do Evangelho Quadrangular</h3>
-                            <span class="bg-yellow-100 text-yellow-800 text-xs font-medium px-2.5 py-0.5 rounded">Bateria</span>
+                            <h3 class="text-xl comfortaa-semibold">Igreja do Evangelho Quadrangular</h3>
+                            <span class="bg-yellow-100 text-yellow-800 text-xs font-medium px-2.5 py-0.5 rounded comfortaa-medium">Bateria</span>
                         </div>
-                        <p class="text-gray-600 mb-4">Baterista necessário para ensaios semanais e cultos.</p>
-                        <div class="flex items-center text-gray-500 mb-2">
+                        <p class="text-gray-600 mb-4 comfortaa-light">Baterista necessário para ensaios semanais e cultos.</p>
+                        <div class="flex items-center text-gray-500 mb-2 comfortaa-regular">
                             <i class="fas fa-map-marker-alt mr-2"></i>
                             <span>Belo Horizonte, MG</span>
                         </div>
-                        <div class="flex items-center text-gray-500 mb-4">
+                        <div class="flex items-center text-gray-500 mb-4 comfortaa-regular">
                             <i class="fas fa-calendar-alt mr-2"></i>
                             <span>Quintas 19h, Domingos 10h</span>
                         </div>
-                        <button class="w-full bg-purple-600 text-white py-2 rounded-lg hover:bg-purple-700 transition">
+                        <button class="w-full bg-purple-600 text-white py-2 rounded-lg hover:bg-purple-700 transition comfortaa-medium">
                             Tenho Interesse
                         </button>
                     </div>
@@ -189,7 +208,7 @@
             </div>
             
             <div class="text-center mt-8">
-                <button class="bg-white text-purple-600 border border-purple-600 font-semibold py-2 px-6 rounded-lg hover:bg-purple-50 transition">
+                <button class="bg-white text-purple-600 border border-purple-600 comfortaa-semibold py-2 px-6 rounded-lg hover:bg-purple-50 transition">
                     Ver Mais Vagas
                 </button>
             </div>
@@ -200,28 +219,28 @@
     <section id="cadastrar" class="py-16 bg-white">
         <div class="container mx-auto px-4">
             <div class="max-w-2xl mx-auto bg-gray-50 rounded-lg shadow-md p-8">
-                <h2 class="text-3xl font-bold text-center mb-2">Anunciar Necessidade de Músico</h2>
-                <p class="text-center text-gray-600 mb-8">Preencha o formulário abaixo para divulgar sua vaga gratuitamente</p>
+                <h2 class="text-3xl comfortaa-bold text-center mb-2">Anunciar Necessidade de Músico</h2>
+                <p class="text-center text-gray-600 mb-8 comfortaa-light">Preencha o formulário abaixo para divulgar sua vaga gratuitamente</p>
                 
                 <form class="space-y-6">
                     <div>
-                        <label class="block text-gray-700 mb-2" for="church-name">Nome da Igreja</label>
-                        <input type="text" id="church-name" class="w-full px-4 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-purple-500" placeholder="Ex: Igreja Batista Central">
+                        <label class="block text-gray-700 mb-2 comfortaa-medium" for="church-name">Nome da Igreja</label>
+                        <input type="text" id="church-name" class="w-full px-4 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-purple-500 comfortaa-regular" placeholder="Ex: Igreja Batista Central">
                     </div>
                     
                     <div>
-                        <label class="block text-gray-700 mb-2" for="contact-person">Responsável pelo Contato</label>
-                        <input type="text" id="contact-person" class="w-full px-4 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-purple-500" placeholder="Seu nome">
+                        <label class="block text-gray-700 mb-2 comfortaa-medium" for="contact-person">Responsável pelo Contato</label>
+                        <input type="text" id="contact-person" class="w-full px-4 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-purple-500 comfortaa-regular" placeholder="Seu nome">
                     </div>
                     
                     <div>
-                        <label class="block text-gray-700 mb-2" for="contact-phone">Telefone para Contato</label>
-                        <input type="tel" id="contact-phone" class="w-full px-4 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-purple-500" placeholder="(11) 99999-9999">
+                        <label class="block text-gray-700 mb-2 comfortaa-medium" for="contact-phone">Telefone para Contato</label>
+                        <input type="tel" id="contact-phone" class="w-full px-4 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-purple-500 comfortaa-regular" placeholder="(11) 99999-9999">
                     </div>
                     
                     <div>
-                        <label class="block text-gray-700 mb-2" for="instruments">Instrumentos Necessários</label>
-                        <div class="grid grid-cols-2 md:grid-cols-3 gap-2">
+                        <label class="block text-gray-700 mb-2 comfortaa-medium" for="instruments">Instrumentos Necessários</label>
+                        <div class="grid grid-cols-2 md:grid-cols-3 gap-2 comfortaa-regular">
                             <div class="flex items-center">
                                 <input type="checkbox" id="violao" class="mr-2">
                                 <label for="violao">Violão</label>
@@ -250,19 +269,19 @@
                     </div>
                     
                     <div>
-                        <label class="block text-gray-700 mb-2" for="description">Descrição da Vaga</label>
-                        <textarea id="description" rows="4" class="w-full px-4 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-purple-500" placeholder="Descreva as necessidades específicas, frequência, etc."></textarea>
+                        <label class="block text-gray-700 mb-2 comfortaa-medium" for="description">Descrição da Vaga</label>
+                        <textarea id="description" rows="4" class="w-full px-4 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-purple-500 comfortaa-regular" placeholder="Descreva as necessidades específicas, frequência, etc."></textarea>
                     </div>
                     
                     <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
                         <div>
-                            <label class="block text-gray-700 mb-2" for="city">Cidade</label>
-                            <input type="text" id="city" class="w-full px-4 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-purple-500" placeholder="Sua cidade">
+                            <label class="block text-gray-700 mb-2 comfortaa-medium" for="city">Cidade</label>
+                            <input type="text" id="city" class="w-full px-4 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-purple-500 comfortaa-regular" placeholder="Sua cidade">
                         </div>
                         
                         <div>
-                            <label class="block text-gray-700 mb-2" for="state">Estado</label>
-                            <select id="state" class="w-full px-4 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-purple-500">
+                            <label class="block text-gray-700 mb-2 comfortaa-medium" for="state">Estado</label>
+                            <select id="state" class="w-full px-4 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-purple-500 comfortaa-regular">
                                 <option value="">Selecione</option>
                                 <option value="AC">Acre</option>
                                 <option value="AL">Alagoas</option>
@@ -296,7 +315,7 @@
                     </div>
                     
                     <div class="text-center">
-                        <button type="submit" class="bg-purple-600 text-white font-semibold py-3 px-8 rounded-lg hover:bg-purple-700 transition">
+                        <button type="submit" class="bg-purple-600 text-white comfortaa-semibold py-3 px-8 rounded-lg hover:bg-purple-700 transition">
                             <i class="fas fa-paper-plane mr-2"></i> Publicar Vaga
                         </button>
                     </div>
@@ -310,21 +329,21 @@
         <div class="container mx-auto px-4">
             <div class="flex flex-col md:flex-row items-center justify-between">
                 <div class="md:w-1/2 mb-8 md:mb-0">
-                    <h2 class="text-3xl font-bold mb-4">Baixe Nosso App</h2>
-                    <p class="text-xl mb-6">Receba notificações instantâneas sobre novas vagas na sua região e responda rapidamente.</p>
+                    <h2 class="text-3xl comfortaa-bold mb-4">Baixe Nosso App</h2>
+                    <p class="text-xl mb-6 comfortaa-light">Receba notificações instantâneas sobre novas vagas na sua região e responda rapidamente.</p>
                     <div class="flex space-x-4">
-                        <button class="bg-black text-white py-3 px-6 rounded-lg flex items-center">
+                        <button class="bg-black text-white py-3 px-6 rounded-lg flex items-center comfortaa-medium">
                             <i class="fab fa-apple text-2xl mr-2"></i>
                             <div class="text-left">
-                                <div class="text-xs">Disponível na</div>
-                                <div class="font-semibold">App Store</div>
+                                <div class="text-xs comfortaa-light">Disponível na</div>
+                                <div class="comfortaa-semibold">App Store</div>
                             </div>
                         </button>
-                        <button class="bg-black text-white py-3 px-6 rounded-lg flex items-center">
+                        <button class="bg-black text-white py-3 px-6 rounded-lg flex items-center comfortaa-medium">
                             <i class="fab fa-google-play text-xl mr-2"></i>
                             <div class="text-left">
-                                <div class="text-xs">Disponível no</div>
-                                <div class="font-semibold">Google Play</div>
+                                <div class="text-xs comfortaa-light">Disponível no</div>
+                                <div class="comfortaa-semibold">Google Play</div>
                             </div>
                         </button>
                     </div>
@@ -339,9 +358,9 @@
                         <div class="absolute top-4 left-4 bg-white rounded-3xl p-2 shadow-2xl transform -rotate-3 w-48 h-96 flex items-center justify-center">
                             <div class="bg-gray-800 w-full h-full rounded-2xl flex flex-col items-center justify-center p-4 text-white">
                                 <i class="fas fa-music text-3xl mb-4 text-purple-400"></i>
-                                <h3 class="text-xl font-bold mb-2">Músicos Voluntários</h3>
-                                <p class="text-center text-sm">Nova vaga próxima a você!</p>
-                                <button class="mt-6 bg-purple-600 text-white py-2 px-4 rounded-lg text-sm">Ver Detalhes</button>
+                                <h3 class="text-xl comfortaa-bold mb-2">Músicos Voluntários</h3>
+                                <p class="text-center text-sm comfortaa-light">Nova vaga próxima a você!</p>
+                                <button class="mt-6 bg-purple-600 text-white py-2 px-4 rounded-lg text-sm comfortaa-medium">Ver Detalhes</button>
                             </div>
                         </div>
                     </div>
@@ -357,23 +376,23 @@
                 <div>
                     <div class="flex items-center mb-4">
                         <i class="fas fa-music text-2xl mr-2"></i>
-                        <h3 class="text-xl font-bold">Músicos Voluntários</h3>
+                        <h3 class="text-xl comfortaa-bold">Músicos Voluntários</h3>
                     </div>
-                    <p class="text-gray-400">Conectando talentos musicais e igrejas desde 2023.</p>
+                    <p class="text-gray-400 comfortaa-light">Conectando talentos musicais e igrejas desde 2023.</p>
                 </div>
                 
                 <div>
-                    <h4 class="text-lg font-semibold mb-4">Links Rápidos</h4>
+                    <h4 class="text-lg comfortaa-semibold mb-4">Links Rápidos</h4>
                     <ul class="space-y-2">
-                        <li><a href="#como-funciona" class="text-gray-400 hover:text-white transition">Como Funciona</a></li>
-                        <li><a href="#vagas" class="text-gray-400 hover:text-white transition">Encontrar Vagas</a></li>
-                        <li><a href="#cadastrar" class="text-gray-400 hover:text-white transition">Anunciar Vaga</a></li>
+                        <li><a href="#como-funciona" class="text-gray-400 hover:text-white transition comfortaa-regular">Como Funciona</a></li>
+                        <li><a href="#vagas" class="text-gray-400 hover:text-white transition comfortaa-regular">Encontrar Vagas</a></li>
+                        <li><a href="#cadastrar" class="text-gray-400 hover:text-white transition comfortaa-regular">Anunciar Vaga</a></li>
                     </ul>
                 </div>
                 
                 <div>
-                    <h4 class="text-lg font-semibold mb-4">Contato</h4>
-                    <ul class="space-y-2 text-gray-400">
+                    <h4 class="text-lg comfortaa-semibold mb-4">Contato</h4>
+                    <ul class="space-y-2 text-gray-400 comfortaa-regular">
                         <li class="flex items-center">
                             <i class="fas fa-envelope mr-2"></i>
                             <span>contato@musicosvoluntarios.com</span>
@@ -386,7 +405,7 @@
                 </div>
                 
                 <div>
-                    <h4 class="text-lg font-semibold mb-4">Siga-nos</h4>
+                    <h4 class="text-lg comfortaa-semibold mb-4">Siga-nos</h4>
                     <div class="flex space-x-4">
                         <a href="#" class="bg-gray-700 w-10 h-10 rounded-full flex items-center justify-center hover:bg-purple-600 transition">
                             <i class="fab fa-facebook-f"></i>
@@ -401,7 +420,7 @@
                 </div>
             </div>
             
-            <div class="border-t border-gray-700 mt-8 pt-8 text-center text-gray-400">
+            <div class="border-t border-gray-700 mt-8 pt-8 text-center text-gray-400 comfortaa-light">
                 <p>&copy; 2023 Músicos Voluntários. Todos os direitos reservados.</p>
             </div>
         </div>
