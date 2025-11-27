@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Redirecionando...</title>
+    <script>
+        window.onload = function() {
+            // Links das lojas
+            var linkIOS = "https://apps.apple.com/br/app/alliance-entregas/id6754856580";
+            var linkAndroid = "https://play.google.com/store/apps/details?id=com.criaapp.alliance_entregas&pcampaignid=web_share";
+
+            // Detectar o sistema operacional
+            var userAgent = navigator.userAgent || navigator.vendor || window.opera;
+
+            if (/android/i.test(userAgent)) {
+                window.location.href = linkAndroid;
+            } else if (/iPad|iPhone|iPod/.test(userAgent) && !window.MSStream) {
+                window.location.href = linkIOS;
+            } else {
+                // Caso o sistema não seja identificado, exibe uma mensagem
+                document.getElementById("message").innerHTML = 
+                    "Não conseguimos identificar seu sistema. <br>" +
+                    "<a href='" + linkAndroid + "'>Clique aqui para Android</a> ou " +
+                    "<a href='" + linkIOS + "'>clique aqui para iOS</a>.";
+            }
+        };
+    </script>
+</head>
+<body>
+    <h2 id="message">Redirecionando...</h2>
+</body>
+</html>
