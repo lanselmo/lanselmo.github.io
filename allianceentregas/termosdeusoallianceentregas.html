@@ -7,12 +7,12 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
     <link rel="icon" type="image/png" href="fiveicon.png">
-    <link rel="apple-touch-icon" href="favicon.png">
+    <link rel="apple-touch-icon" href="fiveicon.png">
     <style>
         :root {
-            --primary: #2563eb;
-            --primary-dark: #1d4ed8;
-            --secondary: #10b981;
+            --primary: #f97316;
+            --primary-dark: #ea580c;
+            --secondary: #f97316;
             --danger: #ef4444;
             --light: #f8fafc;
             --dark: #1e293b;
@@ -21,6 +21,7 @@
             --border-radius: 8px;
             --shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06);
             --transition: all 0.3s ease;
+            --badge-size: 28px;
         }
 
         * {
@@ -54,6 +55,10 @@
             border-radius: var(--border-radius);
             box-shadow: var(--shadow);
             padding: 25px;
+            display: flex;
+            flex-direction: column;
+            max-height: calc(100vh - 40px);
+            overflow: hidden;
         }
 
         .logo-container {
@@ -64,24 +69,29 @@
             border-bottom: 1px solid var(--gray-light);
         }
 
-        .logo {
+        .logo-img {
             width: 40px;
             height: 40px;
-            background-color: var(--primary);
-            border-radius: 50%;
-            display: flex;
-            align-items: center;
-            justify-content: center;
+            object-fit: contain;
             margin-right: 12px;
-            color: white;
-            font-weight: 700;
-            font-size: 18px;
         }
 
         .logo-text {
             font-weight: 700;
             font-size: 20px;
             color: var(--primary);
+        }
+        
+        .sidebar-toggle {
+            display: none;
+            width: 100%;
+            padding: 10px 14px;
+            border: 1px solid var(--gray-light);
+            border-radius: var(--border-radius);
+            background: white;
+            color: var(--primary);
+            font-weight: 600;
+            margin-bottom: 12px;
         }
 
         .sidebar-title {
@@ -93,6 +103,9 @@
 
         .index-list {
             list-style-type: none;
+            flex: 1 1 auto;
+            overflow-y: auto;
+            padding-right: 6px;
         }
 
         .index-item {
@@ -129,17 +142,20 @@
         }
 
         .index-number {
-            display: inline-block;
-            width: 24px;
-            height: 24px;
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            width: var(--badge-size);
+            height: var(--badge-size);
             background-color: #dbeafe;
             border-radius: 50%;
             text-align: center;
-            line-height: 24px;
-            font-size: 12px;
+            line-height: var(--badge-size);
+            font-size: 14px;
             font-weight: 600;
             color: var(--primary);
             margin-right: 10px;
+            flex-shrink: 0;
         }
 
         .progress-container {
@@ -218,16 +234,20 @@
         }
 
         .section-number {
-            display: inline-block;
-            width: 32px;
-            height: 32px;
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            width: var(--badge-size);
+            height: var(--badge-size);
             background-color: #dbeafe;
             border-radius: 50%;
             text-align: center;
-            line-height: 32px;
+            line-height: var(--badge-size);
+            font-size: 14px;
             font-weight: 600;
             color: var(--primary);
             margin-right: 12px;
+            flex-shrink: 0;
         }
 
         .section-content {
@@ -522,6 +542,31 @@
             .section-content {
                 padding-left: 0;
             }
+            
+            :root {
+                --badge-size: 24px;
+            }
+            
+            .sidebar {
+                max-height: none;
+            }
+            
+            .sidebar-toggle {
+                display: inline-flex;
+                align-items: center;
+                justify-content: center;
+            }
+            
+            .index-list {
+                display: block;
+                max-height: 240px;
+                overflow-y: auto;
+            }
+            
+            .sidebar.collapsed .index-list,
+            .sidebar.collapsed .progress-container {
+                display: none;
+            }
         }
     </style>
 </head>
@@ -530,9 +575,10 @@
         <!-- Sidebar com índice -->
         <aside class="sidebar">
             <div class="logo-container">
-                <div class="logo">A</div>
+                <img class="logo-img" src="logo.png" alt="Alliance Entregas">
                 <div class="logo-text">Alliance Entregas</div>
             </div>
+            <button class="sidebar-toggle" id="sidebarToggle"><i class="fas fa-list"></i>&nbsp;Índice</button>
             
             <h3 class="sidebar-title">Índice do Termo</h3>
             
@@ -850,6 +896,14 @@
             const scrollToTopBtn = document.getElementById('scrollToTop');
             const progressFill = document.getElementById('progressFill');
             const progressPercentage = document.getElementById('progressPercentage');
+            const sidebar = document.querySelector('.sidebar');
+            const sidebarToggle = document.getElementById('sidebarToggle');
+            
+            if (sidebarToggle && sidebar) {
+                sidebarToggle.addEventListener('click', function() {
+                    sidebar.classList.toggle('collapsed');
+                });
+            }
             
             // Configurar links do índice para rolar suavemente
             indexLinks.forEach(link => {
