@@ -1,0 +1,1049 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Termos de Uso - Alliance Entregas</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Comfortaa:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="icon" type="image/png" href="fiveicon.png">
+    <link rel="apple-touch-icon" href="fiveicon.png">
+    <style>
+        :root {
+            --primary: #f97316;
+            --primary-dark: #ea580c;
+            --secondary: #f97316;
+            --danger: #ef4444;
+            --light: #f8fafc;
+            --dark: #1e293b;
+            --gray: #64748b;
+            --gray-light: #e2e8f0;
+            --border-radius: 8px;
+            --shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06);
+            --transition: all 0.3s ease;
+            --badge-size: 28px;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Comfortaa', cursive;
+            color: var(--dark);
+            background-color: #f1f5f9;
+            line-height: 1.6;
+        }
+
+        .container {
+            display: flex;
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 20px;
+            gap: 30px;
+        }
+
+        /* Sidebar - Índice */
+        .sidebar {
+            flex: 0 0 280px;
+            position: sticky;
+            top: 20px;
+            height: fit-content;
+            background-color: white;
+            border-radius: var(--border-radius);
+            box-shadow: var(--shadow);
+            padding: 25px;
+            display: flex;
+            flex-direction: column;
+            max-height: calc(100vh - 40px);
+            overflow: hidden;
+        }
+
+        .logo-container {
+            display: flex;
+            align-items: center;
+            margin-bottom: 25px;
+            padding-bottom: 20px;
+            border-bottom: 1px solid var(--gray-light);
+        }
+
+        .logo-img {
+            width: 40px;
+            height: 40px;
+            object-fit: contain;
+            margin-right: 12px;
+        }
+
+        .logo-text {
+            font-weight: 700;
+            font-size: 20px;
+            color: var(--primary);
+        }
+        
+        .sidebar-toggle {
+            display: none;
+            width: 100%;
+            padding: 10px 14px;
+            border: 1px solid var(--gray-light);
+            border-radius: var(--border-radius);
+            background: white;
+            color: var(--primary);
+            font-weight: 600;
+            margin-bottom: 12px;
+        }
+
+        .sidebar-title {
+            font-size: 18px;
+            font-weight: 600;
+            margin-bottom: 20px;
+            color: var(--dark);
+        }
+
+        .index-list {
+            list-style-type: none;
+            flex: 1 1 auto;
+            overflow-y: auto;
+            padding-right: 6px;
+        }
+
+        .index-item {
+            margin-bottom: 12px;
+            position: relative;
+        }
+
+        .index-link {
+            display: flex;
+            align-items: center;
+            text-decoration: none;
+            color: var(--gray);
+            padding: 10px 15px;
+            border-radius: var(--border-radius);
+            transition: var(--transition);
+            font-weight: 500;
+        }
+
+        .index-link:hover {
+            background-color: #f1f5f9;
+            color: var(--primary);
+        }
+
+        .index-link.active {
+            background-color: #eff6ff;
+            color: var(--primary);
+            font-weight: 600;
+        }
+
+        .index-link i {
+            margin-right: 10px;
+            width: 20px;
+            text-align: center;
+        }
+
+        .index-number {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            width: var(--badge-size);
+            height: var(--badge-size);
+            background-color: #dbeafe;
+            border-radius: 50%;
+            text-align: center;
+            line-height: var(--badge-size);
+            font-size: 14px;
+            font-weight: 600;
+            color: var(--primary);
+            margin-right: 10px;
+            flex-shrink: 0;
+        }
+
+        .progress-container {
+            margin-top: 25px;
+            padding-top: 20px;
+            border-top: 1px solid var(--gray-light);
+        }
+
+        .progress-label {
+            display: flex;
+            justify-content: space-between;
+            margin-bottom: 8px;
+            font-size: 14px;
+            color: var(--gray);
+        }
+
+        .progress-bar {
+            height: 6px;
+            background-color: var(--gray-light);
+            border-radius: 3px;
+            overflow: hidden;
+        }
+
+        .progress-fill {
+            height: 100%;
+            background-color: var(--secondary);
+            width: 0%;
+            transition: width 0.5s ease;
+        }
+
+        /* Main Content */
+        .main-content {
+            flex: 1;
+            background-color: white;
+            border-radius: var(--border-radius);
+            box-shadow: var(--shadow);
+            padding: 30px;
+            position: relative;
+        }
+
+        .header {
+            text-align: center;
+            margin-bottom: 30px;
+            padding-bottom: 20px;
+            border-bottom: 1px solid var(--gray-light);
+        }
+
+        .title {
+            font-size: 28px;
+            font-weight: 700;
+            color: var(--dark);
+            margin-bottom: 10px;
+        }
+
+        .subtitle {
+            font-size: 16px;
+            color: var(--gray);
+            max-width: 800px;
+            margin: 0 auto;
+        }
+
+        .section {
+            margin-bottom: 40px;
+            scroll-margin-top: 20px;
+        }
+
+        .section-title {
+            display: flex;
+            align-items: center;
+            font-size: 20px;
+            font-weight: 600;
+            color: var(--primary);
+            margin-bottom: 15px;
+            padding-bottom: 10px;
+            border-bottom: 2px solid #eff6ff;
+        }
+
+        .section-number {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            width: var(--badge-size);
+            height: var(--badge-size);
+            background-color: #dbeafe;
+            border-radius: 50%;
+            text-align: center;
+            line-height: var(--badge-size);
+            font-size: 14px;
+            font-weight: 600;
+            color: var(--primary);
+            margin-right: 12px;
+            flex-shrink: 0;
+        }
+
+        .section-content {
+            color: var(--dark);
+            padding-left: 44px;
+        }
+
+        .section-content p {
+            margin-bottom: 15px;
+        }
+
+        .highlight-box {
+            background-color: #f8fafc;
+            border-left: 4px solid var(--primary);
+            padding: 20px;
+            margin: 20px 0;
+            border-radius: 0 var(--border-radius) var(--border-radius) 0;
+        }
+
+        .highlight-box ul {
+            list-style-type: none;
+            padding-left: 10px;
+        }
+
+        .highlight-box li {
+            margin-bottom: 10px;
+            position: relative;
+            padding-left: 25px;
+        }
+
+        .highlight-box li:before {
+            content: "•";
+            color: var(--primary);
+            font-weight: bold;
+            position: absolute;
+            left: 0;
+        }
+
+        .warning-box {
+            background-color: #fef2f2;
+            border-left: 4px solid var(--danger);
+            padding: 20px;
+            margin: 20px 0;
+            border-radius: 0 var(--border-radius) var(--border-radius) 0;
+        }
+
+        .warning-title {
+            color: var(--danger);
+            font-weight: 600;
+            margin-bottom: 10px;
+            display: flex;
+            align-items: center;
+        }
+
+        .warning-title i {
+            margin-right: 8px;
+        }
+
+        /* Acceptance Section */
+        .acceptance-section {
+            background-color: #f8fafc;
+            border-radius: var(--border-radius);
+            padding: 30px;
+            margin-top: 40px;
+            text-align: center;
+            border: 1px solid var(--gray-light);
+        }
+
+        .acceptance-title {
+            font-size: 22px;
+            font-weight: 600;
+            margin-bottom: 20px;
+            color: var(--dark);
+        }
+
+        .acceptance-text {
+            margin-bottom: 25px;
+            color: var(--gray);
+            max-width: 800px;
+            margin-left: auto;
+            margin-right: auto;
+        }
+
+        .acceptance-list {
+            text-align: left;
+            max-width: 600px;
+            margin: 0 auto 25px;
+            list-style-type: none;
+        }
+
+        .acceptance-list li {
+            margin-bottom: 10px;
+            padding-left: 25px;
+            position: relative;
+        }
+
+        .acceptance-list li:before {
+            content: "✓";
+            color: var(--secondary);
+            font-weight: bold;
+            position: absolute;
+            left: 0;
+        }
+
+        .buttons-container {
+            display: flex;
+            justify-content: center;
+            gap: 20px;
+            margin-top: 30px;
+        }
+
+        .btn {
+            padding: 14px 32px;
+            border: none;
+            border-radius: var(--border-radius);
+            font-weight: 600;
+            font-size: 16px;
+            cursor: pointer;
+            transition: var(--transition);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .btn-accept {
+            background-color: var(--primary);
+            color: white;
+        }
+
+        .btn-accept:hover {
+            background-color: var(--primary-dark);
+            transform: translateY(-2px);
+            box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1);
+        }
+
+        .btn-decline {
+            background-color: white;
+            color: var(--danger);
+            border: 1px solid var(--danger);
+        }
+
+        .btn-decline:hover {
+            background-color: #fef2f2;
+            transform: translateY(-2px);
+            box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1);
+        }
+
+        .btn i {
+            margin-right: 10px;
+        }
+
+        .scroll-to-top {
+            position: fixed;
+            bottom: 30px;
+            right: 30px;
+            width: 50px;
+            height: 50px;
+            background-color: var(--primary);
+            color: white;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            cursor: pointer;
+            box-shadow: var(--shadow);
+            transition: var(--transition);
+            opacity: 0;
+            visibility: hidden;
+            z-index: 100;
+        }
+
+        .scroll-to-top.show {
+            opacity: 1;
+            visibility: visible;
+        }
+
+        .scroll-to-top:hover {
+            background-color: var(--primary-dark);
+            transform: translateY(-3px);
+        }
+
+        /* Modal */
+        .modal {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(0, 0, 0, 0.5);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            z-index: 1000;
+            opacity: 0;
+            visibility: hidden;
+            transition: var(--transition);
+        }
+
+        .modal.show {
+            opacity: 1;
+            visibility: visible;
+        }
+
+        .modal-content {
+            background-color: white;
+            border-radius: var(--border-radius);
+            padding: 30px;
+            max-width: 500px;
+            width: 90%;
+            text-align: center;
+            box-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.1);
+            transform: translateY(20px);
+            transition: transform 0.3s ease;
+        }
+
+        .modal.show .modal-content {
+            transform: translateY(0);
+        }
+
+        .modal-icon {
+            font-size: 50px;
+            color: var(--primary);
+            margin-bottom: 20px;
+        }
+
+        .modal-title {
+            font-size: 24px;
+            font-weight: 700;
+            margin-bottom: 15px;
+            color: var(--dark);
+        }
+
+        .modal-text {
+            color: var(--gray);
+            margin-bottom: 25px;
+        }
+
+        .modal-btn {
+            padding: 12px 24px;
+            background-color: var(--primary);
+            color: white;
+            border: none;
+            border-radius: var(--border-radius);
+            font-weight: 600;
+            cursor: pointer;
+            transition: var(--transition);
+        }
+
+        .modal-btn:hover {
+            background-color: var(--primary-dark);
+        }
+
+        /* Responsive */
+        @media (max-width: 992px) {
+            .container {
+                flex-direction: column;
+            }
+            
+            .sidebar {
+                position: static;
+                margin-bottom: 20px;
+            }
+            
+            .index-list {
+                display: grid;
+                grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+                gap: 10px;
+            }
+        }
+
+        @media (max-width: 576px) {
+            .container {
+                padding: 10px;
+            }
+            
+            .main-content, .sidebar {
+                padding: 20px;
+            }
+            
+            .buttons-container {
+                flex-direction: column;
+            }
+            
+            .btn {
+                width: 100%;
+            }
+            
+            .title {
+                font-size: 24px;
+            }
+            
+            .section-content {
+                padding-left: 0;
+            }
+            
+            :root {
+                --badge-size: 24px;
+            }
+            
+            .sidebar {
+                max-height: none;
+            }
+            
+            .sidebar-toggle {
+                display: inline-flex;
+                align-items: center;
+                justify-content: center;
+            }
+            
+            .index-list {
+                display: block;
+                max-height: 240px;
+                overflow-y: auto;
+            }
+            
+            .sidebar.collapsed .index-list,
+            .sidebar.collapsed .progress-container {
+                display: none;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <!-- Sidebar com índice -->
+        <aside class="sidebar">
+            <div class="logo-container">
+                <img class="logo-img" src="logo.png" alt="Alliance Entregas">
+                <div class="logo-text">Alliance Entregas</div>
+            </div>
+            <button class="sidebar-toggle" id="sidebarToggle"><i class="fas fa-list"></i>&nbsp;Índice</button>
+            
+            <h3 class="sidebar-title">Índice do Termo</h3>
+            
+            <ul class="index-list">
+                <li class="index-item">
+                    <a href="#introducao" class="index-link active">
+                        <span class="index-number">1</span>
+                        <span>Introdução</span>
+                    </a>
+                </li>
+                <li class="index-item">
+                    <a href="#natureza-plataforma" class="index-link">
+                        <span class="index-number">2</span>
+                        <span>Natureza da Plataforma</span>
+                    </a>
+                </li>
+                <li class="index-item">
+                    <a href="#ausencia-vinculo" class="index-link">
+                        <span class="index-number">3</span>
+                        <span>Ausência de Vínculo</span>
+                    </a>
+                </li>
+                <li class="index-item">
+                    <a href="#responsabilidade-veiculo" class="index-link">
+                        <span class="index-number">4</span>
+                        <span>Responsabilidade sobre Veículo</span>
+                    </a>
+                </li>
+                <li class="index-item">
+                    <a href="#riscos-atividade" class="index-link">
+                        <span class="index-number">5</span>
+                        <span>Riscos da Atividade</span>
+                    </a>
+                </li>
+                <li class="index-item">
+                    <a href="#responsabilidade-mercadoria" class="index-link">
+                        <span class="index-number">6</span>
+                        <span>Responsabilidade sobre Mercadoria</span>
+                    </a>
+                </li>
+                <li class="index-item">
+                    <a href="#relacao-entregador-lojista" class="index-link">
+                        <span class="index-number">7</span>
+                        <span>Relação Entregador-Lojista</span>
+                    </a>
+                </li>
+                <li class="index-item">
+                    <a href="#normas-locais" class="index-link">
+                        <span class="index-number">8</span>
+                        <span>Normas Locais</span>
+                    </a>
+                </li>
+                <li class="index-item">
+                    <a href="#suspensao-bloqueio" class="index-link">
+                        <span class="index-number">9</span>
+                        <span>Suspensão ou Bloqueio</span>
+                    </a>
+                </li>
+                <li class="index-item">
+                    <a href="#tratamento-dados" class="index-link">
+                        <span class="index-number">10</span>
+                        <span>Tratamento de Dados</span>
+                    </a>
+                </li>
+                <li class="index-item">
+                    <a href="#aceite-termo" class="index-link">
+                        <span class="index-number">✓</span>
+                        <span>Aceite do Termo</span>
+                    </a>
+                </li>
+            </ul>
+            
+            <div class="progress-container">
+                <div class="progress-label">
+                    <span>Progresso de Leitura</span>
+                    <span id="progressPercentage">0%</span>
+                </div>
+                <div class="progress-bar">
+                    <div class="progress-fill" id="progressFill"></div>
+                </div>
+            </div>
+        </aside>
+
+        <!-- Conteúdo Principal -->
+        <main class="main-content">
+            <div class="header">
+                <h1 class="title">TERMO DE CIÊNCIA, RESPONSABILIDADE E ISENÇÃO DE VÍNCULO</h1>
+                <p class="subtitle">Este Termo estabelece as condições para utilização da plataforma Alliance Entregas, de propriedade da empresa Alliance Entregas / 49.051.140.0001-88, doravante denominada Alliance Entregas, por entregadores independentes, doravante denominados Entregadores.</p>
+                <p class="subtitle">Ao clicar em "ACEITO", o Entregador declara ter lido, compreendido e concordado integralmente com todas as cláusulas e condições abaixo.</p>
+            </div>
+
+            <!-- Seções do Termo -->
+            <section id="natureza-plataforma" class="section">
+                <h2 class="section-title">
+                    <span class="section-number">1</span>
+                    Natureza da Plataforma
+                </h2>
+                <div class="section-content">
+                    <p><strong>1.1.</strong> A Alliance Entregas atua exclusivamente como intermediadora tecnológica entre lojistas e consumidores, facilitando a solicitação de entregas.</p>
+                    <p><strong>1.2.</strong> A Plataforma não é empresa de transporte, motofrete ou logística e não presta serviços de entrega diretamente.</p>
+                    <p><strong>1.3.</strong> O Entregador reconhece que atua de forma autônoma, assumindo integral responsabilidade pela execução das entregas que aceitar.</p>
+                </div>
+            </section>
+
+            <section id="ausencia-vinculo" class="section">
+                <h2 class="section-title">
+                    <span class="section-number">2</span>
+                    Ausência de Vínculo Trabalhista
+                </h2>
+                <div class="section-content">
+                    <p><strong>2.1.</strong> Ao utilizar a Plataforma, o Entregador declara expressamente que não possui qualquer vínculo trabalhista, societário, hierárquico ou subordinação com a empresa responsável pela Alliance Entregas.</p>
+                    <p><strong>2.2.</strong> A relação é de natureza civil e não implica em subordinação jurídica. A Alliance Entregas não exige metas de produtividade, taxa de aceitação mínima ou tempo mínimo de conexão à plataforma.</p>
+                    <div class="highlight-box">
+                        <p><strong>2.3.</strong> O Entregador é livre para:</p>
+                        <ul>
+                            <li>Escolher seus horários;</li>
+                            <li>Decidir quais entregas aceitar;</li>
+                            <li>Utilizar sua própria motocicleta, bicicleta ou veículo autorizado.</li>
+                        </ul>
+                    </div>
+                    <p><strong>2.3.1.</strong> Não Exclusividade: O Entregador está livre para prestar serviços para quaisquer outras plataformas, empresas ou pessoas, inclusive concorrentes, a qualquer tempo.</p>
+                    <p><strong>2.3.2.</strong> Recusa de Oferta: A recusa de ofertas de entrega pelo Entregador não resultará em sanções (multas, redução de prioridade ou bloqueio) pela Plataforma.</p>
+                    <p><strong>2.4.</strong> Remuneração Variável: A remuneração do Entregador é variável, vinculada exclusivamente aos serviços efetivamente aceitos e concluídos, não havendo garantia de renda mínima ou fixa (salário).</p>
+                </div>
+            </section>
+
+            <section id="responsabilidade-veiculo" class="section">
+                <h2 class="section-title">
+                    <span class="section-number">3</span>
+                    Responsabilidade sobre Veículo, Documentos e Equipamentos
+                </h2>
+                <div class="section-content">
+                    <div class="highlight-box">
+                        <p><strong>3.1.</strong> O Entregador é totalmente responsável por:</p>
+                        <ul>
+                            <li>CNH válida e compatível com o veículo utilizado;</li>
+                            <li>Documentação do veículo;</li>
+                            <li>Manutenção, combustível e equipamentos de segurança;</li>
+                            <li>Certificações exigidas por leis locais, estaduais ou federais.</li>
+                        </ul>
+                    </div>
+                    <p><strong>3.2.</strong> A Plataforma não verifica, não fiscaliza e não se responsabiliza pelos documentos ou condições do veículo utilizado pelo Entregador.</p>
+                </div>
+            </section>
+
+            <section id="riscos-atividade" class="section">
+                <h2 class="section-title">
+                    <span class="section-number">4</span>
+                    Riscos da Atividade e Isenção de Responsabilidade da Plataforma
+                </h2>
+                <div class="section-content">
+                    <p><strong>4.1.</strong> A entrega é uma atividade realizada por conta e risco exclusivo do Entregador.</p>
+                    <div class="warning-box">
+                        <div class="warning-title">
+                            <i class="fas fa-exclamation-triangle"></i>
+                            <span>4.2. A atividade é exercida por conta e risco do Entregador. No entanto, o Entregador é altamente encorajado a contratar seguro de vida, acidentes pessoais e seguro contra terceiros (DPVAT e outros). Ainda assim, a Plataforma não se responsabiliza, em nenhuma hipótese, por:</span>
+                        </div>
+                        <ul>
+                            <li>Acidentes de trânsito;</li>
+                            <li>Danos físicos, materiais ou pessoais;</li>
+                            <li>Roubo, furto ou assaltos;</li>
+                            <li>Perdas, extravios ou avarias no produto transportado;</li>
+                            <li>Multas, infrações ou retenção de veículo;</li>
+                            <li>Custos operacionais do Entregador;</li>
+                            <li>Ocorrências causadas por terceiros ou pelo próprio Entregador.</li>
+                        </ul>
+                    </div>
+                    <p><strong>4.2.1.</strong> A Alliance Entregas poderá exigir ou facilitar a contratação de seguros básicos obrigatórios, conforme legislação aplicável, sendo os custos claramente detalhados e de responsabilidade do Entregador.</p>
+                    <p><strong>4.3.</strong> O Entregador assume total responsabilidade civil e penal pelos atos praticados no exercício da atividade.</p>
+                </div>
+            </section>
+
+            <section id="responsabilidade-mercadoria" class="section">
+                <h2 class="section-title">
+                    <span class="section-number">5</span>
+                    Responsabilidade sobre a Mercadoria
+                </h2>
+                <div class="section-content">
+                    <p><strong>5.1.</strong> A Plataforma não é proprietária da mercadoria transportada e não participa da relação comercial entre loja e cliente final.</p>
+                    <p><strong>5.2.</strong> Qualquer reclamação, disputa, troca, devolução ou indenização sobre produto é de responsabilidade exclusiva da loja.</p>
+                    <p><strong>5.3.</strong> Responsabilidade sobre a Mercadoria: A responsabilidade por perdas, roubo, extravio ou danos ao produto transportado é do Entregador.</p>
+                    <p><strong>5.3.1.</strong> Seguros Opcionais: A Alliance Entregas pode oferecer, por meio de terceiros, seguro de carga opcional para cobrir riscos específicos (ex: roubos), cujo custo será descontado do valor da corrida, mediante aceite expresso do Entregador.</p>
+                </div>
+            </section>
+
+            <section id="relacao-entregador-lojista" class="section">
+                <h2 class="section-title">
+                    <span class="section-number">6</span>
+                    Relação entre Entregador e Lojista
+                </h2>
+                <div class="section-content">
+                    <p><strong>6.1.</strong> A Plataforma não interfere no valor pago pela entrega ou na forma de pagamento.</p>
+                    <p><strong>6.2.</strong> Toda a relação comercial relativa ao serviço prestado é exclusivamente entre Entregador e Lojista.</p>
+                    <p><strong>6.3.</strong> A Plataforma apenas processa a conexão das partes, não sendo responsável por pagamentos pendentes, desacordos comerciais ou conflitos entre as partes.</p>
+                </div>
+            </section>
+
+            <section id="normas-locais" class="section">
+                <h2 class="section-title">
+                    <span class="section-number">7</span>
+                    Normas Locais – Maceió e Estado de Alagoas
+                </h2>
+                <div class="section-content">
+                    <div class="highlight-box">
+                        <p><strong>7.1.</strong> O Entregador declara estar ciente das normas municipais e estaduais aplicáveis, incluindo:</p>
+                        <ul>
+                            <li>Regras sobre direito de defesa e notificação prévia em caso de bloqueio/suspensão;</li>
+                            <li>Regras sobre atuação em condomínios, quando aplicável;</li>
+                            <li>Leis de trânsito e segurança previstas no CTB (Código de Trânsito Brasileiro).</li>
+                        </ul>
+                    </div>
+                    <p><strong>7.2.</strong> A Plataforma respeita integralmente a legislação vigente, mas não assume responsabilidade por irregularidades praticadas pelo Entregador.</p>
+                </div>
+            </section>
+
+            <section id="suspensao-bloqueio" class="section">
+                <h2 class="section-title">
+                    <span class="section-number">8</span>
+                    Suspensão ou Bloqueio de Acesso
+                </h2>
+                <div class="section-content">
+                    <div class="highlight-box">
+                        <p><strong>8.1.</strong> Critérios de Bloqueio: A suspensão ou bloqueio definitivo será aplicado apenas em casos de justa causa e após o cumprimento do direito de defesa. Exemplos de justa causa incluem:</p>
+                        <ul>
+                            <li>a) Prática comprovada de Fraude;</li>
+                            <li>b) Reclamações graves e reiteradas que resultem em pontuação média abaixo de [DEFINIR MÍNIMO CLARO];</li>
+                            <li>c) Não apresentação de documentos obrigatórios após prazo de 15 dias.</li>
+                        </ul>
+                    </div>
+                    <div class="highlight-box">
+                        <p><strong>8.2.</strong> Processo de Defesa: Em caso de Notificação Prévia, o Entregador terá o prazo de [DEFINIR PRAZO CLARO, ex: 5 dias úteis] para apresentar sua defesa por escrito ou por meio de canal digital específico, sendo a suspensão definitiva analisada apenas após a avaliação dos argumentos apresentados.</p>
+                    </div>
+                </div>
+            </section>
+
+            <section id="tratamento-dados" class="section">
+                <h2 class="section-title">
+                    <span class="section-number">9</span>
+                    Tratamento de Dados
+                </h2>
+                <div class="section-content">
+                    <p><strong>9.1.</strong> O Entregador autoriza o uso dos seus dados conforme a Lei Geral de Proteção de Dados (LGPD).</p>
+                    <p><strong>9.2.</strong> Os dados são utilizados exclusivamente para fins operacionais da Plataforma.</p>
+                </div>
+            </section>
+
+            <!-- Seção de Aceite -->
+            <section id="aceite-termo" class="acceptance-section">
+                <h2 class="acceptance-title">Aceite do Termo</h2>
+                <p class="acceptance-text">Ao clicar em "ACEITO", o Entregador confirma que:</p>
+                
+                <ul class="acceptance-list">
+                    <li>Leu e compreendeu todas as cláusulas;</li>
+                    <li>Reconhece que a Plataforma é apenas uma intermediadora;</li>
+                    <li>Assume integral responsabilidade pelos riscos da atividade;</li>
+                    <li>Não estabelece vínculo trabalhista com a empresa;</li>
+                    <li>Concorda com todas as políticas previstas neste Termo.</li>
+                </ul>
+                
+                <p class="acceptance-text">Se não concordar, clique em "NÃO ACEITO" e não utilize os serviços da Plataforma.</p>
+                
+                <div class="buttons-container">
+                    <button class="btn btn-accept" id="acceptBtn">
+                        <i class="fas fa-check-circle"></i>
+                        ACEITO OS TERMOS
+                    </button>
+                    <button class="btn btn-decline" id="declineBtn">
+                        <i class="fas fa-times-circle"></i>
+                        NÃO ACEITO
+                    </button>
+                </div>
+            </section>
+        </main>
+    </div>
+
+    <!-- Botão para voltar ao topo -->
+    <div class="scroll-to-top" id="scrollToTop">
+        <i class="fas fa-arrow-up"></i>
+    </div>
+
+    <!-- Modal de confirmação -->
+    <div class="modal" id="confirmationModal">
+        <div class="modal-content">
+            <div class="modal-icon">
+                <i class="fas fa-check-circle"></i>
+            </div>
+            <h3 class="modal-title">Termo Aceito com Sucesso!</h3>
+            <p class="modal-text">Você aceitou todos os termos e condições da Alliance Entregas. Agora você pode começar a utilizar a plataforma como entregador independente.</p>
+            <button class="modal-btn" id="modalOkBtn">OK, ENTENDI</button>
+        </div>
+    </div>
+
+    <div class="modal" id="declineModal">
+        <div class="modal-content">
+            <div class="modal-icon" style="color: var(--danger);">
+                <i class="fas fa-exclamation-circle"></i>
+            </div>
+            <h3 class="modal-title">Termo Não Aceito</h3>
+            <p class="modal-text">Para utilizar os serviços da plataforma Alliance Entregas, é necessário aceitar todos os termos e condições. Caso mude de ideia, você poderá aceitar os termos posteriormente.</p>
+            <button class="modal-btn" id="modalDeclineBtn" style="background-color: var(--danger);">ENTENDIDO</button>
+        </div>
+    </div>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            // Elementos DOM
+            const indexLinks = document.querySelectorAll('.index-link');
+            const sections = document.querySelectorAll('.section');
+            const acceptBtn = document.getElementById('acceptBtn');
+            const declineBtn = document.getElementById('declineBtn');
+            const confirmationModal = document.getElementById('confirmationModal');
+            const declineModal = document.getElementById('declineModal');
+            const modalOkBtn = document.getElementById('modalOkBtn');
+            const modalDeclineBtn = document.getElementById('modalDeclineBtn');
+            const scrollToTopBtn = document.getElementById('scrollToTop');
+            const progressFill = document.getElementById('progressFill');
+            const progressPercentage = document.getElementById('progressPercentage');
+            const sidebar = document.querySelector('.sidebar');
+            const sidebarToggle = document.getElementById('sidebarToggle');
+            
+            if (sidebarToggle && sidebar) {
+                sidebarToggle.addEventListener('click', function() {
+                    sidebar.classList.toggle('collapsed');
+                });
+            }
+            
+            // Configurar links do índice para rolar suavemente
+            indexLinks.forEach(link => {
+                link.addEventListener('click', function(e) {
+                    e.preventDefault();
+                    
+                    // Remove active class de todos os links
+                    indexLinks.forEach(item => item.classList.remove('active'));
+                    
+                    // Adiciona active class ao link clicado
+                    this.classList.add('active');
+                    
+                    // Obtém o ID da seção alvo
+                    const targetId = this.getAttribute('href');
+                    const targetSection = document.querySelector(targetId);
+                    
+                    // Rola suavemente até a seção
+                    if (targetSection) {
+                        window.scrollTo({
+                            top: targetSection.offsetTop - 20,
+                            behavior: 'smooth'
+                        });
+                    }
+                });
+            });
+            
+            // Atualizar índice ativo ao rolar
+            function updateActiveIndex() {
+                // Calcula a posição de rolagem
+                const scrollPosition = window.scrollY + 100;
+                
+                // Verifica qual seção está visível
+                let currentSectionId = '';
+                
+                sections.forEach(section => {
+                    const sectionTop = section.offsetTop;
+                    const sectionHeight = section.offsetHeight;
+                    
+                    if (scrollPosition >= sectionTop && scrollPosition < sectionTop + sectionHeight) {
+                        currentSectionId = `#${section.id}`;
+                    }
+                });
+                
+                // Se chegou ao final, ativa a seção de aceite
+                if (!currentSectionId && scrollPosition >= document.getElementById('aceite-termo').offsetTop) {
+                    currentSectionId = '#aceite-termo';
+                }
+                
+                // Atualiza o link ativo no índice
+                if (currentSectionId) {
+                    indexLinks.forEach(link => {
+                        link.classList.remove('active');
+                        if (link.getAttribute('href') === currentSectionId) {
+                            link.classList.add('active');
+                        }
+                    });
+                }
+                
+                // Atualiza o progresso de leitura
+                updateReadingProgress();
+                
+                // Mostra/oculta botão para voltar ao topo
+                if (scrollPosition > 500) {
+                    scrollToTopBtn.classList.add('show');
+                } else {
+                    scrollToTopBtn.classList.remove('show');
+                }
+            }
+            
+            // Atualizar barra de progresso de leitura
+            function updateReadingProgress() {
+                const windowHeight = window.innerHeight;
+                const documentHeight = document.documentElement.scrollHeight;
+                const scrollTop = window.scrollY;
+                
+                // Calcula o progresso baseado na rolagem
+                const scrollPercent = (scrollTop / (documentHeight - windowHeight)) * 100;
+                const roundedPercent = Math.min(Math.round(scrollPercent), 100);
+                
+                // Atualiza a barra de progresso
+                progressFill.style.width = `${roundedPercent}%`;
+                progressPercentage.textContent = `${roundedPercent}%`;
+            }
+            
+            // Botão para voltar ao topo
+            scrollToTopBtn.addEventListener('click', function() {
+                window.scrollTo({
+                    top: 0,
+                    behavior: 'smooth'
+                });
+            });
+            
+            // Aceitar termos
+            acceptBtn.addEventListener('click', function() {
+                confirmationModal.classList.add('show');
+                
+                // Em uma implementação real, aqui você enviaria a aceitação para o servidor
+                console.log('Termos aceitos pelo entregador');
+            });
+            
+            // Recusar termos
+            declineBtn.addEventListener('click', function() {
+                declineModal.classList.add('show');
+                
+                // Em uma implementação real, aqui você registraria a recusa
+                console.log('Termos recusados pelo entregador');
+            });
+            
+            // Fechar modais
+            modalOkBtn.addEventListener('click', function() {
+                confirmationModal.classList.remove('show');
+                // Em uma implementação real, redirecionaria para a página de início do entregador
+                alert('Redirecionando para a página inicial do entregador...');
+            });
+            
+            modalDeclineBtn.addEventListener('click', function() {
+                declineModal.classList.remove('show');
+            });
+            
+            // Fechar modal ao clicar fora
+            window.addEventListener('click', function(e) {
+                if (e.target === confirmationModal) {
+                    confirmationModal.classList.remove('show');
+                }
+                if (e.target === declineModal) {
+                    declineModal.classList.remove('show');
+                }
+            });
+            
+            // Atualizar o índice ativo ao rolar
+            window.addEventListener('scroll', updateActiveIndex);
+            
+            // Inicializar barra de progresso
+            updateReadingProgress();
+            
+            // Simular leitura inicial (primeira seção visível)
+            setTimeout(() => {
+                indexLinks[0].classList.add('active');
+            }, 100);
+        });
+    </script>
+</body>
+</html>

@@ -1,0 +1,773 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Portal de Entregas | Condomínio</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Segoe UI', system-ui, -apple-system, sans-serif;
+        }
+        
+        :root {
+            --primary-color: #3a86ff;
+            --secondary-color: #8338ec;
+            --success-color: #06d6a0;
+            --warning-color: #ff9e00;
+            --danger-color: #ef476f;
+            --light-color: #f8f9fa;
+            --dark-color: #212529;
+            --gray-color: #6c757d;
+            --border-radius: 12px;
+            --box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
+            --transition: all 0.3s ease;
+        }
+        
+        body {
+            background-color: #f5f7fb;
+            color: var(--dark-color);
+            line-height: 1.6;
+        }
+        
+        .container {
+            max-width: 100%;
+            padding: 0 16px;
+        }
+        
+        /* Header */
+        .header {
+            background: linear-gradient(135deg, var(--primary-color), var(--secondary-color));
+            color: white;
+            padding: 20px 16px;
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+            position: sticky;
+            top: 0;
+            z-index: 100;
+        }
+        
+        .header-content {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+        
+        .logo {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+        
+        .logo-icon {
+            font-size: 24px;
+        }
+        
+        .logo-text {
+            font-size: 20px;
+            font-weight: 700;
+        }
+        
+        .user-profile {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            background: rgba(255, 255, 255, 0.2);
+            padding: 6px 12px;
+            border-radius: 20px;
+        }
+        
+        .user-avatar {
+            width: 32px;
+            height: 32px;
+            border-radius: 50%;
+            background-color: white;
+            color: var(--primary-color);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: bold;
+        }
+        
+        /* Main Content */
+        .main-content {
+            padding: 20px 0;
+        }
+        
+        .section-title {
+            font-size: 18px;
+            font-weight: 600;
+            margin-bottom: 16px;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+        
+        .section-title i {
+            color: var(--primary-color);
+        }
+        
+        /* Tabs */
+        .tabs {
+            display: flex;
+            background-color: white;
+            border-radius: var(--border-radius);
+            overflow: hidden;
+            margin-bottom: 24px;
+            box-shadow: var(--box-shadow);
+        }
+        
+        .tab {
+            flex: 1;
+            padding: 16px;
+            text-align: center;
+            font-weight: 600;
+            background-color: white;
+            border: none;
+            cursor: pointer;
+            transition: var(--transition);
+        }
+        
+        .tab.active {
+            background-color: var(--primary-color);
+            color: white;
+        }
+        
+        /* Card */
+        .card {
+            background-color: white;
+            border-radius: var(--border-radius);
+            padding: 20px;
+            margin-bottom: 20px;
+            box-shadow: var(--box-shadow);
+        }
+        
+        /* Delivery Form */
+        .form-group {
+            margin-bottom: 20px;
+        }
+        
+        .form-label {
+            display: block;
+            margin-bottom: 8px;
+            font-weight: 600;
+            color: var(--dark-color);
+        }
+        
+        .form-input {
+            width: 100%;
+            padding: 14px;
+            border: 2px solid #e9ecef;
+            border-radius: var(--border-radius);
+            font-size: 16px;
+            transition: var(--transition);
+        }
+        
+        .form-input:focus {
+            outline: none;
+            border-color: var(--primary-color);
+        }
+        
+        .form-select {
+            width: 100%;
+            padding: 14px;
+            border: 2px solid #e9ecef;
+            border-radius: var(--border-radius);
+            font-size: 16px;
+            background-color: white;
+            appearance: none;
+            background-image: url("data:image/svg+xml;charset=UTF-8,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='currentColor' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'%3e%3cpolyline points='6 9 12 15 18 9'%3e%3c/polyline%3e%3c/svg%3e");
+            background-repeat: no-repeat;
+            background-position: right 10px center;
+            background-size: 20px;
+        }
+        
+        /* Camera Section */
+        .camera-container {
+            background-color: #f8f9fa;
+            border-radius: var(--border-radius);
+            padding: 20px;
+            margin-bottom: 20px;
+            text-align: center;
+            border: 2px dashed #dee2e6;
+        }
+        
+        .camera-placeholder {
+            width: 100%;
+            height: 200px;
+            background-color: #e9ecef;
+            border-radius: var(--border-radius);
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            color: var(--gray-color);
+            margin-bottom: 16px;
+            cursor: pointer;
+            transition: var(--transition);
+        }
+        
+        .camera-placeholder:hover {
+            background-color: #dee2e6;
+        }
+        
+        .camera-icon {
+            font-size: 48px;
+            margin-bottom: 10px;
+            color: var(--primary-color);
+        }
+        
+        /* Button */
+        .btn {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            gap: 8px;
+            width: 100%;
+            padding: 16px;
+            border: none;
+            border-radius: var(--border-radius);
+            font-size: 16px;
+            font-weight: 600;
+            cursor: pointer;
+            transition: var(--transition);
+        }
+        
+        .btn-primary {
+            background-color: var(--primary-color);
+            color: white;
+        }
+        
+        .btn-primary:hover {
+            background-color: #2a75ff;
+        }
+        
+        .btn-success {
+            background-color: var(--success-color);
+            color: white;
+        }
+        
+        .btn-success:hover {
+            background-color: #05c490;
+        }
+        
+        /* Delivery List */
+        .delivery-list {
+            display: flex;
+            flex-direction: column;
+            gap: 16px;
+        }
+        
+        .delivery-item {
+            background-color: white;
+            border-radius: var(--border-radius);
+            padding: 16px;
+            display: flex;
+            align-items: center;
+            gap: 16px;
+            box-shadow: var(--box-shadow);
+            border-left: 5px solid var(--primary-color);
+        }
+        
+        .delivery-item.pending {
+            border-left-color: var(--warning-color);
+        }
+        
+        .delivery-item.delivered {
+            border-left-color: var(--success-color);
+        }
+        
+        .delivery-icon {
+            width: 50px;
+            height: 50px;
+            border-radius: 50%;
+            background-color: #e7f1ff;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 20px;
+            color: var(--primary-color);
+        }
+        
+        .delivery-info {
+            flex: 1;
+        }
+        
+        .delivery-title {
+            font-weight: 600;
+            margin-bottom: 4px;
+        }
+        
+        .delivery-details {
+            font-size: 14px;
+            color: var(--gray-color);
+            margin-bottom: 4px;
+        }
+        
+        .delivery-time {
+            font-size: 12px;
+            color: var(--gray-color);
+        }
+        
+        .delivery-status {
+            font-size: 12px;
+            padding: 4px 10px;
+            border-radius: 20px;
+            font-weight: 600;
+        }
+        
+        .status-pending {
+            background-color: #fff3cd;
+            color: #856404;
+        }
+        
+        .status-delivered {
+            background-color: #d4edda;
+            color: #155724;
+        }
+        
+        /* Notifications */
+        .notification-badge {
+            position: absolute;
+            top: -5px;
+            right: -5px;
+            background-color: var(--danger-color);
+            color: white;
+            font-size: 12px;
+            font-weight: bold;
+            width: 20px;
+            height: 20px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+        
+        /* Modal */
+        .modal {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(0, 0, 0, 0.5);
+            z-index: 1000;
+            align-items: center;
+            justify-content: center;
+            padding: 16px;
+        }
+        
+        .modal.active {
+            display: flex;
+        }
+        
+        .modal-content {
+            background-color: white;
+            border-radius: var(--border-radius);
+            width: 100%;
+            max-width: 400px;
+            overflow: hidden;
+            animation: modalFadeIn 0.3s ease;
+        }
+        
+        @keyframes modalFadeIn {
+            from { opacity: 0; transform: translateY(-20px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+        
+        .modal-header {
+            padding: 20px;
+            background-color: var(--primary-color);
+            color: white;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+        
+        .modal-body {
+            padding: 20px;
+        }
+        
+        .modal-close {
+            background: none;
+            border: none;
+            color: white;
+            font-size: 20px;
+            cursor: pointer;
+        }
+        
+        /* Footer */
+        .footer {
+            text-align: center;
+            padding: 20px;
+            color: var(--gray-color);
+            font-size: 14px;
+            margin-top: 20px;
+        }
+        
+        /* Responsive */
+        @media (min-width: 768px) {
+            .container {
+                max-width: 600px;
+                margin: 0 auto;
+            }
+            
+            .tabs {
+                max-width: 500px;
+                margin-left: auto;
+                margin-right: auto;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Header -->
+    <header class="header">
+        <div class="container header-content">
+            <div class="logo">
+                <div class="logo-icon">
+                    <i class="fas fa-box-open"></i>
+                </div>
+                <div class="logo-text">Portal de Entregas</div>
+            </div>
+            
+            <div class="user-profile">
+                <div class="user-avatar">PS</div>
+                <span>Porteiro Silva</span>
+            </div>
+        </div>
+    </header>
+    
+    <!-- Main Content -->
+    <main class="main-content">
+        <div class="container">
+            <!-- Tabs -->
+            <div class="tabs">
+                <button class="tab active" id="tab-new-delivery">
+                    <i class="fas fa-plus-circle"></i> Nova Entrega
+                </button>
+                <button class="tab" id="tab-delivery-list">
+                    <i class="fas fa-list"></i> Entregas
+                    <span class="notification-badge" id="notification-count">3</span>
+                </button>
+            </div>
+            
+            <!-- New Delivery Form (Active by default) -->
+            <div id="new-delivery-section" class="tab-content">
+                <div class="card">
+                    <h2 class="section-title">
+                        <i class="fas fa-truck"></i> Registrar Nova Entrega
+                    </h2>
+                    
+                    <form id="delivery-form">
+                        <div class="form-group">
+                            <label class="form-label" for="resident">Morador</label>
+                            <select class="form-select" id="resident" required>
+                                <option value="">Selecione o morador</option>
+                                <option value="101">Apartamento 101 - João Silva</option>
+                                <option value="102">Apartamento 102 - Maria Santos</option>
+                                <option value="201">Apartamento 201 - Pedro Costa</option>
+                                <option value="202">Apartamento 202 - Ana Oliveira</option>
+                                <option value="301">Apartamento 301 - Carlos Pereira</option>
+                            </select>
+                        </div>
+                        
+                        <div class="form-group">
+                            <label class="form-label" for="delivery-company">Empresa de Entrega</label>
+                            <input type="text" class="form-input" id="delivery-company" placeholder="Ex: Correios, Uber Eats, etc." required>
+                        </div>
+                        
+                        <div class="form-group">
+                            <label class="form-label" for="delivery-code">Código de Rastreamento (Opcional)</label>
+                            <input type="text" class="form-input" id="delivery-code" placeholder="Código de rastreamento">
+                        </div>
+                        
+                        <div class="form-group">
+                            <label class="form-label">Foto da Entrega</label>
+                            <div class="camera-container">
+                                <div class="camera-placeholder" id="camera-trigger">
+                                    <i class="fas fa-camera camera-icon"></i>
+                                    <span>Clique para tirar uma foto da entrega</span>
+                                </div>
+                                <div id="photo-preview"></div>
+                                <input type="file" id="camera-input" accept="image/*" capture="environment" style="display: none;">
+                            </div>
+                        </div>
+                        
+                        <button type="submit" class="btn btn-primary">
+                            <i class="fas fa-bell"></i> Notificar Morador
+                        </button>
+                    </form>
+                </div>
+            </div>
+            
+            <!-- Delivery List (Hidden by default) -->
+            <div id="delivery-list-section" class="tab-content" style="display: none;">
+                <div class="card">
+                    <h2 class="section-title">
+                        <i class="fas fa-history"></i> Histórico de Entregas
+                    </h2>
+                    
+                    <div class="delivery-list" id="delivery-list-container">
+                        <!-- Delivery items will be dynamically added here -->
+                    </div>
+                </div>
+            </div>
+        </div>
+    </main>
+    
+    <!-- Success Modal -->
+    <div class="modal" id="success-modal">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h3>Entrega Registrada!</h3>
+                <button class="modal-close" id="close-success-modal">&times;</button>
+            </div>
+            <div class="modal-body">
+                <div style="text-align: center; margin-bottom: 20px;">
+                    <i class="fas fa-check-circle" style="font-size: 60px; color: var(--success-color);"></i>
+                </div>
+                <p style="text-align: center; margin-bottom: 20px;">A entrega foi registrada com sucesso e o morador foi notificado.</p>
+                <button class="btn btn-success" id="ok-success-btn">OK</button>
+            </div>
+        </div>
+    </div>
+    
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="container">
+            <p>Sistema de Gerenciamento de Entregas para Condomínios &copy; 2023</p>
+        </div>
+    </footer>
+    
+    <script>
+        // Sample delivery data
+        const deliveries = [
+            {
+                id: 1,
+                resident: "Apartamento 101 - João Silva",
+                company: "Correios",
+                code: "AB123456789BR",
+                time: "Hoje, 10:30",
+                status: "pending",
+                photo: null
+            },
+            {
+                id: 2,
+                resident: "Apartamento 201 - Pedro Costa",
+                company: "iFood",
+                code: "",
+                time: "Hoje, 09:15",
+                status: "delivered",
+                photo: null
+            },
+            {
+                id: 3,
+                resident: "Apartamento 102 - Maria Santos",
+                company: "Amazon",
+                code: "TBA123456789",
+                time: "Ontem, 16:45",
+                status: "delivered",
+                photo: null
+            }
+        ];
+        
+        // DOM Elements
+        const tabNewDelivery = document.getElementById('tab-new-delivery');
+        const tabDeliveryList = document.getElementById('tab-delivery-list');
+        const newDeliverySection = document.getElementById('new-delivery-section');
+        const deliveryListSection = document.getElementById('delivery-list-section');
+        const deliveryForm = document.getElementById('delivery-form');
+        const cameraTrigger = document.getElementById('camera-trigger');
+        const cameraInput = document.getElementById('camera-input');
+        const photoPreview = document.getElementById('photo-preview');
+        const deliveryListContainer = document.getElementById('delivery-list-container');
+        const notificationCount = document.getElementById('notification-count');
+        const successModal = document.getElementById('success-modal');
+        const closeSuccessModal = document.getElementById('close-success-modal');
+        const okSuccessBtn = document.getElementById('ok-success-btn');
+        
+        // Tab Switching
+        tabNewDelivery.addEventListener('click', () => {
+            switchTab('new-delivery');
+        });
+        
+        tabDeliveryList.addEventListener('click', () => {
+            switchTab('delivery-list');
+        });
+        
+        function switchTab(tabName) {
+            // Update tabs
+            tabNewDelivery.classList.remove('active');
+            tabDeliveryList.classList.remove('active');
+            
+            // Show/hide sections
+            newDeliverySection.style.display = 'none';
+            deliveryListSection.style.display = 'none';
+            
+            if (tabName === 'new-delivery') {
+                tabNewDelivery.classList.add('active');
+                newDeliverySection.style.display = 'block';
+            } else {
+                tabDeliveryList.classList.add('active');
+                deliveryListSection.style.display = 'block';
+                loadDeliveryList();
+            }
+        }
+        
+        // Camera functionality
+        cameraTrigger.addEventListener('click', () => {
+            cameraInput.click();
+        });
+        
+        cameraInput.addEventListener('change', function(e) {
+            if (this.files && this.files[0]) {
+                const reader = new FileReader();
+                
+                reader.onload = function(e) {
+                    // Create preview image
+                    const img = document.createElement('img');
+                    img.src = e.target.result;
+                    img.style.width = '100%';
+                    img.style.borderRadius = 'var(--border-radius)';
+                    img.style.marginTop = '10px';
+                    
+                    // Clear previous preview and add new one
+                    photoPreview.innerHTML = '';
+                    photoPreview.appendChild(img);
+                    
+                    // Change camera placeholder text
+                    cameraTrigger.innerHTML = `
+                        <i class="fas fa-camera-retro camera-icon"></i>
+                        <span>Foto adicionada. Clique para alterar</span>
+                    `;
+                };
+                
+                reader.readAsDataURL(this.files[0]);
+            }
+        });
+        
+        // Form submission
+        deliveryForm.addEventListener('submit', function(e) {
+            e.preventDefault();
+            
+            // Get form values
+            const residentSelect = document.getElementById('resident');
+            const residentText = residentSelect.options[residentSelect.selectedIndex].text;
+            const company = document.getElementById('delivery-company').value;
+            const code = document.getElementById('delivery-code').value;
+            
+            // Create new delivery object
+            const newDelivery = {
+                id: deliveries.length + 1,
+                resident: residentText,
+                company: company,
+                code: code,
+                time: "Agora",
+                status: "pending",
+                photo: photoPreview.innerHTML || null
+            };
+            
+            // Add to deliveries array
+            deliveries.unshift(newDelivery);
+            
+            // Update notification count
+            updateNotificationCount();
+            
+            // Show success modal
+            successModal.classList.add('active');
+            
+            // Reset form
+            deliveryForm.reset();
+            photoPreview.innerHTML = '';
+            cameraTrigger.innerHTML = `
+                <i class="fas fa-camera camera-icon"></i>
+                <span>Clique para tirar uma foto da entrega</span>
+            `;
+        });
+        
+        // Load delivery list
+        function loadDeliveryList() {
+            deliveryListContainer.innerHTML = '';
+            
+            if (deliveries.length === 0) {
+                deliveryListContainer.innerHTML = `
+                    <div style="text-align: center; padding: 40px 20px; color: var(--gray-color);">
+                        <i class="fas fa-box-open" style="font-size: 48px; margin-bottom: 16px;"></i>
+                        <p>Nenhuma entrega registrada ainda.</p>
+                    </div>
+                `;
+                return;
+            }
+            
+            deliveries.forEach(delivery => {
+                const deliveryItem = document.createElement('div');
+                deliveryItem.className = `delivery-item ${delivery.status}`;
+                
+                const iconClass = delivery.company.toLowerCase().includes('correios') ? 'fas fa-mail-bulk' : 
+                                 delivery.company.toLowerCase().includes('ifood') ? 'fas fa-utensils' : 
+                                 delivery.company.toLowerCase().includes('amazon') ? 'fas fa-shopping-cart' : 'fas fa-truck';
+                
+                const statusText = delivery.status === 'pending' ? 'Pendente' : 'Entregue';
+                const statusClass = delivery.status === 'pending' ? 'status-pending' : 'status-delivered';
+                
+                deliveryItem.innerHTML = `
+                    <div class="delivery-icon">
+                        <i class="${iconClass}"></i>
+                    </div>
+                    <div class="delivery-info">
+                        <div class="delivery-title">${delivery.resident}</div>
+                        <div class="delivery-details">${delivery.company} ${delivery.code ? `- ${delivery.code}` : ''}</div>
+                        <div class="delivery-time">${delivery.time}</div>
+                    </div>
+                    <div class="delivery-status ${statusClass}">${statusText}</div>
+                `;
+                
+                deliveryListContainer.appendChild(deliveryItem);
+            });
+        }
+        
+        // Update notification count
+        function updateNotificationCount() {
+            const pendingCount = deliveries.filter(d => d.status === 'pending').length;
+            notificationCount.textContent = pendingCount;
+            
+            if (pendingCount === 0) {
+                notificationCount.style.display = 'none';
+            } else {
+                notificationCount.style.display = 'flex';
+            }
+        }
+        
+        // Modal functionality
+        closeSuccessModal.addEventListener('click', () => {
+            successModal.classList.remove('active');
+        });
+        
+        okSuccessBtn.addEventListener('click', () => {
+            successModal.classList.remove('active');
+            // Switch to delivery list tab
+            switchTab('delivery-list');
+        });
+        
+        // Close modal when clicking outside
+        window.addEventListener('click', (e) => {
+            if (e.target === successModal) {
+                successModal.classList.remove('active');
+            }
+        });
+        
+        // Initialize the app
+        function initApp() {
+            loadDeliveryList();
+            updateNotificationCount();
+        }
+        
+        // Initialize when page loads
+        document.addEventListener('DOMContentLoaded', initApp);
+    </script>
+</body>
+</html>
